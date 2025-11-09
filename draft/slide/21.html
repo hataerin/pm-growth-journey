@@ -1,0 +1,201 @@
+<!doctype html>
+
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				font-family: "Noto Sans KR", sans-serif;				color: #000000;
+			}
+			.slide-container {
+				width: 100dvw;
+				height: 100dvh;
+				display: flex;
+				overflow: hidden;
+				position: relative;
+			}
+			.content-wrapper {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				padding: 80px;
+				z-index: 10;
+			}
+			.header {
+				margin-bottom: 40px;
+			}
+			.title {
+				font-size: 48px;
+				font-weight: 700;
+				margin-bottom: 20px;
+				color: #000000;
+				position: relative;
+				display: inline-block;
+			}
+			.title::after {
+				content: "";
+				position: absolute;
+				bottom: -10px;
+				left: 0;
+				width: 80px;
+				height: 4px;
+				background-color: #61dafb;
+			}
+			.content-container {
+				display: flex;
+				gap: 40px;
+			}
+			.section {
+				flex: 1;
+			}
+			.section-title {
+				font-size: 32px;
+				font-weight: 600;
+				margin-bottom: 30px;
+				color: #000000;
+			}
+			.checklist {
+				display: flex;
+				flex-direction: column;
+				gap: 24px;
+			}
+			.checklist-item {
+				display: flex;
+				align-items: flex-start;
+				font-size: 24px;
+				font-weight: 400;
+			}
+			.checklist-item i {
+				color: #61dafb;
+				font-size: 20px;
+				margin-right: 16px;
+				margin-top: 4px;
+				width: 28px;
+				height: 28px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border: 2px solid #61dafb;
+				border-radius: 50%;
+				flex-shrink: 0;
+			}
+			.checklist-item p {
+				line-height: 1.4;
+			}
+			.abstract-elements {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+				overflow: hidden;
+			}
+			.circle {
+				position: absolute;
+				border: 2px solid #61dafb;
+				border-radius: 50%;
+				opacity: 0.1;
+			}
+			.circle-1 {
+				width: 250px;
+				height: 250px;
+				right: -50px;
+				top: -50px;
+			}
+			.circle-2 {
+				width: 120px;
+				height: 120px;
+				left: 100px;
+				bottom: 80px;
+			}
+			.rectangle {
+				position: absolute;
+				border: 2px solid #61dafb;
+				opacity: 0.05;
+			}
+			.rectangle-1 {
+				width: 300px;
+				height: 150px;
+				transform: rotate(-20deg);
+				right: 100px;
+				bottom: -50px;
+			}
+			.page-number {
+				position: absolute;
+				bottom: 30px;
+				right: 40px;
+				font-size: 16px;
+				color: #888;
+			}
+		</style>
+			<link rel="stylesheet" href="./common-style.css" />
+		<script src="https://unpkg.com/lucide@latest"></script>
+	</head>
+	<body>
+		<div class="slide-container">
+			<div class="abstract-elements">
+				<div class="circle circle-1"></div>
+				<div class="circle circle-2"></div>
+				<div class="rectangle rectangle-1"></div>
+			</div>
+			<div class="content-wrapper">
+				<div class="header">
+					<h1 class="title">실무 활용</h1>
+				</div>
+				<div class="content-container">
+					<div class="section">
+						<h2 class="section-title">이해 포인트</h2>
+						<div class="checklist">
+							<div class="checklist-item">
+								<i data-lucide="check-circle"></i>
+								<p>key warning의 이유 이해</p>
+							</div>
+							<div class="checklist-item">
+								<i data-lucide="check-circle"></i>
+								<p>불변성의 필요성 파악</p>
+							</div>
+							<div class="checklist-item">
+								<i data-lucide="check-circle"></i>
+								<p>React.memo 사용 시점 결정</p>
+							</div>
+							<div class="checklist-item">
+								<i data-lucide="check-circle"></i>
+								<p>순수 컴포넌트 작성 방법</p>
+							</div>
+						</div>
+					</div>
+					<div class="section">
+						<h2 class="section-title">실전 팁</h2>
+						<div class="checklist">
+							<div class="checklist-item">
+								<i data-lucide="check-circle"></i>
+								<p>고유한 ID를 key로 사용</p>
+							</div>
+							<div class="checklist-item">
+								<i data-lucide="check-circle"></i>
+								<p>불변성 유지 패턴 활용</p>
+							</div>
+							<div class="checklist-item">
+								<i data-lucide="check-circle"></i>
+								<p>React DevTools Profiler로 병목 파악</p>
+							</div>
+							<div class="checklist-item">
+								<i data-lucide="check-circle"></i>
+								<p>의도적인 리렌더링 제어</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page-number">21</div>
+		</div>
+			<script>
+			lucide.createIcons();
+		</script>
+	</body>
+</html>

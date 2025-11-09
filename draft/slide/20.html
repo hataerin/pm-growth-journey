@@ -1,0 +1,167 @@
+<!doctype html>
+
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				font-family: "Noto Sans KR", sans-serif;				color: #000000;
+			}
+			.slide-container {
+				width: 100dvw;
+				height: 100dvh;
+				display: flex;
+				overflow: hidden;
+				position: relative;
+			}
+			.content-wrapper {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				padding: 80px;
+				z-index: 10;
+			}
+			.header {
+				margin-bottom: 60px;
+			}
+			.title {
+				font-size: 48px;
+				font-weight: 700;
+				margin-bottom: 20px;
+				color: #000000;
+				position: relative;
+				display: inline-block;
+			}
+			.title::after {
+				content: "";
+				position: absolute;
+				bottom: -10px;
+				left: 0;
+				width: 80px;
+				height: 4px;
+				background-color: #61dafb;
+			}
+			.checklist {
+				display: flex;
+				flex-direction: column;
+				gap: 28px;
+			}
+			.checklist-item {
+				display: flex;
+				align-items: flex-start;
+				font-size: 28px;
+				font-weight: 400;
+			}
+			.checklist-item i {
+				color: #61dafb;
+				font-size: 26px;
+				margin-right: 20px;
+				margin-top: 3px;
+				width: 36px;
+				height: 36px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border: 2px solid #61dafb;
+				border-radius: 50%;
+			}
+			.checklist-item-number {
+				font-weight: 700;
+				margin-right: 10px;
+				color: #333;
+			}
+			.abstract-elements {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+				overflow: hidden;
+			}
+			.circle {
+				position: absolute;
+				border: 2px solid #61dafb;
+				border-radius: 50%;
+				opacity: 0.1;
+			}
+			.circle-1 {
+				width: 250px;
+				height: 250px;
+				right: -50px;
+				top: -50px;
+			}
+			.circle-2 {
+				width: 120px;
+				height: 120px;
+				left: 100px;
+				bottom: 80px;
+			}
+			.rectangle {
+				position: absolute;
+				border: 2px solid #61dafb;
+				opacity: 0.05;
+			}
+			.rectangle-1 {
+				width: 300px;
+				height: 150px;
+				transform: rotate(-20deg);
+				right: 100px;
+				bottom: -50px;
+			}
+			.page-number {
+				position: absolute;
+				bottom: 30px;
+				right: 40px;
+				font-size: 16px;
+				color: #888;
+			}
+		</style>
+			<link rel="stylesheet" href="./common-style.css" />
+		<script src="https://unpkg.com/lucide@latest"></script>
+	</head>
+	<body>
+		<div class="slide-container">
+			<div class="abstract-elements">
+				<div class="circle circle-1"></div>
+				<div class="circle circle-2"></div>
+				<div class="rectangle rectangle-1"></div>
+			</div>
+			<div class="content-wrapper">
+				<div class="header">
+					<h1 class="title">우리가 알아본 것들</h1>
+				</div>
+				<div class="checklist">
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p><span class="checklist-item-number">1)</span> JSX → createElement → JS 객체</p>
+					</div>
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p><span class="checklist-item-number">2)</span> Virtual DOM = 선언적 UI</p>
+					</div>
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p><span class="checklist-item-number">3)</span> Reconciliation = O(n) 전략</p>
+					</div>
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p><span class="checklist-item-number">4)</span> 얕은 비교 = 불변성 전제</p>
+					</div>
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p><span class="checklist-item-number">5)</span> Fiber = 우선순위/동시성</p>
+					</div>
+				</div>
+			</div>
+			<div class="page-number">20</div>
+		</div>
+			<script>
+			lucide.createIcons();
+		</script>
+	</body>
+</html>

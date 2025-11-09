@@ -1,0 +1,189 @@
+<!doctype html>
+
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				font-family: "Noto Sans KR", sans-serif;
+				color: #000000;
+			}
+			.slide-container {
+				width: 100dvw;
+				height: 100dvh;
+				display: flex;
+				overflow: hidden;
+				position: relative;
+			}
+			.content-wrapper {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				padding: 80px;
+				z-index: 10;
+			}
+			.header {
+				margin-bottom: 60px;
+			}
+			.title {
+				font-size: 48px;
+				font-weight: 700;
+				margin-bottom: 20px;
+				color: #000000;
+				position: relative;
+				display: inline-block;
+			}
+			.title::after {
+				content: "";
+				position: absolute;
+				bottom: -10px;
+				left: 0;
+				width: 80px;
+				height: 4px;
+				background-color: #61dafb;
+			}
+			.checklist {
+				display: flex;
+				flex-direction: column;
+				gap: 28px;
+			}
+			.checklist-item {
+				display: flex;
+				align-items: flex-start;
+				font-size: 28px;
+				font-weight: 400;
+			}
+			.checklist-item i {
+				color: #61dafb;
+				font-size: 26px;
+				margin-right: 20px;
+				width: 36px;
+				height: 36px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border: 2px solid #61dafb;
+				border-radius: 50%;
+				margin-top: 3px;
+			}
+			.checklist-item .highlight {
+				color: #61dafb;
+				font-weight: 500;
+			}
+			.checklist-item .bad {
+				color: #ff5252;
+				font-weight: 500;
+			}
+			.checklist-item .good {
+				color: #4caf50;
+				font-weight: 500;
+			}
+			.checklist-item p {
+				line-height: 1.4;
+			}
+			.checklist-item .sub-text {
+				font-size: 22px;
+				color: #555;
+				display: block;
+				margin-top: 5px;
+			}
+			.abstract-elements {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+				overflow: hidden;
+			}
+			.circle {
+				position: absolute;
+				border: 2px solid #61dafb;
+				border-radius: 50%;
+				opacity: 0.1;
+			}
+			.circle-1 {
+				width: 250px;
+				height: 250px;
+				right: -50px;
+				top: -50px;
+			}
+			.circle-2 {
+				width: 120px;
+				height: 120px;
+				left: 100px;
+				bottom: 80px;
+			}
+			.rectangle {
+				position: absolute;
+				border: 2px solid #61dafb;
+				opacity: 0.05;
+			}
+			.rectangle-1 {
+				width: 300px;
+				height: 150px;
+				transform: rotate(-20deg);
+				right: 100px;
+				bottom: -50px;
+			}
+			.page-number {
+				position: absolute;
+				bottom: 30px;
+				right: 40px;
+				font-size: 16px;
+				color: #888;
+			}
+		</style>
+		<link rel="stylesheet" href="./common-style.css" />
+		<script src="https://unpkg.com/lucide@latest"></script>
+	</head>
+	<body>
+		<div class="slide-container">
+			<div class="abstract-elements">
+				<div class="circle circle-1"></div>
+				<div class="circle circle-2"></div>
+				<div class="rectangle rectangle-1"></div>
+			</div>
+			<div class="content-wrapper">
+				<div class="header">
+					<h1 class="title">개발자가 알아야 할 것</h1>
+				</div>
+				<div class="checklist">
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p>컴포넌트는 순수 함수처럼 작성</p>
+					</div>
+					<div class="checklist-item">
+						<i data-lucide="x-circle" style="color: #ff5252; border-color: #ff5252"></i>
+						<p>
+							<span class="bad">렌더링 중 부작용 금지</span>
+							<span class="sub-text">API 호출, DOM 직접 조작, 타이머 설정 등</span>
+						</p>
+					</div>
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p>
+							부작용은 useEffect에 격리
+							<span class="sub-text">데이터 페칭, 구독, DOM 업데이트 등</span>
+						</p>
+					</div>
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p>
+							동일 입력 → 동일 출력 유지
+							<span class="sub-text">예측 가능성 확보, 테스트 용이성</span>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="page-number">19</div>
+		</div>
+		<script>
+			lucide.createIcons();
+		</script>
+	</body>
+</html>

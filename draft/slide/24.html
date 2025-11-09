@@ -1,0 +1,184 @@
+<!doctype html>
+
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<link rel="stylesheet" href="./common-style.css" />
+		<script src="https://unpkg.com/lucide@latest"></script>
+		<style>
+			.content-wrapper {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				padding: 80px;
+				z-index: 10;
+			}
+			.qa-icon-wrapper {
+				width: 140px;
+				height: 140px;
+				border-radius: 50%;
+				background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 50px;
+				box-shadow: 0 10px 40px rgba(255, 107, 157, 0.4);
+				animation: pulse 2s ease-in-out infinite;
+			}
+			.qa-icon-wrapper svg {
+				width: 80px;
+				height: 80px;
+				color: white;
+				stroke-width: 2;
+			}
+			.qa-heading {
+				font-size: 72px;
+				font-weight: 700;
+				margin-bottom: 30px;
+				text-align: center;
+				color: #1a1a1a;
+				letter-spacing: -0.02em;
+			}
+			.contact-info {
+				margin-top: 50px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 30px;
+			}
+			.presenter-card {
+				background: rgba(97, 218, 251, 0.08);
+				border: 2px solid rgba(97, 218, 251, 0.2);
+				border-radius: 20px;
+				padding: 40px 60px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 20px;
+			}
+			.presenter-name {
+				font-size: 36px;
+				font-weight: 700;
+				color: #1a1a1a;
+			}
+			.presenter-title {
+				font-size: 22px;
+				font-weight: 400;
+				color: #666;
+			}
+			.contact-links {
+				display: flex;
+				gap: 30px;
+				margin-top: 10px;
+			}
+			.contact-link {
+				display: flex;
+				align-items: center;
+				gap: 12px;
+				font-size: 20px;
+				font-weight: 500;
+				color: #333;
+				padding: 12px 24px;
+				background: white;
+				border-radius: 12px;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+				transition: transform 0.2s;
+			}
+			.contact-link:hover {
+				transform: translateY(-2px);
+			}
+			.contact-link svg {
+				width: 24px;
+				height: 24px;
+				color: #00b4d8;
+				stroke-width: 2.5;
+			}
+			.thank-you-text {
+				font-size: 28px;
+				color: #666;
+				text-align: center;
+				margin-top: 20px;
+				line-height: 1.6;
+			}
+			.circle-1 {
+				width: 300px;
+				height: 300px;
+				right: -100px;
+				top: -100px;
+			}
+			.circle-2 {
+				width: 200px;
+				height: 200px;
+				left: -50px;
+				bottom: -50px;
+			}
+			.circle-3 {
+				width: 120px;
+				height: 120px;
+				right: 200px;
+				bottom: 150px;
+			}
+			.rectangle-1 {
+				width: 250px;
+				height: 120px;
+				transform: rotate(-20deg);
+				left: 200px;
+				top: 100px;
+			}
+
+			@keyframes pulse {
+				0%,
+				100% {
+					transform: scale(1);
+				}
+				50% {
+					transform: scale(1.05);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="slide-container">
+			<div class="abstract-elements">
+				<div class="circle circle-1"></div>
+				<div class="circle circle-2"></div>
+				<div class="circle circle-3"></div>
+				<div class="rectangle rectangle-1"></div>
+			</div>
+			<div class="content-wrapper">
+				<div class="qa-icon-wrapper">
+					<i data-lucide="heart"></i>
+				</div>
+				<h1 class="qa-heading">감사합니다! 🙏</h1>
+				<p class="thank-you-text">함께해주셔서 감사합니다.<br />React를 더 깊이 이해하는 시간이 되셨길 바랍니다.</p>
+				<div class="contact-info">
+					<div class="presenter-card">
+						<p class="presenter-name">여찬규</p>
+						<p class="presenter-title">Frontend Developer</p>
+						<div class="contact-links">
+							<a href="https://blog9yu.dev" class="contact-link" target="_blank">
+								<i data-lucide="globe"></i>
+								<span>Blog</span>
+							</a>
+							<a href="https://github.com/chan9yu" class="contact-link" target="_blank">
+								<i data-lucide="github"></i>
+								<span>GitHub</span>
+							</a>
+							<a href="https://www.linkedin.com/in/chan9yu/" class="contact-link" target="_blank">
+								<i data-lucide="linkedin"></i>
+								<span>LinkedIn</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page-number">24</div>
+		</div>
+		<script>
+			lucide.createIcons();
+		</script>
+	</body>
+</html>

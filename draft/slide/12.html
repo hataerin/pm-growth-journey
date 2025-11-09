@@ -1,0 +1,150 @@
+<!doctype html>
+
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<link rel="stylesheet" href="./common-style.css" />
+		<script src="https://unpkg.com/lucide@latest"></script>
+		<style>
+			.step-number {
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				background-color: #00b4d8;
+				color: #ffffff;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 24px;
+				font-weight: 700;
+				margin-bottom: 16px;
+			}
+			.step-icon {
+				width: 100px;
+				height: 100px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: #f0f9ff;
+				border: 3px solid #00b4d8;
+				border-radius: 12px;
+				margin-bottom: 20px;
+			}
+			.step-icon svg {
+				width: 50px;
+				height: 50px;
+				color: #00b4d8;
+				stroke-width: 2.5;
+			}
+			.step-text {
+				font-size: 20px;
+				font-weight: 600;
+				text-align: center;
+				line-height: 1.5;
+				color: #1a1a1a;
+			}
+			.step-subtext {
+				font-size: 16px;
+				color: #666;
+				text-align: center;
+				margin-top: 8px;
+				padding: 0 10px;
+				line-height: 1.4;
+			}
+			.flow-line {
+				position: absolute;
+				top: 110px;
+				left: 165px;
+				width: calc(100% - 350px);
+				height: 4px;
+				background: linear-gradient(to right, #00b4d8, #0096c7);
+				z-index: 1;
+				opacity: 0.3;
+				display: flex;
+				align-items: center;
+			}
+			.flow-line::before,
+			.flow-line::after {
+				content: "";
+				position: absolute;
+				width: 12px;
+				height: 12px;
+				background-color: #00b4d8;
+				border-radius: 50%;
+			}
+			.flow-line::before {
+				left: -6px;
+			}
+			.flow-line::after {
+				right: -6px;
+			}
+			.circle-1 {
+				width: 200px;
+				height: 200px;
+				left: -50px;
+				bottom: -50px;
+			}
+			.circle-2 {
+				width: 120px;
+				height: 120px;
+				right: 100px;
+				top: 80px;
+			}
+			.rectangle-1 {
+				width: 300px;
+				height: 150px;
+				transform: rotate(30deg);
+				right: -100px;
+				bottom: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="slide-container">
+			<div class="abstract-elements">
+				<div class="circle circle-1"></div>
+				<div class="circle circle-2"></div>
+				<div class="rectangle rectangle-1"></div>
+			</div>
+			<div class="content-wrapper">
+				<div class="header">
+					<h1 class="title">Diffing 알고리즘</h1>
+				</div>
+				<div class="flow-diagram">
+					<div class="flow-line"></div>
+					<div class="flow-steps">
+						<div class="flow-step">
+							<div class="step-number">1</div>
+							<div class="step-icon">
+								<i data-lucide="git-compare"></i>
+							</div>
+							<p class="step-text">같은 레벨끼리 비교</p>
+							<p class="step-subtext">트리 전체 순회 불필요</p>
+						</div>
+						<div class="flow-step">
+							<div class="step-number">2</div>
+							<div class="step-icon">
+								<i data-lucide="refresh-cw"></i>
+							</div>
+							<p class="step-text">같은 타입이면<br />props만 업데이트</p>
+							<p class="step-subtext">DOM 노드 재사용</p>
+						</div>
+						<div class="flow-step">
+							<div class="step-number">3</div>
+							<div class="step-icon">
+								<i data-lucide="shield-check"></i>
+							</div>
+							<p class="step-text">컴포넌트 타입이 같으면</p>
+							<p class="step-subtext">인스턴스 유지, state 유지!</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page-number">12</div>
+		</div>
+		<script>
+			lucide.createIcons();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				font-family: "Noto Sans KR", sans-serif;
+				color: #000000;
+			}
+			.slide-container {
+				width: 100dvw;
+				height: 100dvh;
+				display: flex;
+				overflow: hidden;
+				position: relative;
+			}
+			.content-wrapper {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				padding: 80px;
+				z-index: 10;
+			}
+			.header {
+				margin-bottom: 60px;
+			}
+			.title {
+				font-size: 48px;
+				font-weight: 700;
+				margin-bottom: 20px;
+				color: #000000;
+				position: relative;
+				display: inline-block;
+			}
+			.title::after {
+				content: "";
+				position: absolute;
+				bottom: -10px;
+				left: 0;
+				width: 80px;
+				height: 4px;
+				background-color: #61dafb;
+			}
+			.content {
+				display: flex;
+				flex-direction: column;
+				gap: 35px;
+			}
+			.info-box {
+				background-color: #f8f8f8;
+				border-left: 4px solid #61dafb;
+				padding: 25px;
+				border-radius: 8px;
+				width: 100%;
+				max-width: 700px;
+			}
+			.info-text {
+				font-size: 28px;
+				white-space: pre-wrap;
+				color: #333;
+				line-height: 1.5;
+			}
+			.highlight {
+				font-weight: 700;
+				color: #000;
+				display: inline-block;
+				position: relative;
+			}
+			.highlight-react {
+				color: #61dafb;
+			}
+			.emphasis {
+				font-size: 36px;
+				font-weight: 500;
+				color: #000;
+				display: flex;
+				align-items: center;
+			}
+			.emoji {
+				font-size: 42px;
+				margin-left: 10px;
+			}
+			.abstract-elements {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+				overflow: hidden;
+			}
+			.circle {
+				position: absolute;
+				border: 2px solid #61dafb;
+				border-radius: 50%;
+				opacity: 0.1;
+			}
+			.circle-1 {
+				width: 200px;
+				height: 200px;
+				right: 100px;
+				top: 150px;
+			}
+			.circle-2 {
+				width: 120px;
+				height: 120px;
+				right: 50px;
+				bottom: 100px;
+			}
+			.big-text {
+				position: absolute;
+				right: 150px;
+				top: 200px;
+				font-size: 160px;
+				font-weight: 700;
+				color: #61dafb;
+				opacity: 0.1;
+			}
+			.page-number {
+				position: absolute;
+				bottom: 30px;
+				right: 40px;
+				font-size: 16px;
+				color: #888;
+			}
+		</style>
+		<link rel="stylesheet" href="./common-style.css" />
+		<script src="https://unpkg.com/lucide@latest"></script>
+	</head>
+	<body>
+		<div class="slide-container">
+			<div class="content-wrapper">
+				<div class="header">
+					<h1 class="title">불가능한 문제</h1>
+				</div>
+				<div class="content">
+					<div class="info-box">
+						<p class="info-text">트리 비교 복잡도: <span class="highlight highlight-react">O(n³)</span></p>
+						<p class="info-text">1,000개 노드 ≈ <span class="highlight">10억 번 연산</span></p>
+						<p class="info-text">60fps → <span class="highlight">16ms 내</span> 계산 완료 필요</p>
+					</div>
+					<div class="emphasis">
+						<p>→ 그대로는 <span class="highlight">불가능한</span> 문제 <span class="emoji">😱</span></p>
+					</div>
+				</div>
+			</div>
+			<div class="page-number">9</div>
+		</div>
+		<script>
+			lucide.createIcons();
+		</script>
+	</body>
+</html>

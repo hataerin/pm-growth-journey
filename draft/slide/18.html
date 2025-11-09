@@ -1,0 +1,226 @@
+<!doctype html>
+
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<link
+			href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&amp;display=swap"
+			rel="stylesheet"
+		/>
+<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				font-family: "Noto Sans KR", sans-serif;				color: #000000;
+			}
+			.slide-container {
+				width: 100dvw;
+				height: 100dvh;
+				display: flex;
+				overflow: hidden;
+				position: relative;
+			}
+			.content-wrapper {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				padding: 80px;
+				z-index: 10;
+			}
+			.header {
+				margin-bottom: 40px;
+			}
+			.title {
+				font-size: 48px;
+				font-weight: 700;
+				margin-bottom: 20px;
+				color: #000000;
+				position: relative;
+				display: inline-block;
+			}
+			.title::after {
+				content: "";
+				position: absolute;
+				bottom: -10px;
+				left: 0;
+				width: 80px;
+				height: 4px;
+				background-color: #61dafb;
+			}
+			.code-comparison {
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-start;
+				width: 100%;
+			}
+			.code-column {
+				flex: 1;
+				max-width: 30%;
+			}
+			.code-label {
+				font-size: 22px;
+				font-weight: 500;
+				margin-bottom: 12px;
+				color: #333;
+			}
+			.priority-tag {
+				display: inline-block;
+				padding: 4px 8px;
+				border-radius: 4px;
+				font-size: 16px;
+				font-weight: 500;
+				margin-left: 8px;
+			}
+			.priority-high {
+				background-color: #ff7875;
+				color: #fff;
+			}
+			.priority-normal {
+				background-color: #61dafb;
+				color: #000;
+			}
+			.priority-low {
+				background-color: #b7eb8f;
+				color: #135200;
+			}
+			.code-box {
+				background-color: #f8f8f8;
+				border-left: 4px solid;
+				padding: 20px;
+				border-radius: 8px;
+				min-height: 180px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+			.code-box-high {
+				border-left-color: #ff7875;
+			}
+			.code-box-normal {
+				border-left-color: #61dafb;
+			}
+			.code-box-low {
+				border-left-color: #b7eb8f;
+			}
+			.code-text {
+				font-family: "Nanum Gothic Coding", monospace;
+				font-size: 20px;
+				white-space: pre-wrap;
+				color: #333;
+				line-height: 1.6;
+			}
+			.code-comment {
+				color: #888;
+				font-style: italic;
+				margin-top: 8px;
+				font-size: 16px;
+			}
+			.abstract-elements {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+				overflow: hidden;
+			}
+			.circle {
+				position: absolute;
+				border: 2px solid #61dafb;
+				border-radius: 50%;
+				opacity: 0.1;
+			}
+			.circle-1 {
+				width: 200px;
+				height: 200px;
+				left: -50px;
+				top: -50px;
+			}
+			.circle-2 {
+				width: 120px;
+				height: 120px;
+				right: 100px;
+				bottom: 100px;
+			}
+			.rectangle {
+				position: absolute;
+				border: 2px solid #61dafb;
+				opacity: 0.05;
+			}
+			.rectangle-1 {
+				width: 250px;
+				height: 100px;
+				transform: rotate(45deg);
+				right: -50px;
+				top: 100px;
+			}
+			.page-number {
+				position: absolute;
+				bottom: 30px;
+				right: 40px;
+				font-size: 16px;
+				color: #888;
+			}
+			.description {
+				font-size: 20px;
+				color: #555;
+				margin-bottom: 30px;
+				line-height: 1.4;
+			}
+		</style>
+			<link rel="stylesheet" href="./common-style.css" />
+		<script src="https://unpkg.com/lucide@latest"></script>
+	</head>
+	<body>
+		<div class="slide-container">
+			<div class="abstract-elements">
+				<div class="circle circle-1"></div>
+				<div class="circle circle-2"></div>
+				<div class="rectangle rectangle-1"></div>
+			</div>
+			<div class="content-wrapper">
+				<div class="header">
+					<h1 class="title">우선순위 스케줄링</h1>
+					<p class="description">Fiber는 렌더링 작업에 우선순위를 부여하여 중요한 작업을 먼저 처리합니다</p>
+				</div>
+				<div class="code-comparison">
+					<div class="code-column">
+						<p class="code-label">즉시 <span class="priority-tag priority-high">높음</span></p>
+						<div class="code-box code-box-high">
+							<pre class="code-text">
+ReactDOM.flushSync(() =&gt; {
+  setUrgentState(newValue);
+});</pre
+							>
+							<p class="code-comment">// 클릭, 입력 같은 사용자 인터랙션</p>
+						</div>
+					</div>
+					<div class="code-column">
+						<p class="code-label">일반 <span class="priority-tag priority-normal">보통</span></p>
+						<div class="code-box code-box-normal">
+							<pre class="code-text">setState(newValue);</pre>
+							<p class="code-comment">// 대부분의 UI 업데이트</p>
+						</div>
+					</div>
+					<div class="code-column">
+						<p class="code-label">지연 <span class="priority-tag priority-low">낮음</span></p>
+						<div class="code-box code-box-low">
+							<pre class="code-text">
+startTransition(() =&gt; {
+  setLowPriorityState(newValue);
+});</pre
+							>
+							<p class="code-comment">// 분석, 로깅, 검색 결과 등</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page-number">18</div>
+		</div>
+			<script>
+			lucide.createIcons();
+		</script>
+	</body>
+</html>

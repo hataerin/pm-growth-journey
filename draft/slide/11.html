@@ -1,0 +1,246 @@
+<!doctype html>
+
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				font-family: "Noto Sans KR", sans-serif;
+				color: #000000;
+			}
+			.slide-container {
+				width: 100dvw;
+				height: 100dvh;
+				display: flex;
+				overflow: hidden;
+				position: relative;
+			}
+			.content-wrapper {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				padding: 80px;
+				z-index: 10;
+			}
+			.header {
+				margin-bottom: 40px;
+			}
+			.title {
+				font-size: 48px;
+				font-weight: 700;
+				margin-bottom: 20px;
+				color: #000000;
+				position: relative;
+				display: inline-block;
+			}
+			.title::after {
+				content: "";
+				position: absolute;
+				bottom: -10px;
+				left: 0;
+				width: 80px;
+				height: 4px;
+				background-color: #61dafb;
+			}
+			.code-comparison {
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-start;
+				width: 100%;
+			}
+			.code-column {
+				flex: 1;
+				max-width: 45%;
+			}
+			.code-label {
+				font-size: 24px;
+				font-weight: 500;
+				margin-bottom: 12px;
+				color: #333;
+			}
+			.code-box {
+				background-color: #f8f8f8;
+				border-left: 4px solid #61dafb;
+				padding: 24px;
+				border-radius: 8px;
+				min-height: 180px;
+				display: flex;
+				flex-direction: column;
+			}
+			.code-text {
+				font-family: "Nanum Gothic Coding", monospace;
+				font-size: 20px;
+				white-space: pre-wrap;
+				color: #333;
+				line-height: 1.6;
+			}
+			.transform-arrow {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				margin: 0 20px;
+				padding-top: 60px;
+			}
+			.arrow {
+				color: #61dafb;
+				font-size: 36px;
+			}
+			.transform-label {
+				font-size: 18px;
+				font-weight: 500;
+				margin-top: 8px;
+				color: #61dafb;
+			}
+			.explanation {
+				margin-top: 30px;
+				padding: 20px;
+				background-color: rgba(97, 218, 251, 0.1);
+				border-radius: 8px;
+			}
+			.explanation-text {
+				font-size: 20px;
+				line-height: 1.6;
+				color: #333;
+			}
+			.highlight {
+				color: #ff5252;
+				font-weight: 500;
+			}
+			.problem-icon {
+				color: #ff5252;
+				margin-right: 8px;
+			}
+			.solution-icon {
+				color: #4caf50;
+				margin-right: 8px;
+			}
+			.abstract-elements {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+				overflow: hidden;
+			}
+			.circle {
+				position: absolute;
+				border: 2px solid #61dafb;
+				border-radius: 50%;
+				opacity: 0.1;
+			}
+			.circle-1 {
+				width: 200px;
+				height: 200px;
+				left: -50px;
+				top: -50px;
+			}
+			.circle-2 {
+				width: 120px;
+				height: 120px;
+				right: 100px;
+				bottom: 100px;
+			}
+			.rectangle {
+				position: absolute;
+				border: 2px solid #61dafb;
+				opacity: 0.05;
+			}
+			.rectangle-1 {
+				width: 250px;
+				height: 100px;
+				transform: rotate(45deg);
+				right: -50px;
+				top: 100px;
+			}
+			.page-number {
+				position: absolute;
+				bottom: 30px;
+				right: 40px;
+				font-size: 16px;
+				color: #888;
+			}
+		</style>
+		<link rel="stylesheet" href="./common-style.css" />
+		<script src="https://unpkg.com/lucide@latest"></script>
+	</head>
+	<body>
+		<div class="slide-container">
+			<div class="abstract-elements">
+				<div class="circle circle-1"></div>
+				<div class="circle circle-2"></div>
+				<div class="rectangle rectangle-1"></div>
+			</div>
+			<div class="content-wrapper">
+				<div class="header">
+					<h1 class="title">key가 중요한 이유</h1>
+				</div>
+				<div class="code-comparison">
+					<div class="code-column">
+						<p class="code-label"><i class="fas fa-times-circle problem-icon"></i>나쁜 예: index를 key로</p>
+						<div class="code-box">
+							<pre class="code-text">
+[
+  &lt;li key={0}&gt;Apple&lt;/li&gt;,
+  &lt;li key={1}&gt;Banana&lt;/li&gt;
+]
+
+// Orange 추가 시
+[
+  &lt;li key={0}&gt;Orange&lt;/li&gt;,
+  &lt;li key={1}&gt;Apple&lt;/li&gt;,
+  &lt;li key={2}&gt;Banana&lt;/li&gt;
+]</pre
+							>
+						</div>
+					</div>
+					<div class="transform-arrow">
+						<i class="fas fa-arrow-right arrow"></i>
+						<p class="transform-label">문제 발생</p>
+					</div>
+					<div class="code-column">
+						<p class="code-label">
+							<i class="fas fa-check-circle solution-icon"></i>좋은 예: 고유 ID를 key로
+						</p>
+						<div class="code-box">
+							<pre class="code-text">
+[
+  &lt;li key="a1"&gt;Apple&lt;/li&gt;,
+  &lt;li key="b2"&gt;Banana&lt;/li&gt;
+]
+
+// Orange 추가 시
+[
+  &lt;li key="o3"&gt;Orange&lt;/li&gt;,
+  &lt;li key="a1"&gt;Apple&lt;/li&gt;,
+  &lt;li key="b2"&gt;Banana&lt;/li&gt;
+]</pre
+							>
+						</div>
+					</div>
+				</div>
+				<div class="explanation">
+					<p class="explanation-text">
+						React: "<span class="highlight">key가 0인 아이템이 변경됐고, key가 1인 아이템도 변경됐네?</span
+						>"<br />
+						→ 실제로는 새 아이템이 추가된 것뿐인데, 모든 아이템이 변경된 것으로 인식<br />
+						→ <span class="highlight">불필요한 리렌더링</span> 발생 → 성능 저하 및 DOM 조작 증가
+					</p>
+				</div>
+			</div>
+			<div class="page-number">11</div>
+		</div>
+		<script>
+			lucide.createIcons();
+		</script>
+	</body>
+</html>

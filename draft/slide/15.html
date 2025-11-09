@@ -1,0 +1,160 @@
+<!doctype html>
+
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<link rel="stylesheet" href="./common-style.css" />
+		<style>
+			.checklist {
+				display: flex;
+				flex-direction: column;
+				gap: 36px;
+			}
+			.checklist-item {
+				display: flex;
+				align-items: center;
+				font-size: 28px;
+				font-weight: 400;
+			}
+			.framework-icon {
+				width: 50px;
+				height: 50px;
+				margin-right: 24px;
+				flex-shrink: 0;
+			}
+			.framework-icon svg {
+				width: 100%;
+				height: 100%;
+			}
+			.content {
+				display: flex;
+				flex-direction: column;
+				flex: 1;
+			}
+			.framework-name {
+				font-weight: 700;
+				font-size: 32px;
+				margin-bottom: 8px;
+				color: #1a1a1a;
+			}
+			.description {
+				font-size: 24px;
+				color: #666;
+				line-height: 1.5;
+			}
+			.divider {
+				height: 2px;
+				background: linear-gradient(to right, transparent, #e0e0e0, transparent);
+				margin: 50px 0;
+			}
+			.philosophy {
+				border-left: 4px solid #00b4d8;
+				background-color: rgba(97, 218, 251, 0.05);
+				padding: 20px 24px;
+				border-radius: 8px;
+			}
+			.philosophy-text {
+				font-size: 32px;
+				font-weight: 600;
+				color: #1a1a1a;
+			}
+			.circle-1 {
+				width: 250px;
+				height: 250px;
+				right: -50px;
+				top: -50px;
+			}
+			.circle-2 {
+				width: 120px;
+				height: 120px;
+				left: 100px;
+				bottom: 80px;
+			}
+			.rectangle-1 {
+				width: 300px;
+				height: 150px;
+				transform: rotate(-20deg);
+				right: 100px;
+				bottom: -50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="slide-container">
+			<div class="abstract-elements">
+				<div class="circle circle-1"></div>
+				<div class="circle circle-2"></div>
+				<div class="rectangle rectangle-1"></div>
+			</div>
+			<div class="content-wrapper">
+				<div class="header">
+					<h1 class="title">다른 프레임워크와 비교</h1>
+				</div>
+				<div class="checklist">
+					<div class="checklist-item">
+						<div class="framework-icon">
+							<svg viewBox="0 0 261.76 226.69" xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M161.096.001l-30.224 52.35L100.647.002H-.005L130.872 226.69 261.749 0z"
+									fill="#41b883"
+								/>
+								<path
+									d="M161.096.001l-30.224 52.35L100.647.002H52.346l78.526 136.01L209.398.001z"
+									fill="#34495e"
+								/>
+							</svg>
+						</div>
+						<div class="content">
+							<p class="framework-name">Vue</p>
+							<p class="description">Proxy 기반 자동 변경 감지</p>
+						</div>
+					</div>
+					<div class="checklist-item">
+						<div class="framework-icon">
+							<svg viewBox="0 0 256 272" xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M.1 45.522L125.908.697l129.196 44.028-20.919 166.45-108.277 59.966-106.583-59.169L.1 45.522z"
+									fill="#E23237"
+								/>
+								<path
+									d="M255.104 44.725L125.908.697v270.444l108.277-59.866 20.919-166.55z"
+									fill="#B52E31"
+								/>
+								<path
+									d="M126.107 32.274L47.714 206.693l29.285-.498 15.739-39.347h70.325l17.233 39.845 27.99.498-82.179-174.917zm.2 55.882l26.496 55.383h-49.806l23.31-55.383z"
+									fill="#FFF"
+								/>
+							</svg>
+						</div>
+						<div class="content">
+							<p class="framework-name">Angular</p>
+							<p class="description">Zone.js를 통한 이벤트 추적</p>
+						</div>
+					</div>
+					<div class="checklist-item">
+						<div class="framework-icon">
+							<svg viewBox="-11.5 -10.23174 23 20.46348" xmlns="http://www.w3.org/2000/svg">
+								<circle r="2.05" fill="#61dafb" />
+								<g stroke="#61dafb" stroke-width="1" fill="none">
+									<ellipse rx="11" ry="4.2" />
+									<ellipse rx="11" ry="4.2" transform="rotate(60)" />
+									<ellipse rx="11" ry="4.2" transform="rotate(120)" />
+								</g>
+							</svg>
+						</div>
+						<div class="content">
+							<p class="framework-name">React</p>
+							<p class="description">명시적 불변성, 개발자가 직접 제어</p>
+						</div>
+					</div>
+				</div>
+				<div class="divider"></div>
+				<div class="philosophy">
+					<p class="philosophy-text">React 철학: 마법보다는 명시성 ✨</p>
+				</div>
+			</div>
+			<div class="page-number">15</div>
+		</div>
+	</body>
+</html>

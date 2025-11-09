@@ -1,0 +1,70 @@
+<!doctype html>
+
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<link rel="stylesheet" href="./common-style.css" />
+		<script src="https://unpkg.com/lucide@latest"></script>
+		<style>.circle-1 {
+				width: 250px;
+				height: 250px;
+				right: -50px;
+				top: -50px;
+			}
+			.circle-2 {
+				width: 120px;
+				height: 120px;
+				left: 100px;
+				bottom: 80px;
+			}
+			.rectangle-1 {
+				width: 300px;
+				height: 150px;
+				transform: rotate(-20deg);
+				right: 100px;
+				bottom: -50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="slide-container">
+			<div class="abstract-elements">
+				<div class="circle circle-1"></div>
+				<div class="circle circle-2"></div>
+				<div class="rectangle rectangle-1"></div>
+			</div>
+			<div class="content-wrapper">
+				<div class="header">
+					<h1 class="title">오늘의 목표</h1>
+				</div>
+				<div class="checklist">
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p>JSX → JavaScript 변환 과정</p>
+					</div>
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p>Virtual DOM의 진짜 의미</p>
+					</div>
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p>Reconciliation 알고리즘</p>
+					</div>
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p>얕은 비교와 불변성</p>
+					</div>
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p>Fiber Architecture</p>
+					</div>
+				</div>
+			</div>
+			<div class="page-number">2</div>
+		</div>
+		<script>
+			lucide.createIcons();
+		</script>
+	</body>
+</html>

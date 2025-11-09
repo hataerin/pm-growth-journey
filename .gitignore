@@ -1,0 +1,200 @@
+# Node.js & Package Managers
+# ----------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.npm
+.pnpm-store/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Lock files (keep pnpm-lock.yaml for reproducible builds)
+package-lock.json
+yarn.lock
+
+# TypeScript & Build Outputs
+# ----------------------------------------------
+dist/
+build/
+lib/
+out/
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# JavaScript Source Maps & Temporary Files
+*.js.map
+*.d.ts.map
+.temp/
+.tmp/
+
+# IDE & Editor Files
+# ----------------------------------------------
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# JetBrains IDEs
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# Operating System Files
+# ----------------------------------------------
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.nfs*
+
+# Development & Testing
+# ----------------------------------------------
+# Coverage reports
+coverage/
+*.lcov
+.nyc_output/
+.coverage/
+
+# Test artifacts
+test-results/
+screenshots/
+videos/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# Logs
+# ----------------------------------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Build Tools & Bundlers
+# ----------------------------------------------
+# Webpack
+.webpack/
+
+# Vite
+.vite/
+vite.config.*.timestamp-*
+
+# Rollup
+.rollup.cache/
+
+# Parcel
+.parcel-cache/
+
+# Turbo
+.turbo/
+
+# ESLint & Prettier
+# ----------------------------------------------
+.eslintcache
+.stylelintcache
+
+# Optional: Keep formatter configs visible
+# !.prettierrc*
+# !.eslintrc*
+
+# Documentation
+# ----------------------------------------------
+# Generated docs (if using tools like TypeDoc)
+docs/generated/
+api-docs/
+
+# Storybook
+storybook-static/
+
+# Deployment & CI/CD
+# ----------------------------------------------
+.vercel/
+.netlify/
+.firebase/
+
+# Docker
+Dockerfile.local
+docker-compose.override.yml
+
+# Temporary & Backup Files
+# ----------------------------------------------
+*.tmp
+*.temp
+*.bak
+*.backup
+*.orig
+*~
+
+# Miscellaneous
+# ----------------------------------------------
+# Local database files
+*.sqlite
+*.sqlite3
+*.db
+
+# Certificates
+*.pem
+*.key
+*.crt
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar
+
+# Claude Code specific
+.claude/
+
+# Lefthook local configuration
+.lefthook-local.yml

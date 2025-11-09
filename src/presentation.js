@@ -29,7 +29,6 @@ Reveal.on("slidechanged", (event) => {
 
 		requestAnimationFrame(() => {
 			iframe.src = src;
-			setTimeout(restoreFocus, 50);
 		});
 	}
 });
@@ -62,6 +61,4 @@ window.addEventListener("focus", restoreFocus);
 window.addEventListener("pageshow", restoreFocus);
 document.addEventListener("click", restoreFocus);
 
-Reveal.on("ready", () => {
-	setTimeout(restoreFocus, 100);
-});
+Reveal.on("ready", restoreFocus);

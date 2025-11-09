@@ -63,7 +63,6 @@
 				color: #61dafb;
 				font-size: 26px;
 				margin-right: 20px;
-				margin-top: 3px;
 				width: 36px;
 				height: 36px;
 				display: flex;
@@ -71,11 +70,30 @@
 				justify-content: center;
 				border: 2px solid #61dafb;
 				border-radius: 50%;
+				margin-top: 3px;
 			}
-			.checklist-item-number {
-				font-weight: 700;
-				margin-right: 10px;
-				color: #333;
+			.checklist-item .sub-text {
+				font-size: 22px;
+				opacity: 0.8;
+				margin-top: 6px;
+				font-weight: 300;
+			}
+			.result-box {
+				margin-top: 60px;
+				background-color: rgba(97, 218, 251, 0.05);
+				border-left: 4px solid #61dafb;
+				padding: 20px 30px;
+				border-radius: 0 4px 4px 0;
+			}
+			.result-box p {
+				font-size: 28px;
+				font-weight: 500;
+				display: flex;
+				align-items: center;
+			}
+			.result-box .arrow {
+				margin: 0 15px;
+				color: #61dafb;
 			}
 			.abstract-elements {
 				position: absolute;
@@ -122,7 +140,7 @@
 				color: #888;
 			}
 		</style>
-		<link rel="stylesheet" href="./common-style.css" />
+		<link rel="stylesheet" href="../assets/css/common-style.css" />
 		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
 	<body>
@@ -134,32 +152,32 @@
 			</div>
 			<div class="content-wrapper">
 				<div class="header">
-					<h1 class="title">우리가 알아본 것들</h1>
+					<h1 class="title">React의 두 가지 가정</h1>
 				</div>
 				<div class="checklist">
-					<div class="checklist-item">
+					<div class="checklist-item animate-slide-in-left delay-1">
 						<i data-lucide="check-circle"></i>
-						<p><span class="checklist-item-number">1)</span> JSX → createElement → JS 객체</p>
+						<div>
+							<p>가정 1: 타입이 다르면 다른 트리</p>
+							<p class="sub-text">&lt;div&gt; → &lt;span&gt; = 재생성</p>
+						</div>
 					</div>
-					<div class="checklist-item">
+					<div class="checklist-item animate-slide-in-left delay-1">
 						<i data-lucide="check-circle"></i>
-						<p><span class="checklist-item-number">2)</span> Virtual DOM = 선언적 UI</p>
-					</div>
-					<div class="checklist-item">
-						<i data-lucide="check-circle"></i>
-						<p><span class="checklist-item-number">3)</span> Reconciliation = O(n) 전략</p>
-					</div>
-					<div class="checklist-item">
-						<i data-lucide="check-circle"></i>
-						<p><span class="checklist-item-number">4)</span> 얕은 비교 = 불변성 전제</p>
-					</div>
-					<div class="checklist-item">
-						<i data-lucide="check-circle"></i>
-						<p><span class="checklist-item-number">5)</span> Fiber = 우선순위/동시성</p>
+						<div>
+							<p>가정 2: key로 안정적 식별</p>
+							<p class="sub-text">&lt;li key={item.id}&gt;</p>
+						</div>
 					</div>
 				</div>
+				<div class="result-box animate-scale-in delay-5">
+					<p>
+						O(n<sup>3</sup>) <span class="arrow"><i class="fas fa-long-arrow-alt-right"></i></span> O(n)
+						달성!
+					</p>
+				</div>
 			</div>
-			<div class="page-number">20</div>
+			<div class="page-number">10</div>
 		</div>
 		<script>
 			lucide.createIcons();

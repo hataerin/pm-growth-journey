@@ -167,6 +167,115 @@ p,
 	font-weight: 500;
 }
 
+/* 애니메이션 효과 */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slideInLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideInRight {
+	from {
+		opacity: 0;
+		transform: translateX(50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes scaleIn {
+	from {
+		opacity: 0;
+		transform: scale(0.8);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+/* 애니메이션 적용 클래스 */
+.animate-fade-in-up {
+	animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+	animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+	animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+	animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+	animation: scaleIn 0.6s ease-out forwards;
+}
+
+/* 순차적 지연 효과 */
+.delay-1 {
+	animation-delay: 0.1s;
+	opacity: 0;
+}
+.delay-2 {
+	animation-delay: 0.2s;
+	opacity: 0;
+}
+.delay-3 {
+	animation-delay: 0.3s;
+	opacity: 0;
+}
+.delay-4 {
+	animation-delay: 0.4s;
+	opacity: 0;
+}
+.delay-5 {
+	animation-delay: 0.5s;
+	opacity: 0;
+}
+.delay-6 {
+	animation-delay: 0.6s;
+	opacity: 0;
+}
+.delay-7 {
+	animation-delay: 0.7s;
+	opacity: 0;
+}
+.delay-8 {
+	animation-delay: 0.8s;
+	opacity: 0;
+}
+
 /* Flow 다이어그램 */
 .flow-diagram {
 	display: flex;
@@ -224,4 +333,173 @@ p,
 	color: #666;
 	text-align: center;
 	line-height: 1.5;
+}
+
+/* Responsive Styles */
+/* 중간 크기 노트북 (1024px 이하) */
+@media (max-width: 1024px) {
+	.content-wrapper {
+		padding: 60px;
+	}
+
+	.header {
+		margin-bottom: 40px;
+	}
+
+	.title {
+		font-size: 42px;
+	}
+
+	.checklist {
+		gap: 22px;
+	}
+
+	.checklist-item {
+		font-size: 26px;
+	}
+
+	.checklist-item svg {
+		width: 28px;
+		height: 28px;
+		margin-right: 16px;
+	}
+
+	.emphasis {
+		font-size: 30px;
+	}
+
+	.code-text {
+		font-size: 20px;
+		padding: 25px;
+	}
+
+	.code-box {
+		padding: 25px;
+	}
+
+	.step-icon {
+		width: 70px;
+		height: 70px;
+	}
+
+	.step-icon svg {
+		width: 36px;
+		height: 36px;
+	}
+
+	.step-title {
+		font-size: 18px;
+	}
+
+	.step-desc {
+		font-size: 14px;
+	}
+
+	.flow-steps {
+		margin-bottom: 30px;
+	}
+}
+
+/* 작은 노트북 (768px 이하) */
+@media (max-width: 768px) {
+	.content-wrapper {
+		padding: 40px;
+	}
+
+	.header {
+		margin-bottom: 30px;
+	}
+
+	.title {
+		font-size: 36px;
+		margin-bottom: 16px;
+	}
+
+	.title::after {
+		width: 60px;
+		height: 3px;
+		bottom: -8px;
+	}
+
+	.checklist {
+		gap: 18px;
+	}
+
+	.checklist-item {
+		font-size: 22px;
+	}
+
+	.checklist-item svg {
+		width: 24px;
+		height: 24px;
+		margin-right: 14px;
+	}
+
+	.emphasis {
+		font-size: 26px;
+	}
+
+	.code-text {
+		font-size: 18px;
+	}
+
+	.code-box {
+		padding: 20px;
+	}
+
+	.step-icon {
+		width: 60px;
+		height: 60px;
+	}
+
+	.step-icon svg {
+		width: 32px;
+		height: 32px;
+	}
+
+	.step-title {
+		font-size: 16px;
+		margin-bottom: 8px;
+	}
+
+	.step-desc {
+		font-size: 13px;
+	}
+
+	.flow-steps {
+		margin-bottom: 20px;
+	}
+
+	.page-number {
+		bottom: 20px;
+		left: 30px;
+		font-size: 14px;
+	}
+}
+
+/* 매우 작은 화면 (640px 이하) - 최소한의 대응 */
+@media (max-width: 640px) {
+	.content-wrapper {
+		padding: 30px;
+	}
+
+	.title {
+		font-size: 30px;
+	}
+
+	.checklist-item {
+		font-size: 20px;
+	}
+
+	.emphasis {
+		font-size: 24px;
+	}
+
+	.code-text {
+		font-size: 16px;
+	}
+
+	.step-title {
+		font-size: 14px;
+	}
 }

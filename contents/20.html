@@ -48,43 +48,34 @@
 				height: 4px;
 				background-color: #61dafb;
 			}
-			.content {
+			.checklist {
 				display: flex;
 				flex-direction: column;
-				gap: 40px;
+				gap: 28px;
 			}
-			.code-box {
-				background-color: #f8f8f8;
-				border-left: 4px solid #61dafb;
-				padding: 30px;
-				border-radius: 8px;
-				width: 100%;
-				max-width: 600px;
-			}
-			.code-text {
-				font-family: "Nanum Gothic Coding", monospace;
-				font-size: 24px;
-				white-space: pre-wrap;
-				color: #333;
-			}
-			.problem-list {
+			.checklist-item {
 				display: flex;
-				flex-direction: column;
-				gap: 20px;
+				align-items: flex-start;
+				font-size: 28px;
+				font-weight: 400;
 			}
-			.problem-item {
+			.checklist-item i {
+				color: #61dafb;
+				font-size: 26px;
+				margin-right: 20px;
+				margin-top: 3px;
+				width: 36px;
+				height: 36px;
 				display: flex;
 				align-items: center;
-				gap: 15px;
+				justify-content: center;
+				border: 2px solid #61dafb;
+				border-radius: 50%;
 			}
-			.problem-icon {
-				color: #ff4d4d;
-				font-size: 28px;
-				min-width: 28px;
-			}
-			.problem-text {
-				font-size: 26px;
-				font-weight: 500;
+			.checklist-item-number {
+				font-weight: 700;
+				margin-right: 10px;
+				color: #333;
 			}
 			.abstract-elements {
 				position: absolute;
@@ -100,16 +91,28 @@
 				opacity: 0.1;
 			}
 			.circle-1 {
-				width: 200px;
-				height: 200px;
-				right: 100px;
-				top: 150px;
+				width: 250px;
+				height: 250px;
+				right: -50px;
+				top: -50px;
 			}
 			.circle-2 {
 				width: 120px;
 				height: 120px;
-				right: 50px;
-				bottom: 100px;
+				left: 100px;
+				bottom: 80px;
+			}
+			.rectangle {
+				position: absolute;
+				border: 2px solid #61dafb;
+				opacity: 0.05;
+			}
+			.rectangle-1 {
+				width: 300px;
+				height: 150px;
+				transform: rotate(-20deg);
+				right: 100px;
+				bottom: -50px;
 			}
 			.page-number {
 				position: absolute;
@@ -118,17 +121,8 @@
 				font-size: 16px;
 				color: #888;
 			}
-			.stack-icon {
-				position: absolute;
-				right: 150px;
-				bottom: 180px;
-				font-size: 160px;
-				font-weight: 700;
-				color: #ff4d4d;
-				opacity: 0.08;
-			}
 		</style>
-		<link rel="stylesheet" href="./common-style.css" />
+		<link rel="stylesheet" href="../assets/css/common-style.css" />
 		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
 	<body>
@@ -136,39 +130,36 @@
 			<div class="abstract-elements">
 				<div class="circle circle-1"></div>
 				<div class="circle circle-2"></div>
+				<div class="rectangle rectangle-1"></div>
 			</div>
 			<div class="content-wrapper">
 				<div class="header">
-					<h1 class="title">React 16 이전의 문제</h1>
+					<h1 class="title">우리가 알아본 것들</h1>
 				</div>
-				<div class="content">
-					<div class="code-box">
-						<pre class="code-text">
-function processTree(node) {
-  node.children.forEach(child =&gt; {
-    processTree(child);  // 중단 불가!
-  });
-  updateNode(node);
-}</pre
-						>
+				<div class="checklist">
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p><span class="checklist-item-number">1)</span> JSX → createElement → JS 객체</p>
 					</div>
-					<div class="problem-list">
-						<div class="problem-item">
-							<div class="problem-icon">❌</div>
-							<p class="problem-text">동기적 재귀 렌더링 (중단 불가)</p>
-						</div>
-						<div class="problem-item">
-							<div class="problem-icon">❌</div>
-							<p class="problem-text">긴 작업 → UI 멈춤/버벅임</p>
-						</div>
-						<div class="problem-item">
-							<div class="problem-icon">❌</div>
-							<p class="problem-text">예: 대규모 리스트 렌더링 중 입력 지연</p>
-						</div>
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p><span class="checklist-item-number">2)</span> Virtual DOM = 선언적 UI</p>
+					</div>
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p><span class="checklist-item-number">3)</span> Reconciliation = O(n) 전략</p>
+					</div>
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p><span class="checklist-item-number">4)</span> 얕은 비교 = 불변성 전제</p>
+					</div>
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p><span class="checklist-item-number">5)</span> Fiber = 우선순위/동시성</p>
 					</div>
 				</div>
 			</div>
-			<div class="page-number">16</div>
+			<div class="page-number">20</div>
 		</div>
 		<script>
 			lucide.createIcons();

@@ -29,7 +29,7 @@
 				z-index: 10;
 			}
 			.header {
-				margin-bottom: 40px;
+				margin-bottom: 60px;
 			}
 			.title {
 				font-size: 48px;
@@ -48,46 +48,50 @@
 				height: 4px;
 				background-color: #61dafb;
 			}
-			.content-container {
-				display: flex;
-				gap: 40px;
-			}
-			.section {
-				flex: 1;
-			}
-			.section-title {
-				font-size: 32px;
-				font-weight: 600;
-				margin-bottom: 30px;
-				color: #000000;
-			}
 			.checklist {
 				display: flex;
 				flex-direction: column;
-				gap: 24px;
+				gap: 28px;
 			}
 			.checklist-item {
 				display: flex;
 				align-items: flex-start;
-				font-size: 24px;
+				font-size: 28px;
 				font-weight: 400;
 			}
 			.checklist-item i {
 				color: #61dafb;
-				font-size: 20px;
-				margin-right: 16px;
-				margin-top: 4px;
-				width: 28px;
-				height: 28px;
+				font-size: 26px;
+				margin-right: 20px;
+				width: 36px;
+				height: 36px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
 				border: 2px solid #61dafb;
 				border-radius: 50%;
-				flex-shrink: 0;
+				margin-top: 3px;
+			}
+			.checklist-item .highlight {
+				color: #61dafb;
+				font-weight: 500;
+			}
+			.checklist-item .bad {
+				color: #ff5252;
+				font-weight: 500;
+			}
+			.checklist-item .good {
+				color: #4caf50;
+				font-weight: 500;
 			}
 			.checklist-item p {
 				line-height: 1.4;
+			}
+			.checklist-item .sub-text {
+				font-size: 22px;
+				color: #555;
+				display: block;
+				margin-top: 5px;
 			}
 			.abstract-elements {
 				position: absolute;
@@ -134,7 +138,7 @@
 				color: #888;
 			}
 		</style>
-		<link rel="stylesheet" href="./common-style.css" />
+		<link rel="stylesheet" href="../assets/css/common-style.css" />
 		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
 	<body>
@@ -146,54 +150,37 @@
 			</div>
 			<div class="content-wrapper">
 				<div class="header">
-					<h1 class="title">실무 활용</h1>
+					<h1 class="title">개발자가 알아야 할 것</h1>
 				</div>
-				<div class="content-container">
-					<div class="section">
-						<h2 class="section-title">이해 포인트</h2>
-						<div class="checklist">
-							<div class="checklist-item">
-								<i data-lucide="check-circle"></i>
-								<p>key warning의 이유 이해</p>
-							</div>
-							<div class="checklist-item">
-								<i data-lucide="check-circle"></i>
-								<p>불변성의 필요성 파악</p>
-							</div>
-							<div class="checklist-item">
-								<i data-lucide="check-circle"></i>
-								<p>React.memo 사용 시점 결정</p>
-							</div>
-							<div class="checklist-item">
-								<i data-lucide="check-circle"></i>
-								<p>순수 컴포넌트 작성 방법</p>
-							</div>
-						</div>
+				<div class="checklist">
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p>컴포넌트는 순수 함수처럼 작성</p>
 					</div>
-					<div class="section">
-						<h2 class="section-title">실전 팁</h2>
-						<div class="checklist">
-							<div class="checklist-item">
-								<i data-lucide="check-circle"></i>
-								<p>고유한 ID를 key로 사용</p>
-							</div>
-							<div class="checklist-item">
-								<i data-lucide="check-circle"></i>
-								<p>불변성 유지 패턴 활용</p>
-							</div>
-							<div class="checklist-item">
-								<i data-lucide="check-circle"></i>
-								<p>React DevTools Profiler로 병목 파악</p>
-							</div>
-							<div class="checklist-item">
-								<i data-lucide="check-circle"></i>
-								<p>의도적인 리렌더링 제어</p>
-							</div>
-						</div>
+					<div class="checklist-item">
+						<i data-lucide="x-circle" style="color: #ff5252; border-color: #ff5252"></i>
+						<p>
+							<span class="bad">렌더링 중 부작용 금지</span>
+							<span class="sub-text">API 호출, DOM 직접 조작, 타이머 설정 등</span>
+						</p>
+					</div>
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p>
+							부작용은 useEffect에 격리
+							<span class="sub-text">데이터 페칭, 구독, DOM 업데이트 등</span>
+						</p>
+					</div>
+					<div class="checklist-item">
+						<i data-lucide="check-circle"></i>
+						<p>
+							동일 입력 → 동일 출력 유지
+							<span class="sub-text">예측 가능성 확보, 테스트 용이성</span>
+						</p>
 					</div>
 				</div>
 			</div>
-			<div class="page-number">21</div>
+			<div class="page-number">19</div>
 		</div>
 		<script>
 			lucide.createIcons();

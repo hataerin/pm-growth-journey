@@ -30,7 +30,7 @@
 				display: flex;
 				flex-direction: column;
 				padding: 60px 80px;
-			justify-content: center;
+				justify-content: center;
 				z-index: 10;
 			}
 			.header {
@@ -226,7 +226,7 @@
 				color: #888;
 			}
 		</style>
-		<link rel="stylesheet" href="./common-style.css" />
+		<link rel="stylesheet" href="../assets/css/common-style.css" />
 		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
 	<body>
@@ -241,7 +241,7 @@
 					<h1 class="title">얕은 비교 vs 깊은 비교</h1>
 				</div>
 				<div class="code-comparison">
-					<div class="code-column">
+					<div class="code-column animate-fade-in-up delay-1">
 						<p class="code-label">얕은 비교 (React)</p>
 						<div class="code-box">
 							<pre class="code-text">
@@ -254,7 +254,7 @@ Object.is(prevState, nextState)</pre
 						<i class="fas fa-exchange-alt arrow"></i>
 						<p class="transform-label">비교 방식</p>
 					</div>
-					<div class="code-column">
+					<div class="code-column animate-fade-in-up delay-1">
 						<p class="code-label">깊은 비교 (React가 안 함)</p>
 						<div class="code-box">
 							<pre class="code-text">
@@ -265,7 +265,7 @@ JSON.stringify(nextState)</pre
 						</div>
 					</div>
 				</div>
-				<div class="benefits-section">
+				<div class="benefits-section animate-fade-in delay-5">
 					<p class="benefits-title">왜 얕은 비교를 사용할까요?</p>
 					<div class="benefits-list">
 						<div class="benefit-item">
@@ -285,7 +285,7 @@ JSON.stringify(nextState)</pre
 						</div>
 					</div>
 				</div>
-				<div class="comparison-section">
+				<div class="comparison-section animate-fade-in-up delay-7">
 					<p class="comparison-title">왜 === 대신 Object.is를 사용할까요?</p>
 					<div class="comparison-items">
 						<div class="comparison-item">

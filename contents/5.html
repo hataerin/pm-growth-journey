@@ -29,15 +29,14 @@
 				flex: 1;
 				display: flex;
 				flex-direction: column;
-				padding: 60px 80px;
-			justify-content: center;
+				padding: 80px;
 				z-index: 10;
 			}
 			.header {
-				margin-bottom: 30px;
+				margin-bottom: 50px;
 			}
 			.title {
-				font-size: 44px;
+				font-size: 48px;
 				font-weight: 700;
 				margin-bottom: 20px;
 				color: #000000;
@@ -56,12 +55,14 @@
 			.code-comparison {
 				display: flex;
 				justify-content: space-between;
-				align-items: flex-start;
+				align-items: center;
 				width: 100%;
 			}
-			.code-column {
-				flex: 1;
-				max-width: 45%;
+			.code-column-1 {
+				width: 30%;
+			}
+			.code-column-2 {
+				width: 65%;
 			}
 			.code-label {
 				font-size: 24px;
@@ -74,13 +75,14 @@
 				border-left: 4px solid #61dafb;
 				padding: 24px;
 				border-radius: 8px;
-				min-height: 150px;
+				min-height: 200px;
 				display: flex;
 				flex-direction: column;
+				justify-content: center;
 			}
 			.code-text {
 				font-family: "Nanum Gothic Coding", monospace;
-				font-size: 18px;
+				font-size: 22px;
 				white-space: pre-wrap;
 				color: #333;
 				line-height: 1.6;
@@ -91,7 +93,6 @@
 				align-items: center;
 				justify-content: center;
 				margin: 0 20px;
-				padding-top: 60px;
 			}
 			.arrow {
 				color: #61dafb;
@@ -102,29 +103,6 @@
 				font-weight: 500;
 				margin-top: 8px;
 				color: #61dafb;
-			}
-			.explanation {
-				margin-top: 20px;
-				padding: 20px;
-				background-color: rgba(97, 218, 251, 0.1);
-				border-radius: 8px;
-			}
-			.explanation-text {
-				font-size: 18px;
-				line-height: 1.6;
-				color: #333;
-			}
-			.highlight {
-				color: #ff5252;
-				font-weight: 500;
-			}
-			.problem-icon {
-				color: #ff5252;
-				margin-right: 8px;
-			}
-			.solution-icon {
-				color: #4caf50;
-				margin-right: 8px;
 			}
 			.abstract-elements {
 				position: absolute;
@@ -163,6 +141,24 @@
 				right: -50px;
 				top: 100px;
 			}
+			.note {
+				margin-top: 40px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.note-text {
+				font-size: 26px;
+				font-weight: 500;
+				color: #333;
+				padding: 16px 30px;
+				background-color: rgba(97, 218, 251, 0.1);
+				border-radius: 8px;
+			}
+			.note-emoji {
+				font-size: 28px;
+				margin-right: 10px;
+			}
 			.page-number {
 				position: absolute;
 				bottom: 30px;
@@ -171,7 +167,7 @@
 				color: #888;
 			}
 		</style>
-		<link rel="stylesheet" href="./common-style.css" />
+		<link rel="stylesheet" href="../assets/css/common-style.css" />
 		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
 	<body>
@@ -183,62 +179,48 @@
 			</div>
 			<div class="content-wrapper">
 				<div class="header">
-					<h1 class="title">key가 중요한 이유</h1>
+					<h1 class="title">React Element = JavaScript 객체</h1>
 				</div>
 				<div class="code-comparison">
-					<div class="code-column">
-						<p class="code-label"><i class="fas fa-times-circle problem-icon"></i>나쁜 예: index를 key로</p>
+					<div class="code-column-1">
+						<p class="code-label">JSX</p>
 						<div class="code-box">
 							<pre class="code-text">
-[
-  &lt;li key={0}&gt;Apple&lt;/li&gt;,
-  &lt;li key={1}&gt;Banana&lt;/li&gt;
-]
-
-// Orange 추가 시
-[
-  &lt;li key={0}&gt;Orange&lt;/li&gt;,
-  &lt;li key={1}&gt;Apple&lt;/li&gt;,
-  &lt;li key={2}&gt;Banana&lt;/li&gt;
-]</pre
+&lt;div className="container"&gt;
+  &lt;h1&gt;제목&lt;/h1&gt;
+  &lt;p&gt;내용&lt;/p&gt;
+&lt;/div&gt;
+</pre
 							>
 						</div>
 					</div>
 					<div class="transform-arrow">
 						<i class="fas fa-arrow-right arrow"></i>
-						<p class="transform-label">문제 발생</p>
+						<p class="transform-label">변환</p>
 					</div>
-					<div class="code-column">
-						<p class="code-label">
-							<i class="fas fa-check-circle solution-icon"></i>좋은 예: 고유 ID를 key로
-						</p>
+					<div class="code-column-2">
+						<p class="code-label">JavaScript 객체</p>
 						<div class="code-box">
 							<pre class="code-text">
-[
-  &lt;li key="a1"&gt;Apple&lt;/li&gt;,
-  &lt;li key="b2"&gt;Banana&lt;/li&gt;
-]
-
-// Orange 추가 시
-[
-  &lt;li key="o3"&gt;Orange&lt;/li&gt;,
-  &lt;li key="a1"&gt;Apple&lt;/li&gt;,
-  &lt;li key="b2"&gt;Banana&lt;/li&gt;
-]</pre
+{
+  type: 'div',
+  props: {
+    className: 'container',
+    children: [
+      { type: 'h1', props: { children: '제목' } },
+      { type: 'p', props: { children: '내용' } }
+    ]
+  }
+}</pre
 							>
 						</div>
 					</div>
 				</div>
-				<div class="explanation">
-					<p class="explanation-text">
-						React: "<span class="highlight">key가 0인 아이템이 변경됐고, key가 1인 아이템도 변경됐네?</span
-						>"<br />
-						→ 실제로는 새 아이템이 추가된 것뿐인데, 모든 아이템이 변경된 것으로 인식<br />
-						→ <span class="highlight">불필요한 리렌더링</span> 발생 → 성능 저하 및 DOM 조작 증가
-					</p>
+				<div class="note">
+					<p class="note-text">이게 바로 Virtual DOM의 시작!</p>
 				</div>
 			</div>
-			<div class="page-number">11</div>
+			<div class="page-number">5</div>
 		</div>
 		<script>
 			lucide.createIcons();

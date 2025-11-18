@@ -198,3 +198,5 @@ docker-compose.override.yml
 
 # Lefthook local configuration
 .lefthook-local.yml
+
+blog-post

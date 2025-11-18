@@ -8,11 +8,7 @@
     "type": "git",
     "url": "https://github.com/chan9yu/react-core-deepdive"
   },
-  "packageManager": "pnpm@10.20.0",
-  "engines": {
-    "node": ">=24.0.0",
-    "pnpm": ">=10.0.0"
-  },
+  "packageManager": "pnpm@10.22.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -21,7 +17,6 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
-    "lucide": "^0.553.0",
     "reveal.js": "^5.2.1"
   },
   "devDependencies": {

@@ -32,18 +32,18 @@ pnpm format:check
 이 프로젝트는 **하이브리드 아키텍처**를 사용합니다:
 
 1. **메인 프레젠테이션 (Vite 번들링)**
-   - `index.html`: Reveal.js 컨테이너 + 24개 슬라이드의 `<section>` 태그
-   - `src/presentation.js`: Reveal.js 초기화 및 포커스 관리 로직 (ESM, 번들링됨)
-   - `src/reveal-custom.css`: Reveal.js 커스텀 스타일 (번들링됨)
+    - `index.html`: Reveal.js 컨테이너 + 24개 슬라이드의 `<section>` 태그
+    - `src/presentation.js`: Reveal.js 초기화 및 포커스 관리 로직 (ESM, 번들링됨)
+    - `src/reveal-custom.css`: Reveal.js 커스텀 스타일 (번들링됨)
 
 2. **개별 슬라이드 (정적 파일)**
-   - `public/contents/1.html ~ 24.html`: 각 슬라이드의 독립적인 HTML
-   - `public/css/common-style.css`: 슬라이드 공통 스타일 (반응형 포함)
-   - 각 슬라이드는 `../css/common-style.css`를 직접 참조
+    - `public/contents/1.html ~ 24.html`: 각 슬라이드의 독립적인 HTML
+    - `public/css/common-style.css`: 슬라이드 공통 스타일 (반응형 포함)
+    - 각 슬라이드는 `../css/common-style.css`를 직접 참조
 
 3. **발표자 노트**
-   - `index.html`의 각 `<section>` 내부에 `<aside class="notes">` 태그로 포함
-   - Reveal.js의 speaker view (S 키)에서 표시됨
+    - `index.html`의 각 `<section>` 내부에 `<aside class="notes">` 태그로 포함
+    - Reveal.js의 speaker view (S 키)에서 표시됨
 
 ### 왜 이런 구조인가?
 
@@ -81,8 +81,8 @@ dist/css/common-style.css
 ### CSS 수정
 
 - **슬라이드 공통 스타일**: `public/css/common-style.css` 수정
-  - 반응형 브레이크포인트: 1024px, 768px, 640px
-  - 애니메이션: fadeInUp, slideInLeft, slideInRight, scaleIn
+    - 반응형 브레이크포인트: 1024px, 768px, 640px
+    - 애니메이션: fadeInUp, slideInLeft, slideInRight, scaleIn
 - **Reveal.js 스타일**: `src/reveal-custom.css` 수정
 
 ### 포커스 관리

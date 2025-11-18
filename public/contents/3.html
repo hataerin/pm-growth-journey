@@ -1,97 +1,72 @@
 <!doctype html>
-
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="https://unpkg.com/lucide@latest"></script>
+		<script src="../js/lucide.js"></script>
+		<script src="../js/dedent.js"></script>
 		<style>
 			.content {
 				display: flex;
 				flex-direction: column;
-				gap: 40px;
+				gap: var(--spacing-section);
 			}
+
 			.code-box {
-				background-color: #f8f8f8;
-				border-left: 4px solid #00b4d8;
-				padding: 30px;
-				border-radius: 8px;
-				width: 100%;
-				max-width: 700px;
-				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+				max-width: 600px;
+				width: fit-content;
+				height: fit-content;
 			}
-			.code-text {
-				font-family: "Nanum Gothic Coding", "Consolas", "Monaco", monospace;
-				font-size: 26px;
-				white-space: pre;
-				color: #2d3748;
-				line-height: 1.6;
-				margin: 0;
-			}
+
 			.emphasis {
-				font-size: 38px;
-				font-weight: 500;
-				color: #1a1a1a;
 				display: flex;
 				align-items: center;
+				gap: var(--spacing-small);
+				font-size: var(--font-size-subtitle);
+				font-weight: 500;
+				color: var(--color-text);
 			}
-			.emphasis .question {
-				color: #00b4d8;
-				font-size: 48px;
-				margin-left: 16px;
-			}
-			.circle-1 {
-				width: 200px;
-				height: 200px;
-				right: 100px;
-				top: 150px;
-			}
-			.circle-2 {
-				width: 120px;
-				height: 120px;
-				right: 50px;
-				bottom: 100px;
-			}
-			.question-mark {
-				position: absolute;
-				right: 180px;
-				bottom: 150px;
-				font-size: 180px;
-				font-weight: 700;
-				color: #61dafb;
-				opacity: 0.08;
-				transform: rotate(15deg);
+
+			.question {
+				color: var(--color-primary);
+				font-size: 2.5rem;
 			}
 		</style>
 	</head>
+
 	<body>
 		<div class="slide-container">
-			<div class="abstract-elements">
-				<div class="circle circle-1"></div>
-				<div class="circle circle-2"></div>
-				<div class="question-mark">?</div>
-			</div>
-			<div class="content-wrapper">
-				<div class="header">
-					<h1 class="title">JSX를 처음 봤을 때</h1>
+			<div class="header">
+				<div class="section-nav">
+					<span class="section-item active">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
+					<span class="section-item">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
+					<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
+					<span class="section-item">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
+					<span class="section-item">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
 				</div>
-				<div class="content">
-					<div class="code-box">
-						<pre class="code-text">
-function HelloWorld() {
-    return &lt;h1&gt;Hello, World!&lt;/h1&gt;;
-}</pre
-						>
-					</div>
-					<div class="emphasis">
-						<p>이게... JavaScript?? <span class="question">🤔</span></p>
-					</div>
+				<h1 class="title">JSX를 처음 봤을 때</h1>
+			</div>
+
+			<div class="content">
+				<div class="code-box">
+					<pre id="code-3-jsx" class="code-text"></pre>
+				</div>
+				<div class="emphasis">
+					<p>이게... JavaScript??</p>
+					<span class="question">🤔</span>
 				</div>
 			</div>
 			<div class="page-number">3</div>
 		</div>
+
 		<script>
+			document.getElementById("code-3-jsx").textContent = dedent(/* JAVASCRIPT */ `
+				function HelloWorld() {
+					return <h1>Hello, World!</h1>;
+				}
+			`);
+
 			lucide.createIcons();
 		</script>
 	</body>

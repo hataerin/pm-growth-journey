@@ -1,176 +1,118 @@
 <!doctype html>
-
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../css/common-style.css" />
+		<script src="../js/lucide.js"></script>
+		<script src="../js/dedent.js"></script>
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-			}
-			body {
-				font-family: "Noto Sans KR", sans-serif;
-				color: #000000;
-			}
-			.slide-container {
-				width: 100dvw;
-				height: 100dvh;
-				display: flex;
-				overflow: hidden;
-				position: relative;
-			}
-			.content-wrapper {
-				flex: 1;
-				display: flex;
-				flex-direction: column;
-				padding: 80px;
-				z-index: 10;
-			}
-			.header {
-				margin-bottom: 60px;
-			}
-			.title {
-				font-size: 48px;
-				font-weight: 700;
-				margin-bottom: 20px;
-				color: #000000;
-				position: relative;
-				display: inline-block;
-			}
-			.title::after {
-				content: "";
-				position: absolute;
-				bottom: -10px;
-				left: 0;
-				width: 80px;
-				height: 4px;
-				background-color: #61dafb;
-			}
 			.content {
 				display: flex;
 				flex-direction: column;
-				gap: 40px;
+				gap: var(--spacing-section);
 			}
+
 			.code-box {
-				background-color: #f8f8f8;
-				border-left: 4px solid #61dafb;
-				padding: 30px;
-				border-radius: 8px;
-				width: 100%;
-				max-width: 600px;
+				max-width: 700px;
 			}
-			.code-text {
-				font-family: "Nanum Gothic Coding", monospace;
-				font-size: 24px;
-				white-space: pre-wrap;
-				color: #333;
+
+			.code-comment {
+				color: var(--color-text-muted);
 			}
+
 			.problem-list {
 				display: flex;
 				flex-direction: column;
-				gap: 20px;
+				gap: var(--spacing-item);
 			}
+
 			.problem-item {
 				display: flex;
 				align-items: center;
-				gap: 15px;
+				gap: var(--spacing-small);
 			}
+
 			.problem-icon {
-				color: #ff4d4d;
-				font-size: 28px;
-				min-width: 28px;
+				flex-shrink: 0;
+				color: var(--color-error);
 			}
+
 			.problem-text {
-				font-size: 26px;
+				font-size: var(--font-size-body);
 				font-weight: 500;
+				line-height: 1.4;
+				color: var(--color-text);
 			}
-			.abstract-elements {
-				position: absolute;
-				width: 100%;
-				height: 100%;
-				z-index: 1;
-				overflow: hidden;
-			}
-			.circle {
-				position: absolute;
-				border: 2px solid #61dafb;
-				border-radius: 50%;
-				opacity: 0.1;
-			}
-			.circle-1 {
-				width: 200px;
-				height: 200px;
-				right: 100px;
-				top: 150px;
-			}
-			.circle-2 {
-				width: 120px;
-				height: 120px;
-				right: 50px;
-				bottom: 100px;
-			}
-			.page-number {
-				position: absolute;
-				bottom: 30px;
-				right: 40px;
-				font-size: 16px;
-				color: #888;
-			}
-			.stack-icon {
-				position: absolute;
-				right: 150px;
-				bottom: 180px;
-				font-size: 160px;
-				font-weight: 700;
-				color: #ff4d4d;
-				opacity: 0.08;
+
+			@media (max-height: 1000px) {
+				.code-box {
+					max-width: 600px;
+					padding: 20px;
+				}
+
+				.code-text {
+					font-size: 1rem;
+				}
+
+				.problem-text {
+					font-size: 1.15rem;
+				}
+
+				.problem-icon {
+					width: 24px;
+					height: 24px;
+				}
 			}
 		</style>
-		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
+
 	<body>
 		<div class="slide-container">
-			<div class="abstract-elements">
-				<div class="circle circle-1"></div>
-				<div class="circle circle-2"></div>
-			</div>
-			<div class="content-wrapper">
-				<div class="header">
-					<h1 class="title">React 16 이전의 문제</h1>
+			<div class="header">
+				<div class="section-nav">
+					<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
+					<span class="section-item">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
+					<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
+					<span class="section-item">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
+					<span class="section-item active">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
 				</div>
-				<div class="content">
-					<div class="code-box">
-						<pre class="code-text">
-function processTree(node) {
-  node.children.forEach(child =&gt; {
-    processTree(child);  // 중단 불가!
-  });
-  updateNode(node);
-}</pre
-						>
+				<h1 class="title">Stack Reconciler의 한계</h1>
+			</div>
+
+			<div class="content">
+				<div class="code-box">
+					<pre id="code-16-reconcile" class="code-text"></pre>
+				</div>
+				<div class="problem-list">
+					<div class="problem-item">
+						<i data-lucide="x-circle" class="problem-icon" width="28" height="28"></i>
+						<p class="problem-text">동기적 처리: 한 번 시작하면 끝까지 실행</p>
 					</div>
-					<div class="problem-list">
-						<div class="problem-item">
-							<div class="problem-icon">❌</div>
-							<p class="problem-text">동기적 재귀 렌더링 (중단 불가)</p>
-						</div>
-						<div class="problem-item">
-							<div class="problem-icon">❌</div>
-							<p class="problem-text">긴 작업 → UI 멈춤/버벅임</p>
-						</div>
-						<div class="problem-item">
-							<div class="problem-icon">❌</div>
-							<p class="problem-text">예: 대규모 리스트 렌더링 중 입력 지연</p>
-						</div>
+					<div class="problem-item">
+						<i data-lucide="x-circle" class="problem-icon" width="28" height="28"></i>
+						<p class="problem-text">UI 응답성 저하: 입력 지연, 버벅임</p>
+					</div>
+					<div class="problem-item">
+						<i data-lucide="x-circle" class="problem-icon" width="28" height="28"></i>
+						<p class="problem-text">우선순위 없음: 모든 작업이 동일 취급</p>
 					</div>
 				</div>
 			</div>
+
 			<div class="page-number">16</div>
 		</div>
+
 		<script>
+			document.getElementById("code-16-reconcile").textContent = dedent(/* JAVASCRIPT */ `
+				function reconcileChildren(parent) {
+					parent.children.forEach((child) => {
+						reconcileChildren(child); // 재귀
+						updateDOM(child); // 중단 불가
+					});
+				}
+			`);
+
 			lucide.createIcons();
 		</script>
 	</body>

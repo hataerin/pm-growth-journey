@@ -1,226 +1,229 @@
 <!doctype html>
-
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&amp;display=swap"
-			rel="stylesheet"
-		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../css/common-style.css" />
+		<script src="../js/lucide.js"></script>
+		<script src="../js/dedent.js"></script>
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
+			.description {
+				margin-bottom: var(--spacing-item);
+				font-size: 1.125rem;
+				color: var(--color-text-tertiary);
+				line-height: 1.6;
 			}
-			body {
-				font-family: "Noto Sans KR", sans-serif;
-				color: #000000;
+
+			.priority-table {
+				width: 100%;
+				margin-bottom: var(--spacing-item);
+				border-collapse: collapse;
 			}
-			.slide-container {
-				width: 100dvw;
-				height: 100dvh;
-				display: flex;
-				overflow: hidden;
-				position: relative;
+
+			.priority-table th,
+			.priority-table td {
+				padding: 12px 20px;
+				border-bottom: 1px solid var(--color-border);
+				font-size: 1.0625rem;
+				text-align: left;
 			}
-			.content-wrapper {
-				flex: 1;
-				display: flex;
-				flex-direction: column;
-				padding: 80px;
-				z-index: 10;
+
+			.priority-table th {
+				background-color: #f5f5f5;
+				font-weight: 600;
+				color: var(--color-text-secondary);
 			}
-			.header {
-				margin-bottom: 40px;
+
+			.priority-table td {
+				color: var(--color-text-tertiary);
 			}
-			.title {
-				font-size: 48px;
-				font-weight: 700;
-				margin-bottom: 20px;
-				color: #000000;
-				position: relative;
-				display: inline-block;
-			}
-			.title::after {
-				content: "";
-				position: absolute;
-				bottom: -10px;
-				left: 0;
-				width: 80px;
-				height: 4px;
-				background-color: #61dafb;
-			}
+
 			.code-comparison {
 				display: flex;
-				justify-content: space-between;
-				align-items: flex-start;
-				width: 100%;
+				justify-content: flex-start;
+				align-items: stretch;
+				gap: var(--spacing-item);
 			}
+
 			.code-column {
 				flex: 1;
-				max-width: 30%;
+				min-width: 0;
+				display: flex;
+				flex-direction: column;
 			}
+
 			.code-label {
-				font-size: 22px;
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				margin-bottom: 10px;
+				font-size: 1.125rem;
 				font-weight: 500;
-				margin-bottom: 12px;
-				color: #333;
+				color: var(--color-text-secondary);
 			}
+
 			.priority-tag {
 				display: inline-block;
-				padding: 4px 8px;
+				padding: 3px 8px;
 				border-radius: 4px;
-				font-size: 16px;
+				font-size: 0.875rem;
 				font-weight: 500;
-				margin-left: 8px;
 			}
-			.priority-high {
-				background-color: #ff7875;
-				color: #fff;
+
+			.priority-highest {
+				background-color: #f56c6c;
+				color: var(--color-background);
 			}
+
 			.priority-normal {
-				background-color: #61dafb;
-				color: #000;
+				background-color: var(--color-primary);
+				color: var(--color-text);
 			}
+
 			.priority-low {
 				background-color: #b7eb8f;
 				color: #135200;
 			}
+
 			.code-box {
-				background-color: #f8f8f8;
-				border-left: 4px solid;
-				padding: 20px;
-				border-radius: 8px;
-				min-height: 180px;
+				flex: 1;
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
+				min-height: 80px;
+				padding: var(--padding-code-box);
+				background-color: var(--color-code-bg);
+				border-left: 4px solid;
+				border-radius: 8px;
 			}
-			.code-box-high {
-				border-left-color: #ff7875;
+
+			.code-box-highest {
+				border-left-color: #f56c6c;
 			}
+
 			.code-box-normal {
-				border-left-color: #61dafb;
+				border-left-color: var(--color-primary);
 			}
+
 			.code-box-low {
 				border-left-color: #b7eb8f;
 			}
+
 			.code-text {
-				font-family: "Nanum Gothic Coding", monospace;
-				font-size: 20px;
+				font-family: "SF Mono", "Monaco", "Consolas", monospace;
+				font-size: var(--font-size-code);
 				white-space: pre-wrap;
-				color: #333;
-				line-height: 1.6;
+				color: var(--color-text-secondary);
+				line-height: var(--line-height-code);
 			}
-			.code-comment {
-				color: #888;
-				font-style: italic;
-				margin-top: 8px;
-				font-size: 16px;
-			}
-			.abstract-elements {
-				position: absolute;
-				width: 100%;
-				height: 100%;
-				z-index: 1;
-				overflow: hidden;
-			}
-			.circle {
-				position: absolute;
-				border: 2px solid #61dafb;
-				border-radius: 50%;
-				opacity: 0.1;
-			}
-			.circle-1 {
-				width: 200px;
-				height: 200px;
-				left: -50px;
-				top: -50px;
-			}
-			.circle-2 {
-				width: 120px;
-				height: 120px;
-				right: 100px;
-				bottom: 100px;
-			}
-			.rectangle {
-				position: absolute;
-				border: 2px solid #61dafb;
-				opacity: 0.05;
-			}
-			.rectangle-1 {
-				width: 250px;
-				height: 100px;
-				transform: rotate(45deg);
-				right: -50px;
-				top: 100px;
-			}
-			.page-number {
-				position: absolute;
-				bottom: 30px;
-				right: 40px;
-				font-size: 16px;
-				color: #888;
-			}
-			.description {
-				font-size: 20px;
-				color: #555;
-				margin-bottom: 30px;
-				line-height: 1.4;
+
+			@media (max-height: 1000px) {
+				.description {
+					font-size: 1rem;
+				}
+
+				.priority-table th,
+				.priority-table td {
+					padding: 10px 16px;
+					font-size: 0.95rem;
+				}
+
+				.code-label {
+					gap: 8px;
+					margin-bottom: 8px;
+					font-size: 1rem;
+				}
+
+				.priority-tag {
+					padding: 2px 6px;
+					font-size: 0.75rem;
+				}
+
+				.code-box {
+					min-height: 60px;
+				}
 			}
 		</style>
-		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
+
 	<body>
 		<div class="slide-container">
-			<div class="abstract-elements">
-				<div class="circle circle-1"></div>
-				<div class="circle circle-2"></div>
-				<div class="rectangle rectangle-1"></div>
-			</div>
-			<div class="content-wrapper">
-				<div class="header">
-					<h1 class="title">우선순위 스케줄링</h1>
-					<p class="description">Fiber는 렌더링 작업에 우선순위를 부여하여 중요한 작업을 먼저 처리합니다</p>
+			<div class="header">
+				<div class="section-nav">
+					<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
+					<span class="section-item">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
+					<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
+					<span class="section-item">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
+					<span class="section-item active">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
 				</div>
-				<div class="code-comparison">
-					<div class="code-column">
-						<p class="code-label">즉시 <span class="priority-tag priority-high">높음</span></p>
-						<div class="code-box code-box-high">
-							<pre class="code-text">
-ReactDOM.flushSync(() =&gt; {
-  setUrgentState(newValue);
-});</pre
-							>
-							<p class="code-comment">// 클릭, 입력 같은 사용자 인터랙션</p>
-						</div>
+				<h1 class="title">우선순위 스케줄링</h1>
+				<p class="description">Fiber는 작업에 우선순위를 부여합니다.</p>
+			</div>
+
+			<table class="priority-table">
+				<tr>
+					<th>우선순위</th>
+					<th>설명</th>
+					<th>예시</th>
+				</tr>
+				<tr>
+					<td><strong>Immediate</strong></td>
+					<td>즉시 수행 작업</td>
+					<td>클릭, 입력</td>
+				</tr>
+				<tr>
+					<td><strong>Normal</strong></td>
+					<td>일반 UI 업데이트</td>
+					<td>데이터 갱신</td>
+				</tr>
+				<tr>
+					<td><strong>Low</strong></td>
+					<td>지연 가능한 작업</td>
+					<td>대용량 리스트</td>
+				</tr>
+			</table>
+
+			<div class="code-comparison">
+				<div class="code-column">
+					<p class="code-label">즉시 <span class="priority-tag priority-highest">Immediate</span></p>
+					<div class="code-box code-box-highest">
+						<pre id="code-18-immediate" class="code-text"></pre>
 					</div>
-					<div class="code-column">
-						<p class="code-label">일반 <span class="priority-tag priority-normal">보통</span></p>
-						<div class="code-box code-box-normal">
-							<pre class="code-text">setState(newValue);</pre>
-							<p class="code-comment">// 대부분의 UI 업데이트</p>
-						</div>
+				</div>
+				<div class="code-column">
+					<p class="code-label">일반 <span class="priority-tag priority-normal">Normal</span></p>
+					<div class="code-box code-box-normal">
+						<pre id="code-18-normal" class="code-text"></pre>
 					</div>
-					<div class="code-column">
-						<p class="code-label">지연 <span class="priority-tag priority-low">낮음</span></p>
-						<div class="code-box code-box-low">
-							<pre class="code-text">
-startTransition(() =&gt; {
-  setLowPriorityState(newValue);
-});</pre
-							>
-							<p class="code-comment">// 분석, 로깅, 검색 결과 등</p>
-						</div>
+				</div>
+				<div class="code-column">
+					<p class="code-label">지연 <span class="priority-tag priority-low">Low</span></p>
+					<div class="code-box code-box-low">
+						<pre id="code-18-low" class="code-text"></pre>
 					</div>
 				</div>
 			</div>
+
 			<div class="page-number">18</div>
 		</div>
+
 		<script>
+			document.getElementById("code-18-immediate").textContent = dedent(/* JAVASCRIPT */ `
+				ReactDOM.flushSync(() => {
+					setUrgentState(value);
+				});
+			`);
+
+			document.getElementById("code-18-normal").textContent = dedent(/* JAVASCRIPT */ `
+				setState(value);
+			`);
+
+			document.getElementById("code-18-low").textContent = dedent(/* JAVASCRIPT */ `
+				startTransition(() => {
+					setState(value);
+				});
+			`);
+
 			lucide.createIcons();
 		</script>
 	</body>

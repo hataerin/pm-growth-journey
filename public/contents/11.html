@@ -1,246 +1,304 @@
 <!doctype html>
-
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&amp;display=swap"
-			rel="stylesheet"
-		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../css/common-style.css" />
+		<script src="../js/lucide.js"></script>
+		<script src="../js/dedent.js"></script>
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-			}
-			body {
-				font-family: "Noto Sans KR", sans-serif;
-				color: #000000;
-			}
-			.slide-container {
-				width: 100dvw;
-				height: 100dvh;
-				display: flex;
-				overflow: hidden;
-				position: relative;
-			}
 			.content-wrapper {
-				flex: 1;
 				display: flex;
 				flex-direction: column;
-				padding: 60px 80px;
-				justify-content: center;
-				z-index: 10;
+				align-items: flex-start;
+				width: fit-content;
 			}
-			.header {
-				margin-bottom: 30px;
-			}
-			.title {
-				font-size: 44px;
-				font-weight: 700;
-				margin-bottom: 20px;
-				color: #000000;
-				position: relative;
-				display: inline-block;
-			}
-			.title::after {
-				content: "";
-				position: absolute;
-				bottom: -10px;
-				left: 0;
-				width: 80px;
-				height: 4px;
-				background-color: #61dafb;
-			}
+
 			.code-comparison {
 				display: flex;
-				justify-content: space-between;
-				align-items: flex-start;
-				width: 100%;
+				justify-content: flex-start;
+				align-items: center;
+				gap: 48px;
+				margin-bottom: 36px;
 			}
+
 			.code-column {
-				flex: 1;
-				max-width: 45%;
+				flex: 0 1 auto;
+				min-width: 460px;
 			}
+
 			.code-label {
-				font-size: 24px;
+				display: flex;
+				align-items: center;
+				gap: 12px;
+				margin-bottom: 14px;
+				font-size: 1.5rem;
 				font-weight: 500;
-				margin-bottom: 12px;
-				color: #333;
+				color: var(--color-text-secondary);
 			}
+
+			.problem-icon {
+				color: #ff5252;
+			}
+
+			.solution-icon {
+				color: #4caf50;
+			}
+
 			.code-box {
-				background-color: #f8f8f8;
-				border-left: 4px solid #61dafb;
-				padding: 24px;
-				border-radius: 8px;
-				min-height: 150px;
 				display: flex;
 				flex-direction: column;
+				justify-content: center;
+				padding: 32px 80px 32px 44px;
+				background-color: var(--color-code-bg);
+				border-left: 4px solid var(--color-primary);
+				border-radius: 8px;
 			}
+
 			.code-text {
-				font-family: "Nanum Gothic Coding", monospace;
-				font-size: 18px;
+				font-family: "SF Mono", "Monaco", "Consolas", monospace;
+				font-size: 1.35rem;
 				white-space: pre-wrap;
-				color: #333;
+				color: var(--color-text-secondary);
 				line-height: 1.6;
 			}
+
+			.react-comment {
+				margin-top: 14px;
+				padding-left: 14px;
+				color: var(--color-text-quaternary);
+				font-style: italic;
+				font-size: 0.95rem;
+			}
+
+			.react-comment.problem {
+				border-left: 3px solid #ff5252;
+			}
+
+			.react-comment.solution {
+				border-left: 3px solid #4caf50;
+			}
+
 			.transform-arrow {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 				justify-content: center;
-				margin: 0 20px;
-				padding-top: 60px;
+				margin: 0 24px;
+				padding-top: 54px;
 			}
+
 			.arrow {
-				color: #61dafb;
-				font-size: 36px;
+				width: 32px;
+				height: 32px;
+				color: var(--color-primary);
 			}
+
 			.transform-label {
-				font-size: 18px;
+				margin-top: 10px;
+				font-size: 1.1rem;
 				font-weight: 500;
-				margin-top: 8px;
-				color: #61dafb;
+				color: var(--color-primary);
 			}
+
 			.explanation {
-				margin-top: 20px;
-				padding: 20px;
+				width: 100%;
+				padding: 24px 28px;
 				background-color: rgba(97, 218, 251, 0.1);
 				border-radius: 8px;
 			}
+
 			.explanation-text {
-				font-size: 18px;
+				margin-bottom: 8px;
+				font-size: 1.1rem;
 				line-height: 1.6;
-				color: #333;
+				color: var(--color-text-secondary);
 			}
+
 			.highlight {
-				color: #ff5252;
 				font-weight: 500;
-			}
-			.problem-icon {
 				color: #ff5252;
-				margin-right: 8px;
 			}
-			.solution-icon {
-				color: #4caf50;
-				margin-right: 8px;
+
+			@media (min-height: 1080px) {
+				.code-comparison {
+					gap: 56px;
+					margin-bottom: 40px;
+				}
+
+				.code-column {
+					min-width: 500px;
+				}
+
+				.code-label {
+					gap: 14px;
+					margin-bottom: 16px;
+					font-size: 1.6rem;
+				}
+
+				.code-box {
+					padding: 36px 80px 36px 48px;
+				}
+
+				.code-text {
+					font-size: 1.45rem;
+				}
+
+				.react-comment {
+					margin-top: 16px;
+					padding-left: 16px;
+					font-size: 1rem;
+				}
+
+				.transform-arrow {
+					margin: 0 28px;
+					padding-top: 60px;
+				}
+
+				.arrow {
+					width: 36px;
+					height: 36px;
+				}
+
+				.transform-label {
+					margin-top: 12px;
+					font-size: 1.2rem;
+				}
+
+				.explanation {
+					padding: 28px 32px;
+				}
+
+				.explanation-text {
+					margin-bottom: 10px;
+					font-size: 1.2rem;
+				}
 			}
-			.abstract-elements {
-				position: absolute;
-				width: 100%;
-				height: 100%;
-				z-index: 1;
-				overflow: hidden;
-			}
-			.circle {
-				position: absolute;
-				border: 2px solid #61dafb;
-				border-radius: 50%;
-				opacity: 0.1;
-			}
-			.circle-1 {
-				width: 200px;
-				height: 200px;
-				left: -50px;
-				top: -50px;
-			}
-			.circle-2 {
-				width: 120px;
-				height: 120px;
-				right: 100px;
-				bottom: 100px;
-			}
-			.rectangle {
-				position: absolute;
-				border: 2px solid #61dafb;
-				opacity: 0.05;
-			}
-			.rectangle-1 {
-				width: 250px;
-				height: 100px;
-				transform: rotate(45deg);
-				right: -50px;
-				top: 100px;
-			}
-			.page-number {
-				position: absolute;
-				bottom: 30px;
-				right: 40px;
-				font-size: 16px;
-				color: #888;
+
+			@media (max-height: 1000px) {
+				.code-comparison {
+					gap: 32px;
+					margin-bottom: 24px;
+				}
+
+				.code-column {
+					min-width: 360px;
+				}
+
+				.code-label {
+					gap: 10px;
+					margin-bottom: 10px;
+					font-size: 1.25rem;
+				}
+
+				.code-box {
+					padding: 24px 60px 24px 32px;
+				}
+
+				.code-text {
+					font-size: 1.15rem;
+				}
+
+				.react-comment {
+					margin-top: 10px;
+					padding-left: 12px;
+					font-size: 0.85rem;
+				}
+
+				.transform-arrow {
+					margin: 0 16px;
+					padding-top: 40px;
+				}
+
+				.arrow {
+					width: 28px;
+					height: 28px;
+				}
+
+				.transform-label {
+					margin-top: 8px;
+					font-size: 0.95rem;
+				}
+
+				.explanation {
+					padding: 18px 22px;
+				}
+
+				.explanation-text {
+					margin-bottom: 6px;
+					font-size: 0.95rem;
+				}
 			}
 		</style>
-		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
+
 	<body>
 		<div class="slide-container">
-			<div class="abstract-elements">
-				<div class="circle circle-1"></div>
-				<div class="circle circle-2"></div>
-				<div class="rectangle rectangle-1"></div>
-			</div>
-			<div class="content-wrapper">
-				<div class="header">
-					<h1 class="title">key가 중요한 이유</h1>
+			<div class="header">
+				<div class="section-nav">
+					<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
+					<span class="section-item">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
+					<span class="section-item active">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
+					<span class="section-item">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
+					<span class="section-item">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
 				</div>
-				<div class="code-comparison">
-					<div class="code-column animate-slide-in-left delay-1">
-						<p class="code-label"><i class="fas fa-times-circle problem-icon"></i>나쁜 예: index를 key로</p>
-						<div class="code-box">
-							<pre class="code-text">
-[
-  &lt;li key={0}&gt;Apple&lt;/li&gt;,
-  &lt;li key={1}&gt;Banana&lt;/li&gt;
-]
+				<h1 class="title">key가 중요한 이유</h1>
+			</div>
 
-// Orange 추가 시
-[
-  &lt;li key={0}&gt;Orange&lt;/li&gt;,
-  &lt;li key={1}&gt;Apple&lt;/li&gt;,
-  &lt;li key={2}&gt;Banana&lt;/li&gt;
-]</pre
-							>
+			<div class="content-wrapper">
+				<div class="code-comparison">
+					<div class="code-column">
+						<p class="code-label">
+							<i data-lucide="x-circle" class="problem-icon" width="20" height="20"></i>
+							나쁜 예: index를 key로
+						</p>
+						<div class="code-box">
+							<pre id="code-11-bad" class="code-text"></pre>
+							<p class="react-comment problem">React: "모든 항목이 변경됨" (비효율)</p>
 						</div>
 					</div>
 					<div class="transform-arrow">
-						<i class="fas fa-arrow-right arrow"></i>
-						<p class="transform-label">문제 발생</p>
+						<i data-lucide="arrow-right" class="arrow"></i>
+						<p class="transform-label">vs</p>
 					</div>
-					<div class="code-column animate-slide-in-left delay-1">
+					<div class="code-column">
 						<p class="code-label">
-							<i class="fas fa-check-circle solution-icon"></i>좋은 예: 고유 ID를 key로
+							<i data-lucide="check-circle" class="solution-icon" width="20" height="20"></i>
+							좋은 예: 고유 ID를 key로
 						</p>
 						<div class="code-box">
-							<pre class="code-text">
-[
-  &lt;li key="a1"&gt;Apple&lt;/li&gt;,
-  &lt;li key="b2"&gt;Banana&lt;/li&gt;
-]
-
-// Orange 추가 시
-[
-  &lt;li key="o3"&gt;Orange&lt;/li&gt;,
-  &lt;li key="a1"&gt;Apple&lt;/li&gt;,
-  &lt;li key="b2"&gt;Banana&lt;/li&gt;
-]</pre
-							>
+							<pre id="code-11-good" class="code-text"></pre>
+							<p class="react-comment solution">React: "o 항목만 추가" (효율적)</p>
 						</div>
 					</div>
 				</div>
-				<div class="explanation animate-fade-in-up delay-5">
+				<div class="explanation">
+					<p class="explanation-text"><strong>key는 요소 식별자:</strong> React는 key로 요소를 식별합니다</p>
+					<p class="explanation-text">• index key: "Apple→Orange"로 오인 (모두 변경)</p>
+					<p class="explanation-text">• 고유 ID: 새 항목만 추가됨을 정확히 인식</p>
 					<p class="explanation-text">
-						React: "<span class="highlight">key가 0인 아이템이 변경됐고, key가 1인 아이템도 변경됐네?</span
-						>"<br />
-						→ 실제로는 새 아이템이 추가된 것뿐인데, 모든 아이템이 변경된 것으로 인식<br />
-						→ <span class="highlight">불필요한 리렌더링</span> 발생 → 성능 저하 및 DOM 조작 증가
+						<strong>결론:</strong> 안정적인 고유 식별자를 key로 사용해야
+						<span class="highlight">불필요한 리렌더링 방지</span>
 					</p>
 				</div>
 			</div>
+
 			<div class="page-number">11</div>
 		</div>
+
 		<script>
+			document.getElementById("code-11-bad").textContent = dedent(/* JAVASCRIPT */ `
+				[Apple(0), Banana(1)]
+				↓ Orange 추가
+				[Orange(0), Apple(1), Banana(2)]
+			`);
+
+			document.getElementById("code-11-good").textContent = dedent(/* JAVASCRIPT */ `
+				[Apple("a"), Banana("b")]
+				↓ Orange 추가
+				[Orange("o"), Apple("a"), Banana("b")]
+			`);
+
 			lucide.createIcons();
 		</script>
 	</body>

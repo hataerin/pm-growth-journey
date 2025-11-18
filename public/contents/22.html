@@ -1,249 +1,258 @@
 <!doctype html>
-
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../css/common-style.css" />
+		<script src="../js/lucide.js"></script>
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
+			.content-container {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 32px 40px;
 			}
-			body {
-				font-family: "Noto Sans KR", sans-serif;
-				color: #000000;
-			}
-			.slide-container {
-				width: 100dvw;
-				height: 100dvh;
-				display: flex;
-				overflow: hidden;
-				position: relative;
-			}
-			.content-wrapper {
-				flex: 1;
+
+			.section-group {
 				display: flex;
 				flex-direction: column;
-				padding: 80px;
-				z-index: 10;
+				gap: 8px;
 			}
-			.header {
-				margin-bottom: 60px;
-			}
-			.title {
-				font-size: 48px;
+
+			.section-header {
+				display: flex;
+				align-items: center;
+				margin-bottom: 4px;
+				font-size: 1.3rem;
 				font-weight: 700;
-				margin-bottom: 20px;
-				color: #000000;
-				position: relative;
-				display: inline-block;
+				color: var(--color-text);
 			}
-			.title::after {
-				content: "";
-				position: absolute;
-				bottom: -10px;
-				left: 0;
-				width: 80px;
-				height: 4px;
-				background-color: #61dafb;
-			}
-			.section-title {
-				font-size: 32px;
-				font-weight: 600;
-				margin-bottom: 20px;
-				color: #333;
-			}
-			.checklist {
-				display: flex;
-				flex-direction: column;
-				gap: 22px;
-				margin-bottom: 40px;
-			}
-			.checklist-item {
-				display: flex;
-				align-items: center;
-				font-size: 24px;
-				font-weight: 400;
-			}
-			.checklist-item i {
-				color: #61dafb;
-				font-size: 22px;
-				margin-right: 18px;
-				width: 34px;
-				height: 34px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				border: 2px solid #61dafb;
-				border-radius: 50%;
-			}
-			.abstract-elements {
-				position: absolute;
-				width: 100%;
-				height: 100%;
-				z-index: 1;
-				overflow: hidden;
-			}
-			.circle {
-				position: absolute;
-				border: 2px solid #61dafb;
-				border-radius: 50%;
-				opacity: 0.1;
-			}
-			.circle-1 {
-				width: 250px;
-				height: 250px;
-				right: -50px;
-				top: -50px;
-			}
-			.circle-2 {
-				width: 120px;
-				height: 120px;
-				left: 100px;
-				bottom: 80px;
-			}
-			.rectangle {
-				position: absolute;
-				border: 2px solid #61dafb;
-				opacity: 0.05;
-			}
-			.rectangle-1 {
-				width: 300px;
-				height: 150px;
-				transform: rotate(-20deg);
-				right: 100px;
-				bottom: -50px;
-			}
-			.page-number {
-				position: absolute;
-				bottom: 30px;
-				right: 40px;
-				font-size: 16px;
-				color: #888;
-			}
-			.arrow-icon {
+
+			.section-icon {
 				margin-right: 10px;
-				color: #61dafb;
+				color: var(--color-primary);
 			}
-			.next-steps {
+
+			.links-container {
 				display: flex;
 				flex-direction: column;
-				gap: 20px;
+				gap: 6px;
 			}
-			.step-item {
+
+			.link-item {
 				display: flex;
 				align-items: center;
-				font-size: 24px;
-				font-weight: 400;
-			}
-			.step-item i {
-				width: 28px;
-				height: 28px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-			}
-			.resource-link {
-				color: #0066cc;
+				padding: 10px 14px;
+				background-color: var(--color-code-bg);
+				border-radius: 4px;
 				text-decoration: none;
-				display: flex;
-				align-items: center;
-				transition: all 0.2s ease;
-				cursor: pointer;
-				position: relative;
+				transition: background-color 0.2s ease;
 			}
-			.resource-link p {
-				text-decoration: underline;
-				text-decoration-color: rgba(0, 102, 204, 0.3);
-				text-underline-offset: 3px;
-			}
-			.resource-link:hover {
-				color: #61dafb;
-				transform: translateX(5px);
-			}
-			.resource-link:hover p {
-				text-decoration-color: #61dafb;
-			}
-			.resource-link:hover i {
-				border-color: #61dafb;
+
+			.link-item:hover {
 				background-color: rgba(97, 218, 251, 0.1);
 			}
-			.resource-link::after {
-				content: "↗";
-				font-size: 18px;
-				margin-left: 8px;
-				opacity: 0.6;
+
+			.link-icon {
+				margin-right: 10px;
+				color: var(--color-primary);
+				flex-shrink: 0;
+			}
+
+			.link-text {
+				font-size: 1.05rem;
+				font-weight: 500;
+				color: var(--color-text);
+			}
+
+			.try-list {
+				display: flex;
+				flex-direction: column;
+				gap: 6px;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.try-item {
+				display: flex;
+				align-items: flex-start;
+				padding: 10px 14px;
+				background-color: var(--color-code-bg);
+				border-radius: 4px;
+				font-size: 1.05rem;
+				color: var(--color-text-secondary);
+			}
+
+			.try-number {
+				margin-right: 10px;
+				color: var(--color-primary);
+				font-weight: 700;
+				flex-shrink: 0;
+			}
+
+			@media (max-height: 1000px) {
+				.content-container {
+					gap: 24px 32px;
+				}
+
+				.section-group {
+					gap: 6px;
+				}
+
+				.section-header {
+					margin-bottom: 3px;
+					font-size: 1.15rem;
+				}
+
+				.section-icon {
+					width: 18px;
+					height: 18px;
+				}
+
+				.link-item,
+				.try-item {
+					padding: 8px 12px;
+				}
+
+				.link-icon {
+					width: 16px;
+					height: 16px;
+				}
+
+				.link-text,
+				.try-item {
+					font-size: 0.95rem;
+				}
 			}
 		</style>
-		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
+
 	<body>
 		<div class="slide-container">
-			<div class="abstract-elements">
-				<div class="circle circle-1"></div>
-				<div class="circle circle-2"></div>
-				<div class="rectangle rectangle-1"></div>
-			</div>
-			<div class="content-wrapper">
-				<div class="header">
-					<h1 class="title">더 공부하기</h1>
+			<div class="header">
+				<div class="section-nav">
+					<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
+					<span class="section-item">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
+					<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
+					<span class="section-item">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
+					<span class="section-item active">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
 				</div>
-				<h2 class="section-title">추천 자료</h2>
-				<div class="checklist">
-					<div class="checklist-item animate-fade-in-up delay-1">
+				<h1 class="title">더 깊이 공부하기</h1>
+			</div>
+
+			<div class="content-container">
+				<div class="section-group">
+					<h2 class="section-header">
+						<i data-lucide="book-open" class="section-icon" width="24" height="24"></i>
+						공식 문서
+					</h2>
+					<div class="links-container">
 						<a
+							class="link-item"
 							href="https://react.dev/learn/preserving-and-resetting-state"
 							target="_blank"
 							rel="noopener noreferrer"
-							class="resource-link"
 						>
-							<i data-lucide="book-open"></i>
-							<p>React Docs: Reconciliation</p>
+							<i data-lucide="external-link" class="link-icon" width="20" height="20"></i>
+							<span class="link-text">React - Reconciliation</span>
+						</a>
+						<a
+							class="link-item"
+							href="https://react.dev/learn/render-and-commit"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<i data-lucide="external-link" class="link-icon" width="20" height="20"></i>
+							<span class="link-text">React - Render and Commit</span>
+						</a>
+						<a
+							class="link-item"
+							href="https://react.dev/blog/2022/03/29/react-v18"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<i data-lucide="external-link" class="link-icon" width="20" height="20"></i>
+							<span class="link-text">React 18 - Concurrent Features</span>
 						</a>
 					</div>
-					<div class="checklist-item animate-fade-in-up delay-1">
+				</div>
+				<div class="section-group">
+					<h2 class="section-header">
+						<i data-lucide="video" class="section-icon" width="24" height="24"></i>
+						영상 자료
+					</h2>
+					<div class="links-container">
 						<a
+							class="link-item"
 							href="https://www.youtube.com/watch?v=ZCuYPiUIONs"
 							target="_blank"
 							rel="noopener noreferrer"
-							class="resource-link"
 						>
-							<i data-lucide="video"></i>
-							<p>Lin Clark: Fiber 설명</p>
+							<i data-lucide="external-link" class="link-icon" width="20" height="20"></i>
+							<span class="link-text">Lin Clark - A Cartoon Intro to Fiber</span>
+						</a>
+						<a
+							class="link-item"
+							href="https://www.youtube.com/watch?v=nLF0n9SACd4"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<i data-lucide="external-link" class="link-icon" width="20" height="20"></i>
+							<span class="link-text">Dan Abramov - Beyond React 16</span>
 						</a>
 					</div>
-					<div class="checklist-item animate-fade-in-up delay-1">
+				</div>
+				<div class="section-group">
+					<h2 class="section-header">
+						<i data-lucide="github" class="section-icon" width="24" height="24"></i>
+						소스 코드
+					</h2>
+					<div class="links-container">
 						<a
+							class="link-item"
 							href="https://github.com/facebook/react"
 							target="_blank"
 							rel="noopener noreferrer"
-							class="resource-link"
 						>
-							<i data-lucide="code"></i>
-							<p>React 소스코드</p>
+							<i data-lucide="external-link" class="link-icon" width="20" height="20"></i>
+							<span class="link-text">React Source Code</span>
+						</a>
+						<a
+							class="link-item"
+							href="https://github.com/acdlite/react-fiber-architecture"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<i data-lucide="external-link" class="link-icon" width="20" height="20"></i>
+							<span class="link-text">React Fiber Architecture</span>
 						</a>
 					</div>
 				</div>
-				<h2 class="section-title">다음 단계</h2>
-				<div class="next-steps">
-					<div class="step-item">
-						<i data-lucide="arrow-right" class="arrow-icon"></i>
-						<p>소스코드 읽기</p>
-					</div>
-					<div class="step-item">
-						<i data-lucide="arrow-right" class="arrow-icon"></i>
-						<p>미니 React 구현</p>
-					</div>
-					<div class="step-item">
-						<i data-lucide="arrow-right" class="arrow-icon"></i>
-						<p>성능 최적화 실습</p>
-					</div>
+				<div class="section-group">
+					<h2 class="section-header">
+						<i data-lucide="lightbulb" class="section-icon" width="24" height="24"></i>
+						시도해 볼 수 있는 것들
+					</h2>
+					<ul class="try-list">
+						<li class="try-item">
+							<span class="try-number">1.</span>
+							<span>간단한 Virtual DOM 직접 구현해보기</span>
+						</li>
+						<li class="try-item">
+							<span class="try-number">2.</span>
+							<span>Reconciliation 알고리즘 단계별로 따라가보기</span>
+						</li>
+						<li class="try-item">
+							<span class="try-number">3.</span>
+							<span>React DevTools Profiler로 실제 프로젝트 최적화하기</span>
+						</li>
+					</ul>
 				</div>
 			</div>
+
 			<div class="page-number">22</div>
 		</div>
+
 		<script>
 			lucide.createIcons();
 		</script>

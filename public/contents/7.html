@@ -1,144 +1,121 @@
 <!doctype html>
-
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="https://unpkg.com/lucide@latest"></script>
+		<script src="../js/lucide.js"></script>
 		<style>
-			.step-number {
-				width: 50px;
-				height: 50px;
-				border-radius: 50%;
-				background-color: #00b4d8;
-				color: #ffffff;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				font-size: 24px;
-				font-weight: 700;
-				margin-bottom: 16px;
-			}
-			.step-icon {
-				width: 100px;
-				height: 100px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				background-color: #f0f9ff;
-				border: 3px solid #00b4d8;
-				border-radius: 12px;
-				margin-bottom: 20px;
-			}
-			.step-icon svg {
-				width: 50px;
-				height: 50px;
-				color: #00b4d8;
-				stroke-width: 2.5;
-			}
-			.step-text {
-				font-size: 20px;
-				font-weight: 600;
+			.description {
+				margin-bottom: var(--spacing-section);
+				font-size: var(--font-size-body);
+				font-weight: 400;
+				color: var(--color-text-secondary);
+				line-height: var(--line-height-body);
 				text-align: center;
-				line-height: 1.5;
-				color: #1a1a1a;
 			}
+
+			.flow-steps {
+				display: flex;
+				justify-content: space-between;
+				width: 100%;
+				position: relative;
+				z-index: 2;
+			}
+
+			.flow-step {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				width: 22%;
+			}
+
+			.step-number {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 64px;
+				height: 64px;
+				margin-bottom: var(--spacing-item);
+				background-color: var(--color-primary);
+				border-radius: 50%;
+				font-size: var(--font-size-subtitle);
+				font-weight: 700;
+				color: var(--color-background);
+			}
+
+			.step-text {
+				font-size: var(--font-size-small);
+				font-weight: 500;
+				color: var(--color-text);
+				line-height: 1.5;
+				text-align: center;
+			}
+
 			.flow-line {
 				position: absolute;
-				top: 110px;
-				left: 120px;
-				width: calc(100% - 250px);
-				height: 4px;
-				background: linear-gradient(to right, #00b4d8, #0096c7);
+				top: 32px;
+				left: 12%;
+				width: 76%;
+				height: 3px;
+				background-color: var(--color-border);
 				z-index: 1;
-				opacity: 0.3;
-				display: flex;
-				align-items: center;
 			}
-			.flow-line::before,
-			.flow-line::after {
-				content: "";
-				position: absolute;
-				width: 12px;
-				height: 12px;
-				background-color: #00b4d8;
-				border-radius: 50%;
-			}
-			.flow-line::before {
-				left: -6px;
-			}
-			.flow-line::after {
-				right: -6px;
-			}
-			.circle-1 {
-				width: 200px;
-				height: 200px;
-				left: -50px;
-				bottom: -50px;
-			}
-			.circle-2 {
-				width: 120px;
-				height: 120px;
-				right: 100px;
-				top: 80px;
-			}
-			.rectangle-1 {
-				width: 300px;
-				height: 150px;
-				transform: rotate(30deg);
-				right: -100px;
-				bottom: 100px;
+
+			@media (max-height: 1000px) {
+				.step-number {
+					width: 52px;
+					height: 52px;
+				}
 			}
 		</style>
 	</head>
+
 	<body>
 		<div class="slide-container">
-			<div class="abstract-elements">
-				<div class="circle circle-1"></div>
-				<div class="circle circle-2"></div>
-				<div class="rectangle rectangle-1"></div>
-			</div>
-			<div class="content-wrapper">
-				<div class="header">
-					<h1 class="title">Virtual DOM의 등장</h1>
+			<div class="header">
+				<div class="section-nav">
+					<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
+					<span class="section-item active">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
+					<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
+					<span class="section-item">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
+					<span class="section-item">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
 				</div>
-				<div class="flow-diagram">
-					<div class="flow-line"></div>
-					<div class="flow-steps">
-						<div class="flow-step animate-fade-in-up delay-1">
-							<div class="step-number">1</div>
-							<div class="step-icon">
-								<i data-lucide="pen-tool"></i>
-							</div>
-							<p class="step-text">상태 변경</p>
-						</div>
-						<div class="flow-step animate-fade-in-up delay-1">
-							<div class="step-number">2</div>
-							<div class="step-icon">
-								<i data-lucide="file-code"></i>
-							</div>
-							<p class="step-text">새로운<br />Virtual DOM 생성</p>
-						</div>
-						<div class="flow-step animate-fade-in-up delay-1">
-							<div class="step-number">3</div>
-							<div class="step-icon">
-								<i data-lucide="git-compare"></i>
-							</div>
-							<p class="step-text">이전 Virtual DOM과<br />Diffing</p>
-						</div>
-						<div class="flow-step animate-fade-in-up delay-1">
-							<div class="step-number">4</div>
-							<div class="step-icon">
-								<i data-lucide="refresh-cw"></i>
-							</div>
-							<p class="step-text">바뀐 부분만<br />실제 DOM 패치</p>
-						</div>
+				<h1 class="title">Virtual DOM의 등장</h1>
+			</div>
+
+			<div class="description">
+				<p>
+					메모리에 Virtual DOM을 구성하고 변경된 부분만 실제 DOM에 패치합니다.<br />
+					이를 통해 선언적 UI 구현과 개발 경험 향상을 제공합니다.
+				</p>
+			</div>
+
+			<div style="position: relative">
+				<div class="flow-line"></div>
+				<div class="flow-steps">
+					<div class="flow-step">
+						<div class="step-number">1</div>
+						<p class="step-text">상태 변경</p>
+					</div>
+					<div class="flow-step">
+						<div class="step-number">2</div>
+						<p class="step-text">새로운 Virtual DOM 생성</p>
+					</div>
+					<div class="flow-step">
+						<div class="step-number">3</div>
+						<p class="step-text">이전 Virtual DOM과 Diffing</p>
+					</div>
+					<div class="flow-step">
+						<div class="step-number">4</div>
+						<p class="step-text">바뀐 부분만 실제 DOM 패치</p>
 					</div>
 				</div>
 			</div>
+
 			<div class="page-number">7</div>
 		</div>
+
 		<script>
 			lucide.createIcons();
 		</script>

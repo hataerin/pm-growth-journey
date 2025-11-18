@@ -1,320 +1,233 @@
 <!doctype html>
-
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&amp;display=swap"
-			rel="stylesheet"
-		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../css/common-style.css" />
+		<script src="../js/lucide.js"></script>
+		<script src="../js/dedent.js"></script>
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-			}
-			body {
-				font-family: "Noto Sans KR", sans-serif;
-				color: #000000;
-			}
-			.slide-container {
-				width: 100dvw;
-				height: 100dvh;
-				display: flex;
-				overflow: hidden;
-				position: relative;
-			}
 			.content-wrapper {
-				flex: 1;
 				display: flex;
 				flex-direction: column;
-				padding: 60px 80px;
-				justify-content: center;
-				z-index: 10;
+				align-items: flex-start;
+				width: fit-content;
 			}
-			.header {
-				margin-bottom: 30px;
-			}
-			.title {
-				font-size: 44px;
-				font-weight: 700;
-				margin-bottom: 20px;
-				color: #000000;
-				position: relative;
-				display: inline-block;
-			}
-			.title::after {
-				content: "";
-				position: absolute;
-				bottom: -10px;
-				left: 0;
-				width: 80px;
-				height: 4px;
-				background-color: #61dafb;
-			}
+
 			.code-comparison {
 				display: flex;
-				justify-content: space-between;
+				justify-content: flex-start;
 				align-items: stretch;
-				width: 100%;
-				margin-bottom: 30px;
+				gap: var(--spacing-section);
+				margin-bottom: var(--spacing-item);
 			}
+
 			.code-column {
-				flex: 1;
-				max-width: 45%;
+				flex: 0 1 auto;
+				min-width: 460px;
 			}
+
 			.code-label {
-				font-size: 24px;
-				font-weight: 500;
-				margin-bottom: 12px;
-				color: #333;
+				margin-bottom: 14px;
+				font-size: 1.5rem;
+				font-weight: 600;
+				color: var(--color-text-secondary);
 			}
+
 			.code-box {
-				background-color: #f8f8f8;
-				border-left: 4px solid #61dafb;
-				padding: 24px;
-				border-radius: 8px;
-				min-height: 150px;
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
+				min-height: 100px;
+				padding: 32px 80px 32px 44px;
+				background-color: var(--color-code-bg);
+				border-left: 4px solid var(--color-primary);
+				border-radius: 8px;
 			}
+
 			.code-text {
-				font-family: "Nanum Gothic Coding", monospace;
-				font-size: 18px;
+				font-family: "SF Mono", "Monaco", "Consolas", monospace;
+				font-size: 1.35rem;
 				white-space: pre-wrap;
-				color: #333;
+				color: var(--color-text-secondary);
 				line-height: 1.6;
 			}
+
 			.transform-arrow {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 				justify-content: center;
-				margin: 0 20px;
+				margin: 0 24px;
 			}
+
 			.arrow {
-				color: #61dafb;
-				font-size: 36px;
+				color: var(--color-primary);
 			}
+
 			.transform-label {
-				font-size: 18px;
-				font-weight: 500;
-				margin-top: 8px;
-				color: #61dafb;
-			}
-			.benefits-section {
-				margin-top: 16px;
-			}
-			.benefits-title {
-				font-size: 22px;
-				font-weight: 500;
-				margin-bottom: 16px;
-				color: #333;
-			}
-			.benefits-list {
-				display: flex;
-				justify-content: space-between;
-			}
-			.benefit-item {
-				background-color: #f8f8f8;
-				border-radius: 8px;
-				padding: 14px 20px;
-				flex: 1;
-				margin: 0 8px;
-				border-top: 3px solid #61dafb;
-			}
-			.benefit-icon {
-				color: #61dafb;
-				font-size: 24px;
-				margin-bottom: 8px;
-			}
-			.benefit-text {
-				font-size: 18px;
-				font-weight: 500;
-				color: #333;
-			}
-			.comparison-section {
-				margin-top: 24px;
-				background-color: rgba(97, 218, 251, 0.05);
-				border-left: 4px solid #00b4d8;
-				padding: 20px;
-				border-radius: 8px;
-			}
-			.comparison-title {
-				font-size: 22px;
+				margin-top: 10px;
+				font-size: 1.1rem;
 				font-weight: 600;
-				margin-bottom: 16px;
-				color: #1a1a1a;
+				color: var(--color-primary);
 			}
-			.comparison-items {
-				display: flex;
-				justify-content: space-between;
-				gap: 24px;
-			}
-			.comparison-item {
-				flex: 1;
-				background-color: white;
-				border-radius: 8px;
-				padding: 16px;
-				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-			}
-			.comparison-item-title {
-				font-family: "Nanum Gothic Coding", monospace;
-				font-size: 18px;
-				font-weight: 600;
-				margin-bottom: 12px;
-				color: #61dafb;
-			}
-			.comparison-item-text {
-				font-size: 16px;
-				color: #555;
-				line-height: 1.5;
-			}
-			.comparison-item-code {
-				font-family: "Nanum Gothic Coding", monospace;
-				background-color: #f8f8f8;
-				padding: 8px 12px;
-				border-radius: 4px;
-				font-size: 16px;
-				margin-top: 8px;
-				display: block;
-			}
-			.abstract-elements {
-				position: absolute;
+
+			.info-box {
 				width: 100%;
-				height: 100%;
-				z-index: 1;
-				overflow: hidden;
+				padding: 24px 28px;
+				background-color: var(--color-code-bg);
+				border-left: 4px solid var(--color-primary);
+				border-radius: 8px;
 			}
-			.circle {
-				position: absolute;
-				border: 2px solid #61dafb;
-				border-radius: 50%;
-				opacity: 0.1;
+
+			.info-text {
+				margin-bottom: 10px;
+				font-size: 1.2rem;
+				line-height: 1.6;
+				color: var(--color-text-secondary);
 			}
-			.circle-1 {
-				width: 200px;
-				height: 200px;
-				left: -50px;
-				top: -50px;
+
+			.code-note {
+				margin-top: 12px;
+				padding: 12px 16px;
+				background-color: rgba(97, 218, 251, 0.05);
+				border-radius: 6px;
+				font-family: "SF Mono", "Monaco", "Consolas", monospace;
+				font-size: 1.1rem;
+				color: var(--color-text-secondary);
 			}
-			.circle-2 {
-				width: 120px;
-				height: 120px;
-				right: 100px;
-				bottom: 100px;
+
+			.highlight {
+				font-weight: 600;
+				color: var(--color-primary);
 			}
-			.rectangle {
-				position: absolute;
-				border: 2px solid #61dafb;
-				opacity: 0.05;
+
+			.true {
+				font-weight: 600;
+				color: #4caf50;
 			}
-			.rectangle-1 {
-				width: 250px;
-				height: 100px;
-				transform: rotate(45deg);
-				right: -50px;
-				top: 100px;
+
+			.false {
+				font-weight: 600;
+				color: var(--color-error);
 			}
-			.page-number {
-				position: absolute;
-				bottom: 30px;
-				right: 40px;
-				font-size: 16px;
-				color: #888;
+
+			@media (max-height: 1000px) {
+				.code-column {
+					min-width: 380px;
+				}
+
+				.code-label {
+					margin-bottom: 10px;
+					font-size: 1.3rem;
+				}
+
+				.code-box {
+					min-height: 80px;
+					padding: var(--padding-code-box);
+				}
+
+				.code-text {
+					font-size: var(--font-size-code);
+					line-height: var(--line-height-code);
+				}
+
+				.transform-arrow {
+					margin: 0 16px;
+				}
+
+				.transform-label {
+					margin-top: 8px;
+					font-size: 0.95rem;
+				}
+
+				.info-box {
+					padding: 18px 22px;
+				}
+
+				.info-text {
+					margin-bottom: 8px;
+					font-size: 1.05rem;
+				}
+
+				.code-note {
+					margin-top: 10px;
+					padding: 10px 14px;
+					font-size: 0.95rem;
+				}
 			}
 		</style>
-		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
+
 	<body>
 		<div class="slide-container">
-			<div class="abstract-elements">
-				<div class="circle circle-1"></div>
-				<div class="circle circle-2"></div>
-				<div class="rectangle rectangle-1"></div>
-			</div>
-			<div class="content-wrapper">
-				<div class="header">
-					<h1 class="title">얕은 비교 vs 깊은 비교</h1>
+			<div class="header">
+				<div class="section-nav">
+					<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
+					<span class="section-item">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
+					<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
+					<span class="section-item active">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
+					<span class="section-item">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
 				</div>
+				<h1 class="title">얕은 비교 vs 깊은 비교</h1>
+			</div>
+
+			<div class="content-wrapper">
 				<div class="code-comparison">
-					<div class="code-column animate-fade-in-up delay-1">
+					<div class="code-column">
 						<p class="code-label">얕은 비교 (React)</p>
 						<div class="code-box">
-							<pre class="code-text">
-// Object.is로 비교
-Object.is(prevState, nextState)</pre
-							>
+							<pre id="code-13-shallow" class="code-text"></pre>
 						</div>
 					</div>
 					<div class="transform-arrow">
-						<i class="fas fa-exchange-alt arrow"></i>
+						<i data-lucide="arrow-left-right" class="arrow" width="36" height="36"></i>
 						<p class="transform-label">비교 방식</p>
 					</div>
-					<div class="code-column animate-fade-in-up delay-1">
+					<div class="code-column">
 						<p class="code-label">깊은 비교 (React가 안 함)</p>
 						<div class="code-box">
-							<pre class="code-text">
-// 전체 객체 내용 비교
-JSON.stringify(prevState) === 
-JSON.stringify(nextState)</pre
-							>
+							<pre id="code-13-deep" class="code-text"></pre>
 						</div>
 					</div>
 				</div>
-				<div class="benefits-section animate-fade-in delay-5">
-					<p class="benefits-title">왜 얕은 비교를 사용할까요?</p>
-					<div class="benefits-list">
-						<div class="benefit-item">
-							<div class="benefit-icon"><i data-lucide="zap"></i></div>
-							<p class="benefit-text">빠름</p>
-							<p>참조만 비교하므로 O(1)</p>
-						</div>
-						<div class="benefit-item">
-							<div class="benefit-icon"><i data-lucide="check-circle"></i></div>
-							<p class="benefit-text">예측 가능</p>
-							<p>명확한 기준으로 비교</p>
-						</div>
-						<div class="benefit-item">
-							<div class="benefit-icon"><i data-lucide="code"></i></div>
-							<p class="benefit-text">명시적</p>
-							<p>불변성 패턴과 최적의 궁합</p>
-						</div>
-					</div>
-				</div>
-				<div class="comparison-section animate-fade-in-up delay-7">
-					<p class="comparison-title">왜 === 대신 Object.is를 사용할까요?</p>
-					<div class="comparison-items">
-						<div class="comparison-item">
-							<p class="comparison-item-title">NaN 비교</p>
-							<p class="comparison-item-text">
-								<code class="comparison-item-code">NaN === NaN → false</code>
-								<code class="comparison-item-code">Object.is(NaN, NaN) → true</code>
-							</p>
-						</div>
-						<div class="comparison-item">
-							<p class="comparison-item-title">+0 / -0 구분</p>
-							<p class="comparison-item-text">
-								<code class="comparison-item-code">+0 === -0 → true</code>
-								<code class="comparison-item-code">Object.is(+0, -0) → false</code>
-							</p>
-						</div>
-						<div class="comparison-item">
-							<p class="comparison-item-title">React의 선택</p>
-							<p class="comparison-item-text">
-								더 정확한 동등성 비교를 위해 Object.is 사용
-								<code class="comparison-item-code">useEffect, useMemo 등의 deps 비교</code>
-							</p>
-						</div>
-					</div>
+				<div class="info-box">
+					<p class="info-text">
+						<i
+							data-lucide="info"
+							width="22"
+							height="22"
+							style="color: #61dafb; display: inline-block; vertical-align: middle; margin-right: 10px"
+						></i>
+						React는 <span class="highlight">===</span> 대신 <span class="highlight">Object.is</span>를
+						사용합니다
+					</p>
+					<p class="code-note">
+						• NaN === NaN: <span class="false">false</span>
+						<br />
+						• Object.is(NaN, NaN): <span class="true">true</span>
+					</p>
+					<p class="info-text" style="margin-top: 18px">
+						얕은 비교 장점: <span class="highlight">빠른 성능</span> (O(1)),
+						<span class="highlight">예측 가능</span>, <span class="highlight">명시적 코드</span>
+					</p>
 				</div>
 			</div>
+
 			<div class="page-number">13</div>
 		</div>
+
 		<script>
+			document.getElementById("code-13-shallow").textContent = dedent(/* JAVASCRIPT */ `
+				// 참조만 비교
+				Object.is(prevState, nextState)
+			`);
+
+			document.getElementById("code-13-deep").textContent = dedent(/* JAVASCRIPT */ `
+				// 전체 객체 내용 비교
+				JSON.stringify(prevState) === JSON.stringify(nextState)
+			`);
+
 			lucide.createIcons();
 		</script>
 	</body>

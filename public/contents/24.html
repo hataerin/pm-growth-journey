@@ -1,182 +1,164 @@
 <!doctype html>
-
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="https://unpkg.com/lucide@latest"></script>
+		<script src="../js/lucide.js"></script>
 		<style>
-			.content-wrapper {
-				flex: 1;
+			.slide-container {
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
+				width: 100dvw;
+				height: 100dvh;
 				padding: 80px;
-				z-index: 10;
+				position: relative;
 			}
-			.qa-icon-wrapper {
-				width: 140px;
-				height: 140px;
-				border-radius: 50%;
-				background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				margin-bottom: 50px;
-				box-shadow: 0 10px 40px rgba(255, 107, 157, 0.4);
-				animation: pulse 2s ease-in-out infinite;
+
+			.qa-icon {
+				margin-bottom: 32px;
+				color: var(--color-primary);
 			}
-			.qa-icon-wrapper svg {
-				width: 80px;
-				height: 80px;
-				color: white;
-				stroke-width: 2;
-			}
+
 			.qa-heading {
-				font-size: 72px;
+				margin-bottom: 48px;
+				font-size: 4.5rem;
 				font-weight: 700;
-				margin-bottom: 30px;
 				text-align: center;
-				color: #1a1a1a;
-				letter-spacing: -0.02em;
 			}
+
 			.contact-info {
-				margin-top: 50px;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				gap: 30px;
-			}
-			.presenter-card {
-				background: rgba(97, 218, 251, 0.08);
-				border: 2px solid rgba(97, 218, 251, 0.2);
-				border-radius: 20px;
-				padding: 40px 60px;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 				gap: 20px;
 			}
-			.presenter-name {
-				font-size: 36px;
-				font-weight: 700;
-				color: #1a1a1a;
+
+			.contact-text {
+				font-size: 1.75rem;
+				font-weight: 600;
+				color: var(--color-text);
 			}
-			.presenter-title {
-				font-size: 22px;
-				font-weight: 400;
-				color: #666;
-			}
+
 			.contact-links {
 				display: flex;
-				gap: 30px;
-				margin-top: 10px;
+				align-items: center;
+				gap: 24px;
 			}
+
 			.contact-link {
 				display: flex;
 				align-items: center;
-				gap: 12px;
-				font-size: 20px;
+				gap: 8px;
+				font-size: 1.2rem;
+				font-weight: 400;
+				color: var(--color-text-tertiary);
+				text-decoration: none;
+				transition: color 0.2s ease;
+			}
+
+			.contact-link:hover .link-url {
+				color: var(--color-primary);
+			}
+
+			.link-label {
 				font-weight: 500;
-				color: #333;
-				padding: 12px 24px;
-				background: white;
-				border-radius: 12px;
-				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-				transition: transform 0.2s;
+				color: var(--color-text-secondary);
 			}
-			.contact-link:hover {
-				transform: translateY(-2px);
+
+			.link-url {
+				color: var(--color-text-tertiary);
+				transition: color 0.2s ease;
 			}
-			.contact-link svg {
-				width: 24px;
-				height: 24px;
-				color: #00b4d8;
-				stroke-width: 2.5;
+
+			.divider {
+				width: 1px;
+				height: 16px;
+				background-color: var(--color-border);
 			}
-			.thank-you-text {
-				font-size: 28px;
-				color: #666;
-				text-align: center;
-				margin-top: 20px;
-				line-height: 1.6;
+
+			.abstract-elements {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				z-index: -1;
+				overflow: hidden;
 			}
+
+			.circle {
+				position: absolute;
+				border: 2px solid var(--color-primary);
+				border-radius: 50%;
+				opacity: 0.05;
+			}
+
 			.circle-1 {
 				width: 300px;
 				height: 300px;
 				right: -100px;
 				top: -100px;
 			}
+
 			.circle-2 {
 				width: 200px;
 				height: 200px;
 				left: -50px;
 				bottom: -50px;
 			}
-			.circle-3 {
-				width: 120px;
-				height: 120px;
-				right: 200px;
-				bottom: 150px;
-			}
-			.rectangle-1 {
-				width: 250px;
-				height: 120px;
-				transform: rotate(-20deg);
-				left: 200px;
-				top: 100px;
-			}
 
-			@keyframes pulse {
-				0%,
-				100% {
-					transform: scale(1);
+			@media (max-height: 1000px) {
+				.qa-icon {
+					margin-bottom: 24px;
 				}
-				50% {
-					transform: scale(1.05);
+
+				.qa-heading {
+					margin-bottom: 36px;
+					font-size: 3.5rem;
+				}
+
+				.contact-text {
+					font-size: 1.5rem;
+				}
+
+				.contact-links {
+					gap: 32px;
+				}
+
+				.contact-link {
+					font-size: 1.15rem;
 				}
 			}
 		</style>
 	</head>
+
 	<body>
 		<div class="slide-container">
 			<div class="abstract-elements">
 				<div class="circle circle-1"></div>
 				<div class="circle circle-2"></div>
-				<div class="circle circle-3"></div>
-				<div class="rectangle rectangle-1"></div>
 			</div>
-			<div class="content-wrapper">
-				<div class="qa-icon-wrapper">
-					<i data-lucide="heart"></i>
-				</div>
-				<h1 class="qa-heading animate-fade-in-up delay-2">감사합니다! 🙏</h1>
-				<p class="thank-you-text animate-fade-in delay-3">React를 더 깊이 이해하는 시간이 되셨길 바랍니다.</p>
-				<div class="contact-info">
-					<div class="presenter-card animate-scale-in delay-4">
-						<p class="presenter-name">여찬규</p>
-						<p class="presenter-title">Frontend Developer</p>
-						<div class="contact-links">
-							<a href="https://chan9yu.dev" class="contact-link" target="_blank">
-								<i data-lucide="globe"></i>
-								<span>Blog</span>
-							</a>
-							<a href="https://github.com/chan9yu" class="contact-link" target="_blank">
-								<i data-lucide="github"></i>
-								<span>GitHub</span>
-							</a>
-							<a href="https://www.linkedin.com/in/chan9yu/" class="contact-link" target="_blank">
-								<i data-lucide="linkedin"></i>
-								<span>LinkedIn</span>
-							</a>
-						</div>
-					</div>
+			<i data-lucide="heart" class="qa-icon" width="80" height="80"></i>
+			<h1 class="qa-heading">감사합니다</h1>
+			<div class="contact-info">
+				<p class="contact-text">여찬규</p>
+				<div class="contact-links">
+					<a class="contact-link" href="https://www.chan9yu.dev/" target="_blank" rel="noopener noreferrer">
+						<span class="link-label">Blog:</span>
+						<span class="link-url">chan9yu.dev</span>
+					</a>
+					<span class="divider"></span>
+					<a class="contact-link" href="https://github.com/chan9yu" target="_blank" rel="noopener noreferrer">
+						<span class="link-label">GitHub:</span>
+						<span class="link-url">@chan9yu</span>
+					</a>
 				</div>
 			</div>
+
 			<div class="page-number">24</div>
 		</div>
+
 		<script>
 			lucide.createIcons();
 		</script>

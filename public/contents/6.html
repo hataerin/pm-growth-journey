@@ -1,224 +1,134 @@
 <!doctype html>
-
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&amp;display=swap"
-			rel="stylesheet"
-		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../css/common-style.css" />
+		<script src="../js/lucide.js"></script>
+		<script src="../js/dedent.js"></script>
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-			}
-			body {
-				font-family: "Noto Sans KR", sans-serif;
-				color: #000000;
-			}
-			.slide-container {
-				width: 100dvw;
-				height: 100dvh;
-				display: flex;
-				overflow: hidden;
-				position: relative;
-			}
-			.content-wrapper {
-				flex: 1;
+			.content {
 				display: flex;
 				flex-direction: column;
-				padding: 80px;
-				z-index: 10;
+				gap: var(--spacing-section);
 			}
-			.header {
-				margin-bottom: 50px;
-			}
-			.title {
-				font-size: 48px;
-				font-weight: 700;
-				margin-bottom: 20px;
-				color: #000000;
-				position: relative;
-				display: inline-block;
-			}
-			.title::after {
-				content: "";
-				position: absolute;
-				bottom: -10px;
-				left: 0;
-				width: 80px;
-				height: 4px;
-				background-color: #61dafb;
-			}
-			.code-comparison {
+
+			.code-section {
 				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				width: 100%;
+				flex-direction: column;
+				gap: var(--spacing-small);
 			}
-			.code-column {
-				flex: 1;
-				max-width: 45%;
+
+			.function-comment {
+				font-family: "SF Mono", "Monaco", "Consolas", monospace;
+				font-size: var(--font-size-small);
+				color: var(--color-text-quaternary);
 			}
-			.code-label {
-				font-size: 24px;
-				font-weight: 500;
-				margin-bottom: 12px;
-				color: #333;
-			}
+
 			.code-box {
-				background-color: #f8f8f8;
-				border-left: 4px solid #61dafb;
-				padding: 24px;
-				border-radius: 8px;
-				min-height: 200px;
+				max-width: 700px;
+			}
+
+			.problems-section {
+				display: flex;
+				gap: var(--spacing-item);
+				align-items: flex-start;
+			}
+
+			.problem-card {
 				display: flex;
 				flex-direction: column;
-				justify-content: center;
+				gap: var(--spacing-small);
+				flex: 1;
+				padding: var(--spacing-item);
+				background-color: rgba(244, 67, 54, 0.05);
+				border-left: 4px solid var(--color-error);
+				border-radius: var(--border-radius);
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 			}
-			.code-text {
-				font-family: "Nanum Gothic Coding", monospace;
-				font-size: 22px;
-				white-space: pre-wrap;
-				color: #333;
-				line-height: 1.6;
-			}
-			.transform-arrow {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				margin: 0 20px;
-			}
-			.arrow {
-				color: #61dafb;
-				font-size: 36px;
-			}
-			.transform-label {
-				font-size: 18px;
-				font-weight: 500;
-				margin-top: 8px;
-				color: #61dafb;
-			}
-			.problems-list {
-				display: flex;
-				flex-direction: column;
-				gap: 16px;
-			}
-			.problem-item {
+
+			.problem-header {
 				display: flex;
 				align-items: center;
-				gap: 12px;
+				gap: var(--spacing-small);
 			}
+
 			.problem-icon {
-				color: #ff5252;
-				font-size: 24px;
-				min-width: 24px;
+				color: var(--color-error);
 			}
-			.problem-text {
-				font-size: 22px;
+
+			.problem-title {
+				font-size: var(--font-size-body);
+				font-weight: 600;
+				color: var(--color-text);
+			}
+
+			.problem-description {
+				font-size: var(--font-size-small);
+				color: var(--color-text-tertiary);
 				line-height: 1.5;
-				color: #333;
-			}
-			.abstract-elements {
-				position: absolute;
-				width: 100%;
-				height: 100%;
-				z-index: 1;
-				overflow: hidden;
-			}
-			.circle {
-				position: absolute;
-				border: 2px solid #61dafb;
-				border-radius: 50%;
-				opacity: 0.1;
-			}
-			.circle-1 {
-				width: 200px;
-				height: 200px;
-				left: -50px;
-				top: -50px;
-			}
-			.circle-2 {
-				width: 120px;
-				height: 120px;
-				right: 100px;
-				bottom: 100px;
-			}
-			.rectangle {
-				position: absolute;
-				border: 2px solid #61dafb;
-				opacity: 0.05;
-			}
-			.rectangle-1 {
-				width: 250px;
-				height: 100px;
-				transform: rotate(45deg);
-				right: -50px;
-				top: 100px;
-			}
-			.page-number {
-				position: absolute;
-				bottom: 30px;
-				right: 40px;
-				font-size: 16px;
-				color: #888;
 			}
 		</style>
-		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
+
 	<body>
 		<div class="slide-container">
-			<div class="abstract-elements">
-				<div class="circle circle-1"></div>
-				<div class="circle circle-2"></div>
-				<div class="rectangle rectangle-1"></div>
-			</div>
-			<div class="content-wrapper">
-				<div class="header">
-					<h1 class="title">jQuery 시대의 고통</h1>
+			<div class="header">
+				<div class="section-nav">
+					<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
+					<span class="section-item active">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
+					<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
+					<span class="section-item">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
+					<span class="section-item">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
 				</div>
-				<div class="code-comparison">
-					<div class="code-column">
-						<p class="code-label">jQuery 코드</p>
-						<div class="code-box">
-							<pre class="code-text">
-$('#user-name').text(newName);
-$('#user-age').text(newAge);
-$('#user-email').text(newEmail);
-$('#user-address').text(newAddress);
-// ... 수십 개의 DOM 직접 조작</pre
-							>
-						</div>
+				<h1 class="title">jQuery 시대의 고통</h1>
+			</div>
+
+			<div class="content">
+				<div class="code-section">
+					<p class="function-comment">// 사용자 정보 업데이트 함수</p>
+					<div class="code-box">
+						<pre id="code-6-jquery" class="code-text"></pre>
 					</div>
-					<div class="transform-arrow">
-						<i class="fas fa-exclamation-triangle arrow" style="color: #ff5252"></i>
-						<p class="transform-label" style="color: #ff5252">문제점</p>
-					</div>
-					<div class="code-column">
-						<div class="problems-list">
-							<div class="problem-item">
-								<i class="fas fa-times-circle problem-icon"></i>
-								<p class="problem-text"><strong>성능</strong> - 빈번한 DOM 조작으로 인한 성능 저하</p>
-							</div>
-							<div class="problem-item">
-								<i class="fas fa-times-circle problem-icon"></i>
-								<p class="problem-text"><strong>유지보수</strong> - 여러 파일에 분산된 UI 로직</p>
-							</div>
-							<div class="problem-item">
-								<i class="fas fa-times-circle problem-icon"></i>
-								<p class="problem-text"><strong>버그</strong> - 상태 추적이 어려워 디버깅 복잡</p>
-							</div>
+				</div>
+				<div class="problems-section">
+					<div class="problem-card">
+						<div class="problem-header">
+							<i data-lucide="zap" class="problem-icon" width="28" height="28"></i>
+							<h3 class="problem-title">성능 문제</h3>
 						</div>
+						<p class="problem-description">DOM 조작은 비용이 높음</p>
+					</div>
+					<div class="problem-card">
+						<div class="problem-header">
+							<i data-lucide="code" class="problem-icon" width="28" height="28"></i>
+							<h3 class="problem-title">유지보수 어려움</h3>
+						</div>
+						<p class="problem-description">UI 로직이 코드 전체에 산재</p>
+					</div>
+					<div class="problem-card">
+						<div class="problem-header">
+							<i data-lucide="refresh-cw" class="problem-icon" width="28" height="28"></i>
+							<h3 class="problem-title">상태 동기화 문제</h3>
+						</div>
+						<p class="problem-description">데이터 일관성 유지 어려움</p>
 					</div>
 				</div>
 			</div>
+
 			<div class="page-number">6</div>
 		</div>
+
 		<script>
+			document.getElementById("code-6-jquery").textContent = dedent(/* JAVASCRIPT */ `
+				function updateUserProfile(user) {
+					$("#user-name").text(user.name);
+					$("#user-age").text(user.age);
+					$("#user-email").text(user.email);
+					// ... 수십 개의 필드
+				}
+			`);
+
 			lucide.createIcons();
 		</script>
 	</body>

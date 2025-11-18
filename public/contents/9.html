@@ -1,158 +1,326 @@
 <!doctype html>
-
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../css/common-style.css" />
+		<script src="../js/lucide.js"></script>
+		<script src="../js/chart.js"></script>
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-			}
-			body {
-				font-family: "Noto Sans KR", sans-serif;
-				color: #000000;
-			}
-			.slide-container {
-				width: 100dvw;
-				height: 100dvh;
-				display: flex;
-				overflow: hidden;
-				position: relative;
-			}
-			.content-wrapper {
-				flex: 1;
-				display: flex;
-				flex-direction: column;
-				padding: 80px;
-				z-index: 10;
-			}
-			.header {
-				margin-bottom: 60px;
-			}
-			.title {
-				font-size: 48px;
-				font-weight: 700;
-				margin-bottom: 20px;
-				color: #000000;
-				position: relative;
-				display: inline-block;
-			}
-			.title::after {
-				content: "";
-				position: absolute;
-				bottom: -10px;
-				left: 0;
-				width: 80px;
-				height: 4px;
-				background-color: #61dafb;
-			}
 			.content {
 				display: flex;
 				flex-direction: column;
-				gap: 35px;
-			}
-			.info-box {
-				background-color: #f8f8f8;
-				border-left: 4px solid #61dafb;
-				padding: 25px;
-				border-radius: 8px;
-				width: 100%;
-				max-width: 700px;
-			}
-			.info-text {
-				font-size: 28px;
-				white-space: pre-wrap;
-				color: #333;
-				line-height: 1.5;
-			}
-			.highlight {
-				font-weight: 700;
-				color: #000;
-				display: inline-block;
-				position: relative;
-			}
-			.highlight-react {
-				color: #61dafb;
-			}
-			.emphasis {
-				font-size: 36px;
-				font-weight: 500;
-				color: #000;
-				display: flex;
 				align-items: center;
+				gap: var(--spacing-item);
+				max-width: 1200px;
+				margin: 0 auto;
 			}
-			.emoji {
-				font-size: 42px;
-				margin-left: 10px;
-			}
-			.abstract-elements {
-				position: absolute;
+
+			.info-summary {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 32px;
 				width: 100%;
-				height: 100%;
-				z-index: 1;
-				overflow: hidden;
 			}
-			.circle {
-				position: absolute;
-				border: 2px solid #61dafb;
-				border-radius: 50%;
-				opacity: 0.1;
+
+			.info-item {
+				text-align: center;
 			}
-			.circle-1 {
-				width: 200px;
-				height: 200px;
-				right: 100px;
-				top: 150px;
+
+			.info-label {
+				margin-bottom: 6px;
+				font-size: 0.85rem;
+				font-weight: 500;
+				color: var(--color-text-secondary);
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
 			}
-			.circle-2 {
-				width: 120px;
-				height: 120px;
-				right: 50px;
-				bottom: 100px;
-			}
-			.big-text {
-				position: absolute;
-				right: 150px;
-				top: 200px;
-				font-size: 160px;
+
+			.info-value {
+				font-size: 1.8rem;
 				font-weight: 700;
-				color: #61dafb;
-				opacity: 0.1;
+				color: var(--color-text);
 			}
-			.page-number {
-				position: absolute;
-				bottom: 30px;
-				right: 40px;
-				font-size: 16px;
-				color: #888;
+
+			.info-value.primary {
+				font-size: 2.2rem;
+				color: var(--color-primary);
+			}
+
+			.info-value.error {
+				color: var(--color-error);
+			}
+
+			.divider {
+				width: 1px;
+				height: 50px;
+				background: var(--color-border);
+			}
+
+			.chart-wrapper {
+				width: 100%;
+				padding: var(--spacing-item) 32px;
+				background-color: var(--color-background);
+				border-radius: var(--border-radius);
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+			}
+
+			.chart-container {
+				width: 100%;
+				height: 340px;
+			}
+
+			.conclusion {
+				padding: var(--spacing-small) 28px;
+				background-color: var(--color-code-bg);
+				border-radius: var(--border-radius);
+				font-size: var(--font-size-body);
+				font-weight: 600;
+				color: var(--color-text);
+				text-align: center;
+			}
+
+			.conclusion .highlight {
+				color: var(--color-error);
+			}
+
+			@media (min-height: 1080px) {
+				.content {
+					gap: 32px;
+				}
+
+				.info-summary {
+					gap: 40px;
+				}
+
+				.info-label {
+					font-size: 0.95rem;
+				}
+
+				.info-value {
+					font-size: 2.1rem;
+				}
+
+				.info-value.primary {
+					font-size: 2.6rem;
+				}
+
+				.divider {
+					height: 55px;
+				}
+
+				.chart-wrapper {
+					padding: 32px 40px;
+				}
+
+				.chart-container {
+					height: 420px;
+				}
+
+				.conclusion {
+					padding: 18px 32px;
+					font-size: 1.6rem;
+				}
+			}
+
+			@media (max-height: 1000px) {
+				.content {
+					gap: 20px;
+				}
+
+				.info-summary {
+					gap: 28px;
+				}
+
+				.info-label {
+					margin-bottom: 4px;
+					font-size: 0.8rem;
+				}
+
+				.info-value {
+					font-size: 1.6rem;
+				}
+
+				.info-value.primary {
+					font-size: 1.9rem;
+				}
+
+				.divider {
+					height: 45px;
+				}
+
+				.chart-wrapper {
+					padding: 20px 24px;
+				}
+
+				.chart-container {
+					height: 300px;
+				}
+
+				.conclusion {
+					padding: 14px 24px;
+					font-size: 1.25rem;
+				}
 			}
 		</style>
-		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
+
 	<body>
 		<div class="slide-container">
-			<div class="content-wrapper">
-				<div class="header">
-					<h1 class="title">불가능한 문제</h1>
+			<div class="header">
+				<div class="section-nav">
+					<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
+					<span class="section-item active">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
+					<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
+					<span class="section-item">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
+					<span class="section-item">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
 				</div>
-				<div class="content">
-					<div class="info-box">
-						<p class="info-text">트리 비교 복잡도: <span class="highlight highlight-react">O(n³)</span></p>
-						<p class="info-text">1,000개 노드 ≈ <span class="highlight">10억 번 연산</span></p>
-						<p class="info-text">60fps → <span class="highlight">16ms 내</span> 계산 완료 필요</p>
-					</div>
-					<div class="emphasis">
-						<p>→ 그대로는 <span class="highlight">불가능한</span> 문제 <span class="emoji">😱</span></p>
-					</div>
-				</div>
+				<h1 class="title">불가능한 문제</h1>
 			</div>
+
+			<div class="content">
+				<div class="info-summary">
+					<div class="info-item">
+						<div class="info-label">복잡도</div>
+						<div class="info-value primary">O(n³)</div>
+					</div>
+					<div class="divider"></div>
+					<div class="info-item">
+						<div class="info-label">1,000개 노드</div>
+						<div class="info-value error">10억 번 연산</div>
+					</div>
+					<div class="divider"></div>
+					<div class="info-item">
+						<div class="info-label">목표 성능</div>
+						<div class="info-value">60fps (16ms)</div>
+					</div>
+				</div>
+
+				<div class="chart-wrapper">
+					<div class="chart-container">
+						<canvas id="complexityChart"></canvas>
+					</div>
+				</div>
+
+				<div class="conclusion">→ 그대로는 <span class="highlight">불가능</span></div>
+			</div>
+
 			<div class="page-number">9</div>
 		</div>
+
 		<script>
 			lucide.createIcons();
+
+			const ctx = document.getElementById("complexityChart").getContext("2d");
+			new Chart(ctx, {
+				type: "line",
+				data: {
+					labels: ["0", "500", "1000"],
+					datasets: [
+						{
+							label: "O(n) - React 최적화",
+							data: [0, 500, 1000],
+							borderColor: "#52c41a",
+							borderWidth: 3,
+							fill: false,
+							tension: 0.3,
+							pointRadius: 5,
+							pointHoverRadius: 7
+						},
+						{
+							label: "O(n²)",
+							data: [0, 250000, 1000000],
+							borderColor: "#faad14",
+							borderWidth: 3,
+							fill: false,
+							tension: 0.3,
+							pointRadius: 5,
+							pointHoverRadius: 7
+						},
+						{
+							label: "O(n³) - 일반 트리 비교",
+							data: [0, 125000000, 1000000000],
+							borderColor: "#ff4d4f",
+							borderWidth: 4,
+							fill: false,
+							tension: 0.3,
+							pointRadius: 6,
+							pointHoverRadius: 8
+						}
+					]
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					interaction: {
+						mode: "index",
+						intersect: false
+					},
+					scales: {
+						y: {
+							type: "logarithmic",
+							title: {
+								display: true,
+								text: "연산 횟수",
+								font: { size: 14, weight: "600" },
+								color: "#333"
+							},
+							ticks: {
+								font: { size: 12 },
+								color: "#666"
+							},
+							grid: {
+								color: "rgba(0, 0, 0, 0.06)",
+								drawBorder: false
+							}
+						},
+						x: {
+							title: {
+								display: true,
+								text: "노드 수 (n)",
+								font: { size: 14, weight: "600" },
+								color: "#333"
+							},
+							ticks: {
+								font: { size: 12 },
+								color: "#666"
+							},
+							grid: {
+								color: "rgba(0, 0, 0, 0.06)",
+								drawBorder: false
+							}
+						}
+					},
+					plugins: {
+						title: {
+							display: false
+						},
+						legend: {
+							display: true,
+							position: "top",
+							align: "center",
+							labels: {
+								font: { size: 13, weight: "500" },
+								padding: 16,
+								usePointStyle: true,
+								pointStyle: "circle",
+								color: "#333",
+								boxWidth: 8,
+								boxHeight: 8
+							}
+						},
+						tooltip: {
+							backgroundColor: "rgba(0, 0, 0, 0.8)",
+							padding: 12,
+							titleFont: { size: 13 },
+							bodyFont: { size: 12 },
+							cornerRadius: 4,
+							displayColors: true
+						}
+					}
+				}
+			});
 		</script>
 	</body>
 </html>

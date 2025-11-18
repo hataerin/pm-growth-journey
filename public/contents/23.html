@@ -1,109 +1,100 @@
 <!doctype html>
-
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="https://unpkg.com/lucide@latest"></script>
+		<script src="../js/lucide.js"></script>
 		<style>
-			.content-wrapper {
-				flex: 1;
+			.slide-container {
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
+				width: 100dvw;
+				height: 100dvh;
 				padding: 80px;
-				z-index: 10;
+				position: relative;
 			}
-			.qa-icon-wrapper {
-				width: 140px;
-				height: 140px;
-				border-radius: 50%;
-				background: linear-gradient(135deg, #61dafb 0%, #00b4d8 100%);
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				margin-bottom: 50px;
-				box-shadow: 0 10px 40px rgba(97, 218, 251, 0.4);
-				animation: float 3s ease-in-out infinite;
+
+			.qa-icon {
+				margin-bottom: 32px;
+				color: var(--color-primary);
 			}
-			.qa-icon-wrapper svg {
-				width: 80px;
-				height: 80px;
-				color: white;
-				stroke-width: 2;
-			}
+
 			.qa-heading {
-				font-size: 72px;
+				margin-bottom: 24px;
+				font-size: 4.5rem;
 				font-weight: 700;
-				margin-bottom: 30px;
 				text-align: center;
-				color: #1a1a1a;
-				letter-spacing: -0.02em;
 			}
+
 			.qa-subtext {
-				font-size: 32px;
+				font-size: 1.75rem;
 				font-weight: 400;
-				color: #666;
+				color: var(--color-text-secondary);
 				text-align: center;
-				max-width: 800px;
-				line-height: 1.5;
 			}
+
+			.abstract-elements {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				z-index: -1;
+				overflow: hidden;
+			}
+
+			.circle {
+				position: absolute;
+				border: 2px solid var(--color-primary);
+				border-radius: 50%;
+				opacity: 0.05;
+			}
+
 			.circle-1 {
 				width: 300px;
 				height: 300px;
 				right: -100px;
 				top: -100px;
 			}
+
 			.circle-2 {
 				width: 200px;
 				height: 200px;
 				left: -50px;
 				bottom: -50px;
 			}
-			.circle-3 {
-				width: 120px;
-				height: 120px;
-				right: 200px;
-				bottom: 150px;
-			}
-			.rectangle-1 {
-				width: 250px;
-				height: 120px;
-				transform: rotate(-20deg);
-				left: 200px;
-				top: 100px;
-			}
 
-			@keyframes float {
-				0%,
-				100% {
-					transform: translateY(0);
+			@media (max-height: 1000px) {
+				.qa-icon {
+					margin-bottom: 24px;
 				}
-				50% {
-					transform: translateY(-20px);
+
+				.qa-heading {
+					margin-bottom: 20px;
+					font-size: 3.5rem;
+				}
+
+				.qa-subtext {
+					font-size: 1.5rem;
 				}
 			}
 		</style>
 	</head>
+
 	<body>
 		<div class="slide-container">
 			<div class="abstract-elements">
 				<div class="circle circle-1"></div>
 				<div class="circle circle-2"></div>
-				<div class="circle circle-3"></div>
-				<div class="rectangle rectangle-1"></div>
 			</div>
-			<div class="content-wrapper">
-				<div class="qa-icon-wrapper">
-					<i data-lucide="message-circle-question"></i>
-				</div>
-				<h1 class="qa-heading">질문 있으신가요? 🙋</h1>
-				<p class="qa-subtext">가장 궁금했던 부분부터 자유롭게 질문해주세요!</p>
-			</div>
+			<i data-lucide="message-circle-question" class="qa-icon" width="80" height="80"></i>
+			<h1 class="qa-heading">질문 있으신가요?</h1>
+			<p class="qa-subtext">가장 궁금했던 부분부터 자유롭게!</p>
+
 			<div class="page-number">23</div>
 		</div>
+
 		<script>
 			lucide.createIcons();
 		</script>

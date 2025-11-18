@@ -1,223 +1,240 @@
 <!doctype html>
-
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../css/common-style.css" />
+		<script src="../js/lucide.js"></script>
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-			}
-			body {
-				font-family: "Noto Sans KR", sans-serif;
-				color: #000000;
-			}
 			.slide-container {
+				display: flex;
 				width: 100dvw;
 				height: 100dvh;
-				display: flex;
 				overflow: hidden;
 				position: relative;
 			}
+
 			.content-wrapper {
 				flex: 1;
 				display: flex;
 				flex-direction: column;
-				padding: 80px;
 				z-index: 10;
 			}
-			.header {
-				margin-bottom: 50px;
-			}
-			.title {
-				font-size: 48px;
-				font-weight: 700;
-				margin-bottom: 20px;
-				color: #000000;
-				position: relative;
-				display: inline-block;
-			}
-			.title::after {
-				content: "";
-				position: absolute;
-				bottom: -10px;
-				left: 0;
-				width: 80px;
-				height: 4px;
-				background-color: #61dafb;
-			}
+
 			.flow-diagram {
 				display: flex;
 				flex-direction: column;
-				width: 100%;
 				align-items: center;
+				width: 100%;
+				padding: 0 80px 80px 80px;
 				position: relative;
-				margin-top: 20px;
 			}
+
 			.comparison-section {
 				display: flex;
 				width: 100%;
-				margin-bottom: 60px;
+				margin-bottom: var(--spacing-section);
 				position: relative;
 				z-index: 2;
 			}
+
 			.comparison-box {
 				flex: 1;
-				padding: 20px;
-				position: relative;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
+				padding: var(--spacing-small);
+				position: relative;
 			}
+
 			.comparison-title {
-				font-size: 24px;
+				margin-bottom: var(--spacing-small);
+				font-size: 1.5rem;
 				font-weight: 700;
-				margin-bottom: 20px;
 				text-align: center;
 			}
+
 			.comparison-content {
+				display: flex;
+				justify-content: center;
+				align-items: center;
 				width: 100%;
 				height: 60px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
 				position: relative;
 			}
+
 			.stack-bar {
-				width: 80%;
-				height: 40px;
-				background-color: #f44336;
-				position: relative;
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				border-radius: 4px;
-			}
-			.stack-bar p {
-				color: #ffffff;
-				font-weight: 500;
-			}
-			.fiber-units {
 				width: 80%;
 				height: 40px;
+				background-color: var(--color-error);
+				border-radius: 4px;
+				position: relative;
+			}
+
+			.stack-bar p {
+				font-size: 1rem;
+				font-weight: 500;
+				color: var(--color-background);
+			}
+
+			.fiber-units {
 				display: flex;
 				justify-content: space-between;
-			}
-			.fiber-unit {
-				width: 15%;
+				width: 80%;
 				height: 40px;
-				background-color: #61dafb;
+			}
+
+			.fiber-unit {
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				width: 15%;
+				height: 40px;
+				background-color: var(--color-primary);
 				border-radius: 4px;
 			}
+
 			.fiber-unit:nth-child(odd) {
 				background-color: rgba(97, 218, 251, 0.7);
 			}
+
 			.comparison-caption {
-				font-size: 16px;
-				margin-top: 16px;
-				text-align: center;
 				max-width: 80%;
+				margin-top: 16px;
+				font-size: 1rem;
+				line-height: 1.4;
+				text-align: center;
 			}
+
 			.flow-divider {
 				width: 80%;
 				height: 2px;
-				background-color: #e0e0e0;
-				margin: 10px 0 40px 0;
+				margin: 10px 0 var(--spacing-item) 0;
+				background-color: var(--color-border);
 			}
+
 			.features-section {
 				display: flex;
 				justify-content: space-between;
+				gap: var(--spacing-small);
 				width: 100%;
 				position: relative;
 				z-index: 2;
 			}
+
 			.feature-item {
+				flex: 1;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				width: 30%;
 				padding: 15px;
 			}
-			.feature-icon {
-				width: 80px;
-				height: 80px;
-				border-radius: 50%;
-				background-color: #f8f8f8;
+
+			.feature-icon-wrapper {
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				width: 80px;
+				height: 80px;
 				margin-bottom: 16px;
+				background-color: var(--color-code-bg);
+				border-radius: 50%;
 			}
-			.feature-icon i {
-				font-size: 36px;
-				color: #61dafb;
+
+			.feature-icon {
+				color: var(--color-primary);
 			}
+
 			.feature-title {
-				font-size: 20px;
-				font-weight: 700;
 				margin-bottom: 8px;
+				font-size: 1.25rem;
+				font-weight: 700;
 				text-align: center;
-				color: #000000;
+				color: var(--color-text);
 			}
+
 			.feature-desc {
-				font-size: 16px;
-				text-align: center;
+				font-size: 1rem;
 				line-height: 1.4;
-				color: #333333;
+				text-align: center;
+				color: var(--color-text-secondary);
 			}
+
+			@media (max-height: 1000px) {
+				.comparison-title {
+					font-size: 1.25rem;
+				}
+
+				.stack-bar p {
+					font-size: 0.9rem;
+				}
+
+				.comparison-caption {
+					font-size: 0.9rem;
+				}
+
+				.feature-icon-wrapper {
+					width: 64px;
+					height: 64px;
+				}
+
+				.feature-title {
+					font-size: 1.1rem;
+				}
+
+				.feature-desc {
+					font-size: 0.9rem;
+				}
+			}
+
 			.abstract-elements {
-				position: absolute;
 				width: 100%;
 				height: 100%;
-				z-index: 1;
 				overflow: hidden;
-			}
-			.circle {
 				position: absolute;
-				border: 2px solid #61dafb;
+				z-index: 1;
+			}
+
+			.circle {
+				border: 2px solid var(--color-primary);
 				border-radius: 50%;
 				opacity: 0.1;
+				position: absolute;
 			}
+
 			.circle-1 {
 				width: 200px;
 				height: 200px;
 				left: -50px;
 				bottom: -50px;
 			}
+
 			.circle-2 {
 				width: 120px;
 				height: 120px;
 				right: 100px;
 				top: 80px;
 			}
+
 			.rectangle {
-				position: absolute;
-				border: 2px solid #61dafb;
+				border: 2px solid var(--color-primary);
 				opacity: 0.05;
+				position: absolute;
 			}
+
 			.rectangle-1 {
 				width: 300px;
 				height: 150px;
-				transform: rotate(30deg);
 				right: -100px;
 				bottom: 100px;
-			}
-			.page-number {
-				position: absolute;
-				bottom: 30px;
-				right: 40px;
-				font-size: 16px;
-				color: #888;
+				transform: rotate(30deg);
 			}
 		</style>
-		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="https://unpkg.com/lucide@latest"></script>
 	</head>
+
 	<body>
 		<div class="slide-container">
 			<div class="abstract-elements">
@@ -225,10 +242,21 @@
 				<div class="circle circle-2"></div>
 				<div class="rectangle rectangle-1"></div>
 			</div>
+
 			<div class="content-wrapper">
 				<div class="header">
+					<div class="section-nav">
+						<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
+						<span class="section-item">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
+						<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
+						<span class="section-item">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
+						<span class="section-item active"
+							>Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span
+						>
+					</div>
 					<h1 class="title">Fiber의 해결책</h1>
 				</div>
+
 				<div class="flow-diagram">
 					<div class="comparison-section">
 						<div class="comparison-box">
@@ -239,7 +267,7 @@
 							<p class="comparison-caption">한 번에 모든 렌더링 작업 완료, UI 멈춤 😱</p>
 						</div>
 						<div class="comparison-box">
-							<div class="comparison-title">Fiber</div>
+							<div class="comparison-title">Fiber Architecture</div>
 							<div class="comparison-content">
 								<div class="fiber-units">
 									<div class="fiber-unit"></div>
@@ -255,22 +283,22 @@
 					<div class="flow-divider"></div>
 					<div class="features-section">
 						<div class="feature-item">
-							<div class="feature-icon">
-								<i class="fas fa-pause-circle"></i>
+							<div class="feature-icon-wrapper">
+								<i data-lucide="pause-circle" width="36" height="36" class="feature-icon"></i>
 							</div>
 							<h3 class="feature-title">인터럽트 가능</h3>
 							<p class="feature-desc">렌더링 작업을 중단하고 더 중요한 작업을 먼저 처리 가능</p>
 						</div>
 						<div class="feature-item">
-							<div class="feature-icon">
-								<i class="fas fa-sort-amount-down-alt"></i>
+							<div class="feature-icon-wrapper">
+								<i data-lucide="bar-chart-3" width="36" height="36" class="feature-icon"></i>
 							</div>
 							<h3 class="feature-title">우선순위 스케줄링</h3>
 							<p class="feature-desc">사용자 인터랙션과 같은 중요 작업에 우선순위 부여</p>
 						</div>
 						<div class="feature-item">
-							<div class="feature-icon">
-								<i class="fas fa-sync-alt"></i>
+							<div class="feature-icon-wrapper">
+								<i data-lucide="refresh-cw" width="36" height="36" class="feature-icon"></i>
 							</div>
 							<h3 class="feature-title">동시성</h3>
 							<p class="feature-desc">여러 렌더링 작업을 병렬로 처리하며 효율적인 UI 업데이트</p>
@@ -278,8 +306,10 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="page-number">17</div>
 		</div>
+
 		<script>
 			lucide.createIcons();
 		</script>

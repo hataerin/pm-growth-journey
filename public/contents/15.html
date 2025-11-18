@@ -1,141 +1,130 @@
 <!doctype html>
-
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="../css/common-style.css" />
+		<script src="../js/lucide.js"></script>
 		<style>
-			.checklist {
-				display: flex;
-				flex-direction: column;
-				gap: 36px;
+			.content-container {
+				margin-bottom: var(--spacing-section);
 			}
-			.checklist-item {
+
+			.section-icon-wrapper {
+				background-color: var(--color-background);
+			}
+
+			.framework-icon {
 				display: flex;
 				align-items: center;
-				font-size: 28px;
-				font-weight: 400;
+				justify-content: center;
+				width: 56px;
+				height: 56px;
 			}
-			.framework-icon {
-				width: 50px;
-				height: 50px;
-				margin-right: 24px;
-				flex-shrink: 0;
-			}
+
 			.framework-icon svg {
 				width: 100%;
 				height: 100%;
 			}
-			.content {
-				display: flex;
-				flex-direction: column;
-				flex: 1;
+
+			.framework-icon.react svg {
+				width: 125%;
+				height: 125%;
 			}
-			.framework-name {
-				font-weight: 700;
-				font-size: 32px;
-				margin-bottom: 8px;
-				color: #1a1a1a;
-			}
-			.description {
-				font-size: 24px;
-				color: #666;
-				line-height: 1.5;
-			}
-			.divider {
-				height: 2px;
-				background: linear-gradient(to right, transparent, #e0e0e0, transparent);
-				margin: 50px 0;
-			}
+
 			.philosophy {
-				border-left: 4px solid #00b4d8;
-				background-color: rgba(97, 218, 251, 0.05);
-				padding: 20px 24px;
-				border-radius: 8px;
+				margin-top: var(--spacing-section);
+				padding-left: 28px;
+				border-left: 4px solid var(--color-primary);
 			}
+
 			.philosophy-text {
-				font-size: 32px;
+				font-size: 2rem;
 				font-weight: 600;
-				color: #1a1a1a;
+				color: var(--color-text);
 			}
-			.circle-1 {
-				width: 250px;
-				height: 250px;
-				right: -50px;
-				top: -50px;
-			}
-			.circle-2 {
-				width: 120px;
-				height: 120px;
-				left: 100px;
-				bottom: 80px;
-			}
-			.rectangle-1 {
-				width: 300px;
-				height: 150px;
-				transform: rotate(-20deg);
-				right: 100px;
-				bottom: -50px;
+
+			@media (max-height: 1000px) {
+				.content-container {
+					margin-bottom: var(--spacing-item);
+				}
+
+				.framework-icon {
+					width: 44px;
+					height: 44px;
+				}
+
+				.philosophy {
+					margin-top: var(--spacing-item);
+					padding-left: 20px;
+				}
+
+				.philosophy-text {
+					font-size: 1.7rem;
+				}
 			}
 		</style>
 	</head>
+
 	<body>
 		<div class="slide-container">
-			<div class="abstract-elements">
-				<div class="circle circle-1"></div>
-				<div class="circle circle-2"></div>
-				<div class="rectangle rectangle-1"></div>
-			</div>
-			<div class="content-wrapper">
-				<div class="header">
-					<h1 class="title">다른 프레임워크와 비교</h1>
+			<div class="header">
+				<div class="section-nav">
+					<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
+					<span class="section-item">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
+					<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
+					<span class="section-item">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
+					<span class="section-item active">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
 				</div>
-				<div class="checklist">
-					<div class="checklist-item">
-						<div class="framework-icon">
+				<h1 class="title">다른 프레임워크와 비교</h1>
+			</div>
+
+			<div class="content-container">
+				<div class="section">
+					<div class="section-icon-wrapper">
+						<div class="framework-icon vue">
 							<svg viewBox="0 0 261.76 226.69" xmlns="http://www.w3.org/2000/svg">
 								<path
-									d="M161.096.001l-30.224 52.35L100.647.002H-.005L130.872 226.69 261.749 0z"
+									d="M161.096.001l-30.225 52.351L100.647.001H-.005l130.877 226.688L261.749.001z"
 									fill="#41b883"
 								/>
 								<path
-									d="M161.096.001l-30.224 52.35L100.647.002H52.346l78.526 136.01L209.398.001z"
+									d="M161.096.001l-30.225 52.351L100.647.001H52.346l78.526 136.01L209.398.001z"
 									fill="#34495e"
 								/>
 							</svg>
 						</div>
-						<div class="content">
-							<p class="framework-name">Vue</p>
-							<p class="description">Proxy 기반 자동 변경 감지</p>
-						</div>
 					</div>
-					<div class="checklist-item">
-						<div class="framework-icon">
-							<svg viewBox="0 0 256 272" xmlns="http://www.w3.org/2000/svg">
+					<div class="section-content">
+						<h2 class="section-title">Vue</h2>
+						<p class="section-description">Proxy 기반 - 직접 수정 가능</p>
+					</div>
+				</div>
+
+				<div class="section">
+					<div class="section-icon-wrapper">
+						<div class="framework-icon angular">
+							<svg viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
+								<path d="M125 30L31.9 63.2l14.2 123.1L125 230l78.9-43.7 14.2-123.1z" fill="#DD0031" />
+								<path d="M125 30v22.2-.1V230l78.9-43.7 14.2-123.1L125 30z" fill="#C3002F" />
 								<path
-									d="M.1 45.522L125.908.697l129.196 44.028-20.919 166.45-108.277 59.966-106.583-59.169L.1 45.522z"
-									fill="#E23237"
-								/>
-								<path
-									d="M255.104 44.725L125.908.697v270.444l108.277-59.866 20.919-166.55z"
-									fill="#B52E31"
-								/>
-								<path
-									d="M126.107 32.274L47.714 206.693l29.285-.498 15.739-39.347h70.325l17.233 39.845 27.99.498-82.179-174.917zm.2 55.882l26.496 55.383h-49.806l23.31-55.383z"
+									d="M125 52.1L66.8 182.6h21.7l11.7-29.2h49.4l11.7 29.2H183L125 52.1zm17 83.3h-34l17-40.9 17 40.9z"
 									fill="#FFF"
 								/>
 							</svg>
 						</div>
-						<div class="content">
-							<p class="framework-name">Angular</p>
-							<p class="description">Zone.js를 통한 이벤트 추적</p>
-						</div>
 					</div>
-					<div class="checklist-item">
-						<div class="framework-icon">
+					<div class="section-content">
+						<h2 class="section-title">Angular</h2>
+						<p class="section-description">Zone.js - 이벤트 자동 추적</p>
+					</div>
+				</div>
+
+				<div class="section">
+					<div class="section-icon-wrapper">
+						<div class="framework-icon react">
 							<svg viewBox="-11.5 -10.23174 23 20.46348" xmlns="http://www.w3.org/2000/svg">
-								<circle r="2.05" fill="#61dafb" />
+								<circle cx="0" cy="0" r="2.05" fill="#61dafb" />
 								<g stroke="#61dafb" stroke-width="1" fill="none">
 									<ellipse rx="11" ry="4.2" />
 									<ellipse rx="11" ry="4.2" transform="rotate(60)" />
@@ -143,18 +132,24 @@
 								</g>
 							</svg>
 						</div>
-						<div class="content">
-							<p class="framework-name">React</p>
-							<p class="description">명시적 불변성, 개발자가 직접 제어</p>
-						</div>
+					</div>
+
+					<div class="section-content">
+						<h2 class="section-title">React</h2>
+						<p class="section-description">명시적 불변성 - 개발자 직접 제어</p>
 					</div>
 				</div>
-				<div class="divider"></div>
-				<div class="philosophy">
-					<p class="philosophy-text">React 철학: 마법보다는 명시성 ✨</p>
-				</div>
 			</div>
+
+			<div class="philosophy">
+				<p class="philosophy-text">React 철학: "마법보다는 명시성"</p>
+			</div>
+
 			<div class="page-number">15</div>
 		</div>
+
+		<script>
+			lucide.createIcons();
+		</script>
 	</body>
 </html>

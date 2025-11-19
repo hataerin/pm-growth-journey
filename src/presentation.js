@@ -7,6 +7,7 @@ import Reveal from "reveal.js";
 import RevealNotes from "reveal.js/plugin/notes/notes.esm.js";
 
 Reveal.initialize({
+	// 기본 설정
 	hash: true,
 	controls: true,
 	progress: true,
@@ -17,6 +18,27 @@ Reveal.initialize({
 	margin: 0,
 	minScale: 1,
 	maxScale: 1,
+
+	// iframe 최적화
+	preloadIframes: true,
+	viewDistance: 3,
+
+	// 네비게이션
+	mouseWheel: true,
+	navigationMode: "linear",
+	slideNumber: false,
+	overview: true,
+	help: true,
+	touch: true,
+
+	// 발표 모드
+	hideInactiveCursor: true,
+	hideCursorTime: 2000,
+
+	// PDF 내보내기
+	pdfSeparateFragments: false,
+	pdfMaxPagesPerSlide: 1,
+
 	plugins: [RevealNotes]
 });
 

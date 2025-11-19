@@ -239,7 +239,10 @@
 				});
 
 				// 새 참조 → 리렌더링
-				setUser({ ...user, age: 26 });
+				setUser(prev => ({
+					...prev,
+					age: 26
+				}));
 			`);
 
 			lucide.createIcons();

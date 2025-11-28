@@ -1,149 +1,121 @@
-<!doctype html>
-<html lang="ko" data-theme="light" style="">
-	<head>
-		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-		<title>감사합니다</title>
-		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-		<link
-			href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
-			rel="stylesheet"
-		/>
-		<style>
-			body {
-				margin: 0;
-				padding: 0;
-				font-family: "Noto Sans KR", sans-serif;
-				background-color: #f0f0f0;
-			}
+<!DOCTYPE html>
+<html lang="ko" data-theme="light" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>감사합니다</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f0f0f0;
+        }
+        
+        .slide {
+            width: 1280px;
+            height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            color: #1F2937; /* Gray 800 */
+        }
+        
+        .curve {
+            position: absolute;
+            top: -300px;
+            right: -300px;
+            width: 900px;
+            height: 900px;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.03); /* Blue 600 low opacity */
+            z-index: 0;
+        }
+        
+        .thank-you-title {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: 900;
+            font-size: 5rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: #1F2937;
+        }
+        
+        .sub-message {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: 500;
+            font-size: 2rem;
+            color: #2563EB; /* Blue 600 */
+            letter-spacing: -0.01em;
+        }
 
-			.slide {
-				width: 100dvw;
-				height: 100dvh;
-				background-color: #ffffff;
-				position: relative;
-				overflow: hidden;
-				color: #1f2937; /* Gray 800 */
-			}
+        .contact-box {
+            background-color: #F9FAFB; /* Gray 50 */
+            border: 1px solid #E5E7EB; /* Gray 200 */
+            border-radius: 12px;
+            padding: 2rem 4rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+            color: #4B5563; /* Gray 600 */
+        }
+        
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .contact-icon {
+            width: 2rem;
+            text-align: center;
+            margin-right: 1rem;
+            color: #2563EB;
+        }
 
-			.curve {
-				position: absolute;
-				top: -300px;
-				right: -300px;
-				width: 900px;
-				height: 900px;
-				border-radius: 50%;
-				background: rgba(37, 99, 235, 0.03); /* Blue 600 low opacity */
-				z-index: 0;
-			}
+        .divider {
+            width: 80px;
+            height: 4px;
+            background-color: #2563EB;
+            margin: 2rem auto;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body style="">
+<div class="slide flex flex-col p-16">
+<div class="curve"></div>
+<!-- Header -->
+<div class="mb-6 relative z-10">
+<div class="flex items-center">
+<i class="fas fa-cube text-[#2563EB] mr-3 text-xl"></i>
+<span class="text-[#1F2937] text-xl font-bold tracking-tight">PM으로 성장하기</span>
+</div>
+</div>
+<!-- Main Content -->
+<div class="flex-grow flex flex-col items-center justify-center relative z-10">
+<h1 class="thank-you-title mb-4">감사합니다</h1>
+<p class="sub-message" style="position: relative; transform: translate(-1.4943px, 104.601px);">Q&amp;A</p>
+<div class="divider"></div>
+<!-- Contact Info Area -->
 
-			.thank-you-title {
-				font-family: "Noto Sans KR", sans-serif;
-				font-weight: 900;
-				font-size: 5rem;
-				line-height: 1.2;
-				letter-spacing: -0.02em;
-				color: #1f2937;
-			}
 
-			.sub-message {
-				font-family: "Noto Sans KR", sans-serif;
-				font-weight: 500;
-				font-size: clamp(1.6rem, 2.8vw, 2.8rem);
-				color: #2563eb; /* Blue 600 */
-				letter-spacing: -0.01em;
-			}
+</div>
+<!-- Footer -->
+<div class="mt-auto flex justify-between items-center relative z-10 border-t border-gray-100 pt-6">
+<div class="text-[#1F2937]">
+<p class="mb-1 text-sm opacity-70">프로젝트 효율높이기 (실전편)</p>
+<p class="text-lg font-bold">주니어 PM의 성장 여정</p>
+</div>
+<div class="text-[#2563EB]">
+<p class="text-sm font-medium">2025.11.28 전사세미나</p>
+</div>
+</div>
+</div>
 
-			.contact-box {
-				background-color: #f9fafb; /* Gray 50 */
-				border: 1px solid #e5e7eb; /* Gray 200 */
-				border-radius: 12px;
-				padding: clamp(1rem, 2vh, 1.5rem) 4rem;
-				box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-			}
-
-			.contact-item {
-				display: flex;
-				align-items: center;
-				margin-bottom: 1rem;
-				font-size: 1.125rem;
-				color: #4b5563; /* Gray 600 */
-			}
-
-			.contact-item:last-child {
-				margin-bottom: 0;
-			}
-
-			.contact-icon {
-				width: 2rem;
-				text-align: center;
-				margin-right: 1rem;
-				color: #2563eb;
-			}
-
-			.divider {
-				width: 80px;
-				height: 4px;
-				background-color: #2563eb;
-				margin: 2rem auto;
-				border-radius: 2px;
-			}
-
-			/* 매우 큰 화면 (1920px 이상) - 발표용 최적화 */
-			@media (min-width: 1920px) {
-				body {
-					font-size: 110%;
-				}
-			}
-
-			/* 큰 화면 (1440px ~ 1919px) */
-			@media (min-width: 1440px) and (max-width: 1919px) {
-				body {
-					font-size: 105%;
-				}
-			}
-
-			/* 중간 노트북 (1024px ~ 1439px) */
-			@media (max-width: 1439px) {
-				body {
-					font-size: 100%;
-				}
-			}
-		</style>
-	</head>
-	<body style="">
-		<div class="slide flex flex-col p-16">
-			<div class="curve"></div>
-			<!-- Header -->
-			<div class="mb-6 relative z-10">
-				<div class="flex items-center">
-					<i class="fas fa-cube text-[#2563EB] mr-3 text-xl"></i>
-					<span class="text-[#1F2937] text-xl font-bold tracking-tight">PM으로 성장하기</span>
-				</div>
-			</div>
-			<!-- Main Content -->
-			<div class="flex-grow flex flex-col items-center justify-center relative z-10">
-				<h1 class="thank-you-title mb-4">감사합니다</h1>
-				<p class="sub-message" style="position: relative; transform: translate(-1.4943px, 104.601px)">
-					Q&amp;A
-				</p>
-				<div class="divider"></div>
-				<!-- Contact Info Area -->
-			</div>
-			<!-- Footer -->
-			<div class="mt-auto flex justify-between items-center relative z-10 border-t border-gray-100 pt-6">
-				<div class="text-[#1F2937]">
-					<p class="mb-1 text-sm opacity-70">프로젝트 효율높이기 (실전편)</p>
-					<p class="text-lg font-bold">주니어 PM의 성장 여정</p>
-				</div>
-				<div class="text-[#2563EB]">
-					<p class="text-sm font-medium">2025.11.28 전사세미나</p>
-				</div>
-			</div>
-		</div>
-	</body>
-</html>
+</body></html>

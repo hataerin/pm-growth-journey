@@ -1,234 +1,128 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-theme="light" style="">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="../js/lucide.js"></script>
-		<script src="../js/dedent.js"></script>
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<title>감사합니다</title>
+		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+			rel="stylesheet"
+		/>
 		<style>
-			.content-wrapper {
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: "Noto Sans KR", sans-serif;
+				background-color: #f0f0f0;
+			}
+
+			.slide {
+				width: 100dvw;
+				height: 100dvh;
+				background-color: #ffffff;
+				position: relative;
+				overflow: hidden;
+				color: #1f2937; /* Gray 800 */
+			}
+
+			.curve {
+				position: absolute;
+				top: -300px;
+				right: -300px;
+				width: 900px;
+				height: 900px;
+				border-radius: 50%;
+				background: rgba(37, 99, 235, 0.03); /* Blue 600 low opacity */
+				z-index: 0;
+			}
+
+			.thank-you-title {
+				font-family: "Noto Sans KR", sans-serif;
+				font-weight: 900;
+				font-size: 5rem;
+				line-height: 1.2;
+				letter-spacing: -0.02em;
+				color: #1f2937;
+			}
+
+			.sub-message {
+				font-family: "Noto Sans KR", sans-serif;
+				font-weight: 500;
+				font-size: 2rem;
+				color: #2563eb; /* Blue 600 */
+				letter-spacing: -0.01em;
+			}
+
+			.contact-box {
+				background-color: #f9fafb; /* Gray 50 */
+				border: 1px solid #e5e7eb; /* Gray 200 */
+				border-radius: 12px;
+				padding: 2rem 4rem;
+				box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+			}
+
+			.contact-item {
 				display: flex;
-				flex-direction: column;
-				align-items: flex-start;
-				width: fit-content;
-			}
-
-			.code-comparison {
-				display: flex;
-				justify-content: flex-start;
-				align-items: stretch;
-				gap: var(--spacing-section);
-				margin-bottom: var(--spacing-item);
-			}
-
-			.code-column {
-				flex: 0 1 auto;
-				min-width: 460px;
-			}
-
-			.code-label {
-				margin-bottom: 14px;
-				font-size: 1.5rem;
-				font-weight: 600;
-				color: var(--color-text-secondary);
-			}
-
-			.code-box {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				min-height: 100px;
-				padding: 32px 80px 32px 44px;
-				background-color: var(--color-code-bg);
-				border-left: 4px solid var(--color-primary);
-				border-radius: 8px;
-			}
-
-			.code-text {
-				font-family: "SF Mono", "Monaco", "Consolas", monospace;
-				font-size: 1.35rem;
-				white-space: pre-wrap;
-				color: var(--color-text-secondary);
-				line-height: 1.6;
-			}
-
-			.transform-arrow {
-				display: flex;
-				flex-direction: column;
 				align-items: center;
-				justify-content: center;
-				margin: 0 24px;
+				margin-bottom: 1rem;
+				font-size: 1.125rem;
+				color: #4b5563; /* Gray 600 */
 			}
 
-			.arrow {
-				color: var(--color-primary);
+			.contact-item:last-child {
+				margin-bottom: 0;
 			}
 
-			.transform-label {
-				margin-top: 10px;
-				font-size: 1.1rem;
-				font-weight: 600;
-				color: var(--color-primary);
+			.contact-icon {
+				width: 2rem;
+				text-align: center;
+				margin-right: 1rem;
+				color: #2563eb;
 			}
 
-			.info-box {
-				width: 100%;
-				padding: 24px 28px;
-				background-color: var(--color-code-bg);
-				border-left: 4px solid var(--color-primary);
-				border-radius: 8px;
-			}
-
-			.info-text {
-				margin-bottom: 10px;
-				font-size: 1.2rem;
-				line-height: 1.6;
-				color: var(--color-text-secondary);
-			}
-
-			.code-note {
-				margin-top: 12px;
-				padding: 12px 16px;
-				background-color: rgba(97, 218, 251, 0.05);
-				border-radius: 6px;
-				font-family: "SF Mono", "Monaco", "Consolas", monospace;
-				font-size: 1.1rem;
-				color: var(--color-text-secondary);
-			}
-
-			.highlight {
-				font-weight: 600;
-				color: var(--color-primary);
-			}
-
-			.true {
-				font-weight: 600;
-				color: #4caf50;
-			}
-
-			.false {
-				font-weight: 600;
-				color: var(--color-error);
-			}
-
-			@media (max-height: 1000px) {
-				.code-column {
-					min-width: 380px;
-				}
-
-				.code-label {
-					margin-bottom: 10px;
-					font-size: 1.3rem;
-				}
-
-				.code-box {
-					min-height: 80px;
-					padding: var(--padding-code-box);
-				}
-
-				.code-text {
-					font-size: var(--font-size-code);
-					line-height: var(--line-height-code);
-				}
-
-				.transform-arrow {
-					margin: 0 16px;
-				}
-
-				.transform-label {
-					margin-top: 8px;
-					font-size: 0.95rem;
-				}
-
-				.info-box {
-					padding: 18px 22px;
-				}
-
-				.info-text {
-					margin-bottom: 8px;
-					font-size: 1.05rem;
-				}
-
-				.code-note {
-					margin-top: 10px;
-					padding: 10px 14px;
-					font-size: 0.95rem;
-				}
+			.divider {
+				width: 80px;
+				height: 4px;
+				background-color: #2563eb;
+				margin: 2rem auto;
+				border-radius: 2px;
 			}
 		</style>
 	</head>
-
-	<body>
-		<div class="slide-container">
-			<div class="header">
-				<div class="section-nav">
-					<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
-					<span class="section-item">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
-					<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
-					<span class="section-item active">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
-					<span class="section-item">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
-				</div>
-				<h1 class="title">얕은 비교 vs 깊은 비교</h1>
-			</div>
-
-			<div class="content-wrapper">
-				<div class="code-comparison">
-					<div class="code-column">
-						<p class="code-label">얕은 비교 (React)</p>
-						<div class="code-box">
-							<pre id="code-13-shallow" class="code-text"></pre>
-						</div>
-					</div>
-					<div class="transform-arrow">
-						<i data-lucide="arrow-left-right" class="arrow" width="36" height="36"></i>
-						<p class="transform-label">비교 방식</p>
-					</div>
-					<div class="code-column">
-						<p class="code-label">깊은 비교 (React가 안 함)</p>
-						<div class="code-box">
-							<pre id="code-13-deep" class="code-text"></pre>
-						</div>
-					</div>
-				</div>
-				<div class="info-box">
-					<p class="info-text">
-						<i
-							data-lucide="info"
-							width="22"
-							height="22"
-							style="color: #61dafb; display: inline-block; vertical-align: middle; margin-right: 10px"
-						></i>
-						React는 <span class="highlight">===</span> 대신 <span class="highlight">Object.is</span>를
-						사용합니다
-					</p>
-					<p class="code-note">
-						• NaN === NaN: <span class="false">false</span>
-						<br />
-						• Object.is(NaN, NaN): <span class="true">true</span>
-					</p>
-					<p class="info-text" style="margin-top: 18px">
-						얕은 비교 장점: <span class="highlight">빠른 성능</span> (O(1)),
-						<span class="highlight">예측 가능</span>, <span class="highlight">명시적 코드</span>
-					</p>
+	<body style="">
+		<div class="slide flex flex-col p-16">
+			<div class="curve"></div>
+			<!-- Header -->
+			<div class="mb-6 relative z-10">
+				<div class="flex items-center">
+					<i class="fas fa-cube text-[#2563EB] mr-3 text-xl"></i>
+					<span class="text-[#1F2937] text-xl font-bold tracking-tight">PM으로 성장하기</span>
 				</div>
 			</div>
-
-			<div class="page-number">13</div>
+			<!-- Main Content -->
+			<div class="flex-grow flex flex-col items-center justify-center relative z-10">
+				<h1 class="thank-you-title mb-4">감사합니다</h1>
+				<p class="sub-message" style="position: relative; transform: translate(-1.4943px, 104.601px)">
+					Q&amp;A
+				</p>
+				<div class="divider"></div>
+				<!-- Contact Info Area -->
+			</div>
+			<!-- Footer -->
+			<div class="mt-auto flex justify-between items-center relative z-10 border-t border-gray-100 pt-6">
+				<div class="text-[#1F2937]">
+					<p class="mb-1 text-sm opacity-70">프로젝트 효율높이기 (실전편)</p>
+					<p class="text-lg font-bold">주니어 PM의 성장 여정</p>
+				</div>
+				<div class="text-[#2563EB]">
+					<p class="text-sm font-medium">2025.11.28 전사세미나</p>
+				</div>
+			</div>
 		</div>
-
-		<script>
-			document.getElementById("code-13-shallow").textContent = dedent(/* JAVASCRIPT */ `
-				// 참조만 비교
-				Object.is(prevState, nextState)
-			`);
-
-			document.getElementById("code-13-deep").textContent = dedent(/* JAVASCRIPT */ `
-				// 전체 객체 내용 비교
-				JSON.stringify(prevState) === JSON.stringify(nextState)
-			`);
-
-			lucide.createIcons();
-		</script>
 	</body>
 </html>

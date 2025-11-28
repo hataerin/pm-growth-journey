@@ -2,167 +2,315 @@
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="../js/lucide.js"></script>
-		<script src="../js/dedent.js"></script>
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<title>로그 추적 기능 추가</title>
+		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+			rel="stylesheet"
+		/>
 		<style>
-			.content-wrapper {
-				width: fit-content;
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: "Noto Sans KR", sans-serif;
+				background-color: #ffffff;
 			}
 
-			.code-comparison {
+			.slide {
+				width: 100dvw;
+				height: 100dvh;
+				background-color: #ffffff;
+				position: relative;
+				overflow: hidden;
 				display: flex;
-				justify-content: flex-start;
+				flex-direction: column;
+				padding: 50px 64px;
+				box-sizing: border-box;
+			}
+
+			.header-section {
+				margin-bottom: 25px;
+			}
+
+			.slide-title {
+				font-size: 3rem;
+				font-weight: 700;
+				color: #1f2937;
+				line-height: 1.2;
+				letter-spacing: -0.02em;
+				margin-bottom: 10px;
+				display: flex;
+				align-items: center;
+			}
+
+			.slide-number {
+				font-family: "Noto Sans KR", sans-serif;
+				font-weight: 900;
+				font-size: 1.5rem;
+				color: #2563eb;
+				margin-right: 15px;
+				background: rgba(37, 99, 235, 0.1);
+				padding: 5px 15px;
+				border-radius: 50px;
+			}
+
+			.content-container {
+				display: flex;
+				flex: 1;
+				gap: 30px;
+				height: 420px;
+			}
+
+			.panel {
+				flex: 1;
+				border-radius: 8px;
+				padding: 25px;
+				position: relative;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.panel-before {
+				background-color: #f9fafb;
+				border-left: 6px solid #dc2626;
+			}
+
+			.panel-after {
+				background-color: #eff6ff;
+				border-left: 6px solid #2563eb;
+			}
+
+			.panel-header {
+				display: flex;
+				align-items: center;
+				margin-bottom: 20px;
+				padding-bottom: 15px;
+				border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+			}
+
+			.panel-title {
+				font-size: 1.5rem;
+				font-weight: 700;
+				margin-left: 12px;
+			}
+
+			.title-before {
+				color: #dc2626;
+			}
+			.title-after {
+				color: #2563eb;
+			}
+
+			.panel-icon {
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.2rem;
+			}
+
+			.icon-before {
+				background-color: rgba(220, 38, 38, 0.1);
+				color: #dc2626;
+			}
+			.icon-after {
+				background-color: rgba(37, 99, 235, 0.1);
+				color: #2563eb;
+			}
+
+			.panel-content {
+				flex: 1;
+				color: #374151;
+				font-size: 1.1rem;
+				line-height: 1.6;
+			}
+
+			.list-item {
+				display: flex;
+				margin-bottom: 12px;
 				align-items: flex-start;
-				gap: var(--spacing-section);
 			}
 
-			.code-column {
-				flex: 0 1 auto;
-				min-width: 400px;
-			}
-
-			.code-label {
-				display: flex;
-				align-items: center;
-				gap: 10px;
-				margin-bottom: var(--spacing-small);
-				font-size: var(--font-size-body);
-				font-weight: 500;
-				color: var(--color-text-secondary);
-			}
-
-			.code-box {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				padding: var(--padding-code-box);
-				background-color: var(--color-code-bg);
-				border-left: 4px solid var(--color-primary);
-				border-radius: var(--border-radius);
-				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-			}
-
-			.code-text {
-				font-family: "SF Mono", "Monaco", "Consolas", monospace;
-				font-size: var(--font-size-code);
-				color: var(--color-text-secondary);
-				line-height: var(--line-height-code);
-			}
-
-			.transform-arrow {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				margin: auto;
-			}
-
-			.arrow {
-				color: var(--color-primary);
-			}
-
-			.transform-label {
+			.bullet {
+				margin-right: 10px;
 				margin-top: 8px;
-				font-size: var(--font-size-small);
-				font-weight: 500;
-				color: var(--color-primary);
+				font-size: 0.8rem;
 			}
 
-			.note {
-				display: flex;
-				justify-content: flex-start;
-				margin-top: var(--spacing-section);
+			.bullet-before {
+				color: #dc2626;
+			}
+			.bullet-after {
+				color: #2563eb;
 			}
 
-			.note-text {
+			.tag {
+				display: inline-block;
+				padding: 4px 12px;
+				border-radius: 4px;
+				font-size: 0.85rem;
+				font-weight: 600;
+				margin-bottom: 8px;
+			}
+
+			.tag-problem {
+				background-color: rgba(220, 38, 38, 0.1);
+				color: #dc2626;
+			}
+			.tag-solution {
+				background-color: rgba(37, 99, 235, 0.1);
+				color: #2563eb;
+			}
+
+			.effect-section {
+				margin-top: 25px;
+				background-color: #ecfdf5;
+				border-left: 6px solid #059669;
+				border-radius: 8px;
+				padding: 20px 30px;
 				display: flex;
 				align-items: center;
-				gap: var(--spacing-small);
-				width: 100%;
-				padding: var(--spacing-small) 28px;
-				background-color: rgba(97, 218, 251, 0.1);
-				border-radius: var(--border-radius);
-				font-size: var(--font-size-body);
-				font-weight: 500;
-				color: var(--color-text-secondary);
 			}
 
-			.note-emoji {
-				font-size: var(--font-size-subtitle);
+			.effect-title {
+				color: #059669;
+				font-weight: 700;
+				font-size: 1.2rem;
+				margin-right: 30px;
+				display: flex;
+				align-items: center;
+				min-width: 120px;
+			}
+
+			.effect-content {
+				color: #065f46;
+				font-size: 1.2rem;
+				font-weight: 500;
+				flex: 1;
+			}
+
+			.arrow-container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 40px;
+			}
+
+			.arrow-icon {
+				font-size: 2rem;
+				color: #9ca3af;
+			}
+
+			.footer {
+				margin-top: auto;
+				display: flex;
+				justify-content: space-between;
+				border-top: 1px solid #e5e7eb;
+				padding-top: 15px;
+				font-size: 0.9rem;
+				color: #6b7280;
 			}
 		</style>
 	</head>
-
 	<body>
-		<div class="slide-container">
-			<div class="header">
-				<div class="section-nav">
-					<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
-					<span class="section-item active">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
-					<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
-					<span class="section-item">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
-					<span class="section-item">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
-				</div>
-				<h1 class="title">React Element = JavaScript 객체</h1>
+		<div class="slide">
+			<!-- Header -->
+			<div class="header-section">
+				<h1 class="slide-title">
+					<span class="slide-number">02</span>
+					로그 추적 기능 추가
+					<span style="font-size: 20px; font-weight: normal; margin-left: 10px"
+						>(로드맵 26년도 하반기 예정)</span
+					>
+				</h1>
+				<p style="font-size: 1.2rem; color: #6b7280; font-weight: 400">
+					이슈와 리스크 관리, 로그 데이터 시각화
+				</p>
 			</div>
 
-			<div class="content-wrapper">
-				<div class="code-comparison">
-					<div class="code-column">
-						<p class="code-label">
-							<i data-lucide="code" width="20" height="20" style="color: #61dafb"></i>
-							JSX
-						</p>
-						<div class="code-box">
-							<pre id="code-5-jsx" class="code-text"></pre>
+			<!-- Main Content Panels -->
+			<div class="content-container">
+				<!-- Before Panel -->
+				<div class="panel panel-before">
+					<div class="panel-header">
+						<div class="panel-icon icon-before">
+							<i class="fas fa-comment-slash"></i>
 						</div>
+						<h2 class="panel-title title-before">AS-IS : 디버깅 시간 과다 소요</h2>
 					</div>
-					<div class="transform-arrow">
-						<i data-lucide="arrow-right" class="arrow" width="36" height="36"></i>
-						<p class="transform-label">변환</p>
-					</div>
-					<div class="code-column">
-						<p class="code-label">
-							<i data-lucide="package" width="20" height="20" style="color: #61dafb"></i>
-							JavaScript 객체
-						</p>
-						<div class="code-box">
-							<pre id="code-5-object" class="code-text"></pre>
+					<div class="panel-content">
+						<span class="tag tag-problem">문제점</span>
+						<div class="list-item">
+							<i class="fas fa-times bullet bullet-before"></i>
+							<p><strong>디버깅 시간 과다 소요</strong> - 근본 원인 파악 지연</p>
+						</div>
+						<div class="list-item">
+							<i class="fas fa-times bullet bullet-before"></i>
+							<p><strong>고객사 방문</strong> - 로그 확인을 위해 현장 방문 필요</p>
+						</div>
+						<div class="list-item">
+							<i class="fas fa-times bullet bullet-before"></i>
+							<p><strong>이슈 대응 속도 저하</strong> - 빠른 조치 불가능</p>
+						</div>
+						<div class="list-item">
+							<i class="fas fa-times bullet bullet-before"></i>
+							<p><strong>히스토리 추적 불가</strong> - 과거 로그 비교 분석 어려움</p>
 						</div>
 					</div>
 				</div>
-				<div class="note">
-					<p class="note-text">
-						<span class="note-emoji">🌳</span>
-						이게 바로 Virtual DOM의 시작!
-					</p>
+
+				<!-- Arrow -->
+				<div class="arrow-container">
+					<i class="fas fa-chevron-right arrow-icon"></i>
+				</div>
+
+				<!-- After Panel -->
+				<div class="panel panel-after">
+					<div class="panel-header">
+						<div class="panel-icon icon-after">
+							<i class="fas fa-file-contract"></i>
+						</div>
+						<h2 class="panel-title title-after">TO-BE : 로그 추적 기능 추가</h2>
+					</div>
+					<div class="panel-content">
+						<span class="tag tag-solution">개선점</span>
+						<div class="list-item">
+							<i class="fas fa-check bullet bullet-after"></i>
+							<p><strong>디버깅 시간 단축</strong> - 신속한 원인 분석</p>
+						</div>
+						<div class="list-item">
+							<i class="fas fa-check bullet bullet-after"></i>
+							<p><strong>대응 속도 및 효율 향상</strong> - 고객 만족도 개선</p>
+						</div>
+						<div class="list-item">
+							<i class="fas fa-check bullet bullet-after"></i>
+							<p><strong>선제적 리스크 관리</strong> - 문제 예방 체계 구축</p>
+						</div>
+					</div>
 				</div>
 			</div>
 
-			<div class="page-number">5</div>
+			<!-- Effect Section -->
+			<div class="effect-section">
+				<div class="effect-title"><i class="fas fa-magic" style="margin-right: 10px"></i>EFFECT</div>
+				<div class="effect-content">다중 이슈 대응으로 리소스 효율 향상 및 고객 만족도 향상</div>
+			</div>
+
+			<!-- Footer -->
+			<div class="footer">
+				<div class="flex items-center">
+					<i class="fas fa-chart-line text-blue-600 mr-2"></i>
+					<span>PM으로 성장하기: 프로젝트 효율높이기 (실전편)</span>
+				</div>
+				<div>주니어 PM의 실전 경험 공유</div>
+			</div>
 		</div>
-
-		<script>
-			document.getElementById("code-5-jsx").textContent = dedent(/* JAVASCRIPT */ `
-				<div className="container">
-					<h1>제목</h1>
-					<p>내용</p>
-				</div>
-			`);
-
-			document.getElementById("code-5-object").textContent = dedent(/* JAVASCRIPT */ `
-				{
-					type: 'div',
-					props: {
-						className: 'container',
-						children: [...]
-					}
-				}
-			`);
-
-			lucide.createIcons();
-		</script>
 	</body>
 </html>

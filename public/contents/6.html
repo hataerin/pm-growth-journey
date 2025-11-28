@@ -2,134 +2,290 @@
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="../js/lucide.js"></script>
-		<script src="../js/dedent.js"></script>
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<title>레드마인 이슈 추적 효율화</title>
+		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+			rel="stylesheet"
+		/>
 		<style>
-			.content {
-				display: flex;
-				flex-direction: column;
-				gap: var(--spacing-section);
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: "Noto Sans KR", sans-serif;
+				background-color: #ffffff;
 			}
 
-			.code-section {
-				display: flex;
-				flex-direction: column;
-				gap: var(--spacing-small);
+			.slide {
+				width: 100dvw;
+				height: 100dvh;
+				background-color: #ffffff;
+				position: relative;
+				overflow: hidden;
 			}
 
-			.function-comment {
-				font-family: "SF Mono", "Monaco", "Consolas", monospace;
-				font-size: var(--font-size-small);
-				color: var(--color-text-quaternary);
+			.header-section {
+				position: absolute;
+				top: 50px;
+				left: 50px;
+				right: 50px;
+				height: 80px;
 			}
 
-			.code-box {
-				max-width: 700px;
-			}
-
-			.problems-section {
-				display: flex;
-				gap: var(--spacing-item);
-				align-items: flex-start;
-			}
-
-			.problem-card {
-				display: flex;
-				flex-direction: column;
-				gap: var(--spacing-small);
-				flex: 1;
-				padding: var(--spacing-item);
-				background-color: rgba(244, 67, 54, 0.05);
-				border-left: 4px solid var(--color-error);
-				border-radius: var(--border-radius);
-				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-			}
-
-			.problem-header {
+			.slide-title {
+				font-size: 48px;
+				font-weight: 700;
+				color: #1f2937;
+				line-height: 1.2;
+				letter-spacing: -0.02em;
+				margin-bottom: 10px;
 				display: flex;
 				align-items: center;
-				gap: var(--spacing-small);
 			}
 
-			.problem-icon {
-				color: var(--color-error);
+			.slide-number {
+				font-family: "Noto Sans KR", sans-serif;
+				font-weight: 900;
+				font-size: 24px;
+				color: #2563eb;
+				margin-right: 15px;
+				background: rgba(37, 99, 235, 0.1);
+				padding: 5px 15px;
+				border-radius: 50px;
 			}
 
-			.problem-title {
-				font-size: var(--font-size-body);
-				font-weight: 600;
-				color: var(--color-text);
+			.content-container {
+				position: absolute;
+				top: 150px;
+				left: 50px;
+				right: 50px;
+				height: 350px;
+				display: flex;
+				gap: 30px;
 			}
 
-			.problem-description {
-				font-size: var(--font-size-small);
-				color: var(--color-text-tertiary);
-				line-height: 1.5;
+			.panel {
+				width: 560px;
+				height: 350px;
+				border-radius: 8px;
+				padding: 25px;
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				box-sizing: border-box;
+			}
+
+			.panel-before {
+				background-color: #f9fafb;
+				border-left: 6px solid #dc2626;
+			}
+
+			.panel-after {
+				background-color: #eff6ff;
+				border-left: 6px solid #2563eb;
+			}
+
+			.panel-header {
+				display: flex;
+				align-items: center;
+				margin-bottom: 20px;
+				padding-bottom: 15px;
+				border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+			}
+
+			.panel-title {
+				font-size: 24px;
+				font-weight: 700;
+				margin-left: 12px;
+			}
+
+			.title-before {
+				color: #dc2626;
+			}
+			.title-after {
+				color: #2563eb;
+			}
+
+			.panel-icon {
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 19px;
+				flex-shrink: 0;
+			}
+
+			.icon-before {
+				background-color: rgba(220, 38, 38, 0.1);
+				color: #dc2626;
+			}
+			.icon-after {
+				background-color: rgba(37, 99, 235, 0.1);
+				color: #2563eb;
+			}
+
+			.panel-content {
+				flex: 1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.panel-content img {
+				max-width: 100%;
+				max-height: 100%;
+				border-radius: 8px;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+			}
+
+			.arrow-container {
+				width: 40px;
+				height: 350px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.arrow-icon {
+				font-size: 32px;
+				color: #9ca3af;
+			}
+
+			.effect-section {
+				position: absolute;
+				top: 520px;
+				left: 50px;
+				right: 50px;
+				height: 80px;
+				background-color: #ecfdf5;
+				border-left: 6px solid #059669;
+				border-radius: 8px;
+				padding: 0 30px;
+				display: flex;
+				align-items: center;
+				box-sizing: border-box;
+			}
+
+			.effect-title {
+				color: #059669;
+				font-weight: 700;
+				font-size: 19px;
+				margin-right: 30px;
+				display: flex;
+				align-items: center;
+				min-width: 120px;
+			}
+
+			.effect-content {
+				color: #065f46;
+				font-size: 19px;
+				font-weight: 500;
+				flex: 1;
+			}
+
+			.footer {
+				position: absolute;
+				bottom: 50px;
+				left: 50px;
+				right: 50px;
+				height: 60px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				border-top: 1px solid #e5e7eb;
+				padding-top: 15px;
+				box-sizing: border-box;
+			}
+
+			.footer-left {
+				display: flex;
+				align-items: center;
+				color: #6b7280;
+				font-size: 14px;
+			}
+
+			.footer-right {
+				color: #6b7280;
+				font-size: 14px;
 			}
 		</style>
 	</head>
-
 	<body>
-		<div class="slide-container">
-			<div class="header">
-				<div class="section-nav">
-					<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
-					<span class="section-item active">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
-					<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
-					<span class="section-item">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
-					<span class="section-item">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
-				</div>
-				<h1 class="title">jQuery 시대의 고통</h1>
+		<div class="slide">
+			<!-- Header -->
+			<div class="header-section">
+				<h1 class="slide-title">
+					<span class="slide-number">03</span>
+					레드마인 이슈 추적 효율화
+				</h1>
+				<p style="font-size: 19px; color: #6b7280; font-weight: 400; margin-top: 10px">
+					이슈와 리스크 관리, 시각화
+				</p>
 			</div>
 
-			<div class="content">
-				<div class="code-section">
-					<p class="function-comment">// 사용자 정보 업데이트 함수</p>
-					<div class="code-box">
-						<pre id="code-6-jquery" class="code-text"></pre>
+			<!-- Main Content Panels -->
+			<div class="content-container">
+				<!-- Before Panel -->
+				<div class="panel panel-before">
+					<div class="panel-header">
+						<div class="panel-icon icon-before">
+							<i class="fas fa-trash-alt"></i>
+						</div>
+						<h2 class="panel-title title-before">AS-IS : 실제 관리 대상 파악 어려움</h2>
+					</div>
+					<div class="panel-content">
+						<img
+							src="https://page.gensparksite.com/get_upload_url/9fb35dcbea28db9ad7e2f3c587dc575b003b82ffb0e5c7edc351db2af02c7fd1/default/5226f33a-4b3a-4818-8db1-71db3885702f"
+							alt="AS-IS 이미지"
+						/>
 					</div>
 				</div>
-				<div class="problems-section">
-					<div class="problem-card">
-						<div class="problem-header">
-							<i data-lucide="zap" class="problem-icon" width="28" height="28"></i>
-							<h3 class="problem-title">성능 문제</h3>
+
+				<!-- Arrow -->
+				<div class="arrow-container">
+					<i class="fas fa-chevron-right arrow-icon"></i>
+				</div>
+
+				<!-- After Panel -->
+				<div class="panel panel-after">
+					<div class="panel-header">
+						<div class="panel-icon icon-after">
+							<i class="fas fa-broom"></i>
 						</div>
-						<p class="problem-description">DOM 조작은 비용이 높음</p>
+						<h2 class="panel-title title-after">TO-BE : 대청소 및 라벨 체계 정비</h2>
 					</div>
-					<div class="problem-card">
-						<div class="problem-header">
-							<i data-lucide="code" class="problem-icon" width="28" height="28"></i>
-							<h3 class="problem-title">유지보수 어려움</h3>
-						</div>
-						<p class="problem-description">UI 로직이 코드 전체에 산재</p>
-					</div>
-					<div class="problem-card">
-						<div class="problem-header">
-							<i data-lucide="refresh-cw" class="problem-icon" width="28" height="28"></i>
-							<h3 class="problem-title">상태 동기화 문제</h3>
-						</div>
-						<p class="problem-description">데이터 일관성 유지 어려움</p>
+					<div class="panel-content">
+						<img
+							src="https://page.gensparksite.com/get_upload_url/9fb35dcbea28db9ad7e2f3c587dc575b003b82ffb0e5c7edc351db2af02c7fd1/default/b1daaa7a-54b6-47fe-aee7-548d82f5a696"
+							alt="TO-BE 이미지"
+						/>
 					</div>
 				</div>
 			</div>
 
-			<div class="page-number">6</div>
+			<!-- Effect Section -->
+			<div class="effect-section">
+				<div class="effect-title"><i class="fas fa-lightbulb" style="margin-right: 10px"></i>EFFECT</div>
+				<div class="effect-content">
+					일감 정리 + 체계적 상태값으로 실제 관리 대상 명확화 및 추적 효율 극대화
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<div class="footer">
+				<div class="footer-left">
+					<i class="fas fa-chart-line" style="color: #2563eb; margin-right: 8px"></i>
+					<span>PM으로 성장하기: 프로젝트 효율높이기 (실전편)</span>
+				</div>
+				<div class="footer-right">주니어 PM의 실전 경험 공유</div>
+			</div>
 		</div>
-
-		<script>
-			document.getElementById("code-6-jquery").textContent = dedent(/* JAVASCRIPT */ `
-				function updateUserProfile(user) {
-					$("#user-name").text(user.name);
-					$("#user-age").text(user.age);
-					$("#user-email").text(user.email);
-					// ... 수십 개의 필드
-				}
-			`);
-
-			lucide.createIcons();
-		</script>
 	</body>
 </html>

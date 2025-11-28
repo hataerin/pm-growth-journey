@@ -1,73 +1,221 @@
 <!doctype html>
+
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="../js/lucide.js"></script>
-		<script src="../js/dedent.js"></script>
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<title>오늘의 이야기</title>
+		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+			rel="stylesheet"
+		/>
 		<style>
-			.content {
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: "Noto Sans KR", sans-serif;
+				background-color: #f0f0f0; /* Presentation background */
+			}
+			.slide {
+				width: 100dvw;
+				height: 100dvh;
+				background-color: #ffffff;
+				position: relative;
+				overflow: hidden;
 				display: flex;
 				flex-direction: column;
-				gap: var(--spacing-section);
 			}
-
-			.code-box {
-				max-width: 600px;
-				width: fit-content;
-				height: fit-content;
+			.accent-shape {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 12px;
+				background-color: #2563eb; /* Primary Blue */
 			}
-
-			.emphasis {
+			.overview-title {
+				font-family: "Noto Sans KR", sans-serif;
+				font-size: 3.5rem;
+				font-weight: 900;
+				letter-spacing: -1px;
+				color: #1f2937; /* Dark Gray */
+				text-align: center;
+				margin-bottom: 10px;
+				margin-top: 20px;
+			}
+			.overview-subtitle {
+				font-family: "Noto Sans KR", sans-serif;
+				font-size: 1.5rem;
+				font-weight: 400;
+				color: #4b5563;
+				text-align: center;
+				margin-bottom: 50px;
+			}
+			.card-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				grid-template-rows: repeat(2, 1fr);
+				gap: 30px;
+				width: 1080px;
+				margin: 0 auto;
+			}
+			.topic-card {
+				background-color: #ffffff;
+				border: 1px solid #e5e7eb;
+				border-radius: 12px;
+				padding: 30px 20px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				box-shadow:
+					0 4px 6px -1px rgba(0, 0, 0, 0.05),
+					0 2px 4px -1px rgba(0, 0, 0, 0.03);
+				transition: all 0.3s ease;
+				position: relative;
+				overflow: hidden;
+			}
+			.topic-card:hover {
+				transform: translateY(-5px);
+				box-shadow:
+					0 10px 15px -3px rgba(37, 99, 235, 0.1),
+					0 4px 6px -2px rgba(37, 99, 235, 0.05);
+				border-color: #bfdbfe;
+			}
+			.topic-card::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 6px;
+				height: 100%;
+				background-color: #2563eb;
+				opacity: 0;
+				transition: opacity 0.3s ease;
+			}
+			.topic-card:hover::before {
+				opacity: 1;
+			}
+			.icon-circle {
+				width: 64px;
+				height: 64px;
+				background-color: #eff6ff; /* Light Blue */
+				border-radius: 50%;
 				display: flex;
 				align-items: center;
-				gap: var(--spacing-small);
-				font-size: var(--font-size-subtitle);
-				font-weight: 500;
-				color: var(--color-text);
+				justify-content: center;
+				margin-bottom: 20px;
+				color: #2563eb;
+				font-size: 1.75rem;
+				transition: background-color 0.3s ease;
 			}
-
-			.question {
-				color: var(--color-primary);
-				font-size: 2.5rem;
+			.topic-card:hover .icon-circle {
+				background-color: #2563eb;
+				color: #ffffff;
+			}
+			.card-number {
+				position: absolute;
+				top: 15px;
+				right: 20px;
+				font-size: 1.5rem;
+				font-weight: 900;
+				color: #e5e7eb;
+				font-family: "Noto Sans KR", sans-serif;
+			}
+			.topic-card:hover .card-number {
+				color: #dbeafe;
+			}
+			.card-title {
+				font-size: 1.25rem;
+				font-weight: 700;
+				color: #1f2937;
+				text-align: center;
+				margin: 0;
+			}
+			.footer {
+				margin-top: auto;
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 20px 40px;
+				border-top: 1px solid #f3f4f6;
+				color: #6b7280;
+				font-size: 0.9rem;
 			}
 		</style>
 	</head>
-
 	<body>
-		<div class="slide-container">
-			<div class="header">
-				<div class="section-nav">
-					<span class="section-item active">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
-					<span class="section-item">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
-					<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
-					<span class="section-item">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
-					<span class="section-item">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
+		<div class="slide">
+			<div class="accent-shape"></div>
+			<!-- Main Content -->
+			<div class="flex-grow flex flex-col items-center justify-center pt-10">
+				<h1 class="overview-title">오늘의 이야기</h1>
+				<p class="overview-subtitle">PM이 관리해야 할 6가지 핵심 영역</p>
+				<div class="card-grid">
+					<!-- Card 1 -->
+					<div class="topic-card">
+						<span class="card-number">01</span>
+						<div class="icon-circle">
+							<i class="fas fa-comments"></i>
+						</div>
+						<h3 class="card-title">커뮤니케이션 관리</h3>
+					</div>
+					<!-- Card 2 -->
+					<div class="topic-card">
+						<span class="card-number">02</span>
+						<div class="icon-circle">
+							<i class="fas fa-triangle-exclamation"></i>
+						</div>
+						<h3 class="card-title">이슈와 리스크 관리</h3>
+					</div>
+					<!-- Card 3 -->
+					<div class="topic-card">
+						<span class="card-number">03</span>
+						<div class="icon-circle">
+							<i class="fas fa-calendar-check"></i>
+						</div>
+						<h3 class="card-title">스케줄과 마일스톤 관리</h3>
+					</div>
+					<!-- Card 4 -->
+					<div class="topic-card">
+						<span class="card-number">04</span>
+						<div class="icon-circle">
+							<i class="fas fa-chart-simple"></i>
+						</div>
+						<h3 class="card-title">시각화</h3>
+					</div>
+					<!-- Card 5 -->
+					<div class="topic-card">
+						<span class="card-number">05</span>
+						<div class="icon-circle">
+							<i class="fas fa-arrows-rotate"></i>
+						</div>
+						<h3 class="card-title">프로세스와 개선 관리</h3>
+					</div>
+					<!-- Card 6 -->
+					<div class="topic-card">
+						<span class="card-number">06</span>
+						<div class="icon-circle">
+							<i class="fas fa-folder-open"></i>
+						</div>
+						<h3 class="card-title">산출물 관리</h3>
+					</div>
 				</div>
-				<h1 class="title">JSX를 처음 봤을 때</h1>
 			</div>
-
-			<div class="content">
-				<div class="code-box">
-					<pre id="code-3-jsx" class="code-text"></pre>
+			<!-- Footer -->
+			<div class="footer">
+				<div class="flex items-center">
+					<i class="fas fa-chart-line text-blue-600 mr-2"></i>
+					<span>PM으로 성장하기: 프로젝트 효율높이기</span>
 				</div>
-				<div class="emphasis">
-					<p>이게... JavaScript??</p>
-					<span class="question">🤔</span>
-				</div>
+				<div>03</div>
 			</div>
-			<div class="page-number">3</div>
 		</div>
-
-		<script>
-			document.getElementById("code-3-jsx").textContent = dedent(/* JAVASCRIPT */ `
-				function HelloWorld() {
-					return <h1>Hello, World!</h1>;
-				}
-			`);
-
-			lucide.createIcons();
-		</script>
 	</body>
 </html>

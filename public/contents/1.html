@@ -1,48 +1,147 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-theme="light" style="">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="../css/intro-style.css" />
-		<script src="../js/lucide.js"></script>
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<title>PM으로 성장하기</title>
+		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: "Noto Sans KR", sans-serif;
+				background-color: #f3f4f6;
+			}
+			.slide {
+				width: 100dvw;
+				height: 100dvh;
+				background-color: #ffffff;
+				position: relative;
+				overflow: hidden;
+				display: flex;
+				flex-direction: column;
+				box-sizing: border-box;
+			}
+			/* 수학의 정석 스타일: 심플한 테두리와 명확한 위계 */
+			.border-frame {
+				position: absolute;
+				top: 24px;
+				left: 24px;
+				right: 24px;
+				bottom: 24px;
+				border: 2px solid #2563eb;
+				pointer-events: none;
+				z-index: 5;
+			}
+
+			.title-main {
+				font-family: "Noto Sans KR", sans-serif;
+				font-weight: 900;
+				font-size: 5.5rem;
+				line-height: 1.1;
+				color: #1f2937;
+				letter-spacing: -0.03em;
+			}
+
+			.subtitle-box {
+				background-color: #2563eb;
+				color: #ffffff;
+				display: inline-block;
+				padding: 12px 40px;
+				margin-top: 24px;
+				font-size: 2.2rem;
+				font-weight: 700;
+				letter-spacing: -0.01em;
+				box-shadow: 4px 4px 0 rgba(31, 41, 55, 0.1);
+			}
+
+			.description {
+				font-size: 1.5rem;
+				color: #4b5563;
+				font-weight: 400;
+				margin-top: 40px;
+				border-left: 4px solid #e5e7eb;
+				padding-left: 20px;
+			}
+
+			.info-badge {
+				border: 1px solid #2563eb;
+				color: #2563eb;
+				padding: 6px 16px;
+				border-radius: 9999px;
+				font-size: 1rem;
+				font-weight: 500;
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+			}
+
+			.presenter-info {
+				font-size: 1.1rem;
+				color: #374151;
+			}
+
+			.accent-corner {
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 160px;
+				height: 160px;
+				background: linear-gradient(135deg, transparent 50%, #2563eb 50%);
+				opacity: 0.1;
+				z-index: 1;
+			}
+		</style>
 	</head>
-
-	<body>
-		<div class="slide-container">
-			<div class="abstract-elements">
-				<div class="gradient-circle gradient-circle-1"></div>
-				<div class="gradient-circle gradient-circle-2"></div>
-				<div class="gradient-circle gradient-circle-3"></div>
-
-				<div class="outline-circle outline-circle-1"></div>
-				<div class="outline-circle outline-circle-2"></div>
-				<div class="outline-circle outline-circle-3"></div>
-
-				<div class="dots dot-1"></div>
-				<div class="dots dot-2"></div>
-				<div class="dots dot-3"></div>
-				<div class="dots dot-4"></div>
-
-				<div class="react-logo">
-					<div class="react-logo-center"></div>
+	<body style="">
+		<div class="slide">
+			<!-- 테두리 장식 -->
+			<div class="border-frame"></div>
+			<div class="accent-corner"></div>
+			<div class="flex flex-col h-full p-20 relative z-10 justify-center">
+				<!-- 상단 정보 태그 -->
+				<div class="absolute top-20 left-20 flex gap-3">
+					<div class="info-badge">
+						<i class="fas fa-layer-group"></i>
+						<span>Project Management</span>
+					</div>
 				</div>
-			</div>
-
-			<div class="content-wrapper">
-				<div class="header">
-					<p class="title">리액트를 까본 사람 손 🙋</p>
-					<p class="subtitle">Virtual DOM부터 Fiber까지</p>
+				<div class="mt-10" style="position: relative; transform: translate(-1.49223px, 31.3368px)">
+					<h1 class="title-main">PM으로<br />성장하기</h1>
+					<div class="subtitle-box">
+						<p>프로젝트 효율 높이기 (실전편)</p>
+					</div>
+					<p class="description" style="position: relative; transform: translate(-2.98446px, -13.43px)">
+						주니어 PM의 실전 경험 공유
+					</p>
 				</div>
-
-				<div class="footer">
-					<p class="presenter">여찬규</p>
-					<p class="seminar-title">React 코어 딥다이브 세미나</p>
+				<!-- 하단 발표자 정보 -->
+				<div class="mt-auto pt-12 border-t border-gray-200 flex justify-between items-end">
+					<div>
+						<p class="text-sm text-gray-500 mb-1">Presenter</p>
+						<p class="text-2xl font-bold text-[#1F2937]">하태린</p>
+						<p class="text-gray-600">프로젝트개발팀</p>
+					</div>
+					<div class="flex flex-col items-end gap-2">
+						<div class="flex items-center text-gray-500">
+							<i class="far fa-calendar-alt mr-2 text-[#2563EB]"></i>
+							<span>2025.11.28</span>
+						</div>
+						<div class="flex items-center text-gray-500">
+							<i class="fas fa-building mr-2 text-[#2563EB]"></i>
+							<span>전사 세미나</span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-
-		<script>
-			lucide.createIcons();
-		</script>
 	</body>
 </html>

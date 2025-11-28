@@ -2,197 +2,263 @@
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="../js/lucide.js"></script>
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<title>이슈 현황 문서</title>
+		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+			rel="stylesheet"
+		/>
 		<style>
-			.content {
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: "Noto Sans KR", sans-serif;
+				background-color: #ffffff;
+			}
+
+			.slide {
+				width: 100dvw;
+				height: 100dvh;
+				background-color: #ffffff;
+				position: relative;
+				overflow: hidden;
 				display: flex;
 				flex-direction: column;
-				align-items: center;
-				gap: 20px;
+				padding: 50px 64px;
+				box-sizing: border-box;
 			}
 
-			.image-section {
-				width: 100%;
+			.header-section {
+				margin-bottom: 25px;
+			}
+
+			.slide-title {
+				font-size: 3rem;
+				font-weight: 700;
+				color: #1f2937;
+				line-height: 1.2;
+				letter-spacing: -0.02em;
+				margin-bottom: 10px;
 				display: flex;
-				justify-content: center;
 				align-items: center;
 			}
 
-			.virtual-dom-image {
-				width: 100%;
-				max-width: 500px;
+			.slide-number {
+				font-family: "Noto Sans KR", sans-serif;
+				font-weight: 900;
+				font-size: 1.5rem;
+				color: #2563eb;
+				margin-right: 15px;
+				background: rgba(37, 99, 235, 0.1);
+				padding: 5px 15px;
+				border-radius: 50px;
+			}
+
+			.content-container {
+				display: flex;
+				flex: 1;
+				gap: 30px;
+				height: 400px;
+			}
+
+			.panel {
+				flex: 1;
 				border-radius: 8px;
-				box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+				padding: 25px;
+				position: relative;
+				display: flex;
+				flex-direction: column;
 			}
 
-			.description {
-				margin-bottom: 12px;
-				font-size: var(--font-size-body);
-				font-weight: 400;
-				color: var(--color-text-secondary);
-				line-height: var(--line-height-body);
-				text-align: center;
+			.panel-before {
+				background-color: #f9fafb;
+				border-left: 6px solid #dc2626;
 			}
 
-			.flow-steps {
+			.panel-after {
+				background-color: #eff6ff;
+				border-left: 6px solid #2563eb;
+			}
+
+			.panel-header {
+				display: flex;
+				align-items: center;
+				margin-bottom: 20px;
+				padding-bottom: 15px;
+				border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+			}
+
+			.panel-title {
+				font-size: 1.5rem;
+				font-weight: 700;
+				margin-left: 12px;
+			}
+
+			.title-before {
+				color: #dc2626;
+			}
+			.title-after {
+				color: #2563eb;
+			}
+
+			.panel-icon {
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.2rem;
+			}
+
+			.icon-before {
+				background-color: rgba(220, 38, 38, 0.1);
+				color: #dc2626;
+			}
+			.icon-after {
+				background-color: rgba(37, 99, 235, 0.1);
+				color: #2563eb;
+			}
+
+			.panel-content {
+				flex: 1;
+				color: #374151;
+				font-size: 1.1rem;
+				line-height: 1.7;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+
+			.panel-content img {
+				max-width: 100%;
+				height: auto;
+				border-radius: 8px;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+			}
+
+			.effect-section {
+				margin-top: 30px;
+				background-color: #ecfdf5;
+				border-left: 6px solid #059669;
+				border-radius: 8px;
+				padding: 20px 30px;
+				display: flex;
+				align-items: center;
+			}
+
+			.effect-title {
+				color: #059669;
+				font-weight: 700;
+				font-size: 1.2rem;
+				margin-right: 30px;
+				display: flex;
+				align-items: center;
+				min-width: 120px;
+			}
+
+			.effect-content {
+				color: #065f46;
+				font-size: 1.2rem;
+				font-weight: 500;
+				flex: 1;
+			}
+
+			.arrow-container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 40px;
+			}
+
+			.arrow-icon {
+				font-size: 2rem;
+				color: #9ca3af;
+			}
+
+			.footer {
+				margin-top: auto;
+				width: 100%;
 				display: flex;
 				justify-content: space-between;
-				width: 100%;
-				position: relative;
-				z-index: 2;
-			}
-
-			.flow-step {
-				display: flex;
-				flex-direction: column;
 				align-items: center;
-				width: 22%;
-			}
-
-			.step-number {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				width: 56px;
-				height: 56px;
-				margin-bottom: 12px;
-				background-color: var(--color-primary);
-				border-radius: 50%;
-				font-size: 1.4rem;
-				font-weight: 700;
-				color: var(--color-background);
-			}
-
-			.step-text {
-				font-size: var(--font-size-small);
-				font-weight: 500;
-				color: var(--color-text);
-				line-height: 1.5;
-				text-align: center;
-			}
-
-			.flow-line {
-				position: absolute;
-				top: 28px;
-				left: 12%;
-				width: 76%;
-				height: 2px;
-				background-color: var(--color-border);
-				z-index: 1;
-			}
-
-			@media (min-height: 1080px) {
-				.content {
-					gap: 28px;
-				}
-
-				.virtual-dom-image {
-					max-width: 600px;
-				}
-
-				.description {
-					margin-bottom: 16px;
-				}
-
-				.step-number {
-					width: 64px;
-					height: 64px;
-					margin-bottom: 16px;
-					font-size: 1.6rem;
-				}
-
-				.flow-line {
-					top: 32px;
-				}
-			}
-
-			@media (max-height: 900px) {
-				.content {
-					gap: 16px;
-				}
-
-				.virtual-dom-image {
-					max-width: 400px;
-				}
-
-				.description {
-					margin-bottom: 8px;
-					font-size: 1rem;
-				}
-
-				.step-number {
-					width: 48px;
-					height: 48px;
-					margin-bottom: 10px;
-					font-size: 1.2rem;
-				}
-
-				.step-text {
-					font-size: 0.95rem;
-				}
-
-				.flow-line {
-					top: 24px;
-				}
+				padding: 20px 0;
+				border-top: 1px solid #f3f4f6;
+				color: #6b7280;
+				font-size: 0.9rem;
 			}
 		</style>
 	</head>
-
 	<body>
-		<div class="slide-container">
-			<div class="header">
-				<div class="section-nav">
-					<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
-					<span class="section-item active">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
-					<span class="section-item">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
-					<span class="section-item">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
-					<span class="section-item">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
-				</div>
-				<h1 class="title">Virtual DOM의 등장</h1>
+		<div class="slide">
+			<!-- Header -->
+			<div class="header-section">
+				<h1 class="slide-title">
+					<span class="slide-number">04</span>
+					이슈 현황 문서
+				</h1>
+				<p style="font-size: 1.2rem; color: #6b7280; font-weight: 400">스케줄과 마일스톤 관리, 시각화</p>
 			</div>
 
-			<div class="content">
-				<div class="image-section">
-					<img src="../images/virtual-dom.png" alt="Virtual DOM 구조" class="virtual-dom-image" />
+			<!-- Main Content Panels -->
+			<div class="content-container">
+				<!-- Before Panel -->
+				<div class="panel panel-before">
+					<div class="panel-header">
+						<div class="panel-icon icon-before">
+							<i class="fas fa-file-excel"></i>
+						</div>
+						<h2 class="panel-title title-before">AS-IS : 서버납품 이슈 관리</h2>
+					</div>
+					<div class="panel-content">
+						<img
+							src="https://page.gensparksite.com/get_upload_url/9fb35dcbea28db9ad7e2f3c587dc575b003b82ffb0e5c7edc351db2af02c7fd1/default/8e445f66-70e2-4ef2-a1f5-a772d2e9305f"
+							alt="AS-IS 이미지"
+						/>
+					</div>
 				</div>
 
-				<div class="description">
-					<p>
-						메모리에 Virtual DOM을 구성하고 변경된 부분만 실제 DOM에 패치합니다.<br />
-						이를 통해 선언적 UI 구현과 개발 경험 향상을 제공합니다.
-					</p>
+				<!-- Arrow -->
+				<div class="arrow-container">
+					<i class="fas fa-chevron-right arrow-icon"></i>
 				</div>
 
-				<div style="position: relative; width: 100%">
-					<div class="flow-line"></div>
-					<div class="flow-steps">
-						<div class="flow-step">
-							<div class="step-number">1</div>
-							<p class="step-text">상태 변경</p>
+				<!-- After Panel -->
+				<div class="panel panel-after">
+					<div class="panel-header">
+						<div class="panel-icon icon-after">
+							<i class="fas fa-table-list"></i>
 						</div>
-						<div class="flow-step">
-							<div class="step-number">2</div>
-							<p class="step-text">새로운 Virtual DOM 생성</p>
-						</div>
-						<div class="flow-step">
-							<div class="step-number">3</div>
-							<p class="step-text">이전 Virtual DOM과 Diffing</p>
-						</div>
-						<div class="flow-step">
-							<div class="step-number">4</div>
-							<p class="step-text">바뀐 부분만 실제 DOM 패치</p>
-						</div>
+						<h2 class="panel-title title-after">TO-BE : 이슈 현황 문서</h2>
+					</div>
+					<div class="panel-content">
+						<img
+							src="https://page.gensparksite.com/get_upload_url/9fb35dcbea28db9ad7e2f3c587dc575b003b82ffb0e5c7edc351db2af02c7fd1/default/d1ac2a56-55d2-469f-893d-8cceff269f38"
+							alt="TO-BE 이미지"
+						/>
 					</div>
 				</div>
 			</div>
 
-			<div class="page-number">7</div>
-		</div>
+			<!-- Effect Section -->
+			<div class="effect-section">
+				<div class="effect-title"><i class="fas fa-chart-line" style="margin-right: 10px"></i>EFFECT</div>
+				<div class="effect-content">전체 일정을 한눈에 파악 가능하고 중복 작업 제거</div>
+			</div>
 
-		<script>
-			lucide.createIcons();
-		</script>
+			<!-- Footer -->
+			<div class="footer">
+				<div style="display: flex; align-items: center">
+					<i class="fas fa-chart-line" style="color: #2563eb; margin-right: 0.5rem"></i>
+					<span>PM으로 성장하기: 프로젝트 효율높이기 (실전편)</span>
+				</div>
+				<div>주니어 PM의 실전 경험 공유</div>
+			</div>
+		</div>
 	</body>
 </html>

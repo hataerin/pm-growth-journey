@@ -1,231 +1,288 @@
 <!doctype html>
-<html lang="ko">
+<html data-theme="light" lang="ko">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="../css/common-style.css" />
-		<script src="../js/lucide.js"></script>
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<title>정리: 제가 배운 것들</title>
+		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+			rel="stylesheet"
+		/>
 		<style>
-			.content {
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: "Noto Sans KR", sans-serif;
+				background-color: #ffffff;
+			}
+
+			.slide {
+				width: 100dvw;
+				height: 100dvh;
+				background-color: #ffffff;
+				position: relative;
+				overflow: hidden;
 				display: flex;
 				flex-direction: column;
-				gap: 28px;
-				align-items: center;
-				max-width: 1100px;
-				margin: 0 auto;
+				padding: 50px 64px;
+				box-sizing: border-box;
 			}
 
-			.image-section {
-				width: 100%;
+			.header-section {
+				margin-bottom: 30px;
+			}
+
+			.slide-title {
+				font-size: 3rem;
+				font-weight: 700;
+				color: #1f2937;
+				line-height: 1.2;
+				letter-spacing: -0.02em;
+				margin-bottom: 10px;
 				display: flex;
-				flex-direction: column;
 				align-items: center;
 			}
 
-			.tree-image {
-				width: 100%;
-				max-width: 650px;
-				border-radius: 12px;
-				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+			.slide-number {
+				font-family: "Noto Sans KR", sans-serif;
+				font-weight: 900;
+				font-size: 1.5rem;
+				color: #2563eb;
+				margin-right: 15px;
+				background: rgba(37, 99, 235, 0.1);
+				padding: 5px 15px;
+				border-radius: 50px;
 			}
 
-			.image-caption {
-				max-width: 650px;
-				margin-top: 16px;
-				font-size: 1rem;
-				color: var(--color-text-secondary);
-				line-height: 1.6;
-				text-align: center;
+			.subtitle {
+				font-size: 1.2rem;
+				color: #6b7280;
+				font-weight: 400;
+				margin-left: 4px;
 			}
 
-			.image-caption span {
-				font-weight: 600;
-			}
-
-			.flow-steps {
+			.grid-container {
 				display: grid;
 				grid-template-columns: repeat(3, 1fr);
-				gap: 20px;
-				width: 100%;
+				grid-template-rows: repeat(2, 1fr);
+				gap: 24px;
+				flex: 1;
+				height: 420px;
 			}
 
-			.flow-step {
+			.card {
+				background-color: #f9fafb;
+				border: 1px solid #e5e7eb;
+				border-radius: 12px;
+				padding: 24px;
 				display: flex;
 				flex-direction: column;
-				align-items: center;
-				padding: 24px 20px;
-				background-color: #fff;
-				border-radius: 12px;
-				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-				text-align: center;
-				transition: all 0.3s ease;
+				position: relative;
+				transition: all 0.2s ease;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
 			}
 
-			.flow-step:hover {
-				transform: translateY(-4px);
-				box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+			.card:hover {
+				transform: translateY(-2px);
+				box-shadow:
+					0 10px 15px -3px rgba(0, 0, 0, 0.1),
+					0 4px 6px -2px rgba(0, 0, 0, 0.05);
+				border-color: #93c5fd;
 			}
 
-			.step-number {
+			.card-header {
 				display: flex;
-				justify-content: center;
 				align-items: center;
+				margin-bottom: 16px;
+			}
+
+			.icon-wrapper {
 				width: 48px;
 				height: 48px;
-				margin-bottom: 16px;
-				background-color: var(--color-primary);
-				border-radius: 50%;
-				font-size: 1.4rem;
+				border-radius: 12px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.5rem;
+				margin-right: 16px;
+				flex-shrink: 0;
+			}
+
+			/* Icon Colors - Different for each card for visual variety but within brand */
+			.icon-1 {
+				background-color: #eff6ff;
+				color: #2563eb;
+			} /* Blue */
+			.icon-2 {
+				background-color: #ecfdf5;
+				color: #059669;
+			} /* Green */
+			.icon-3 {
+				background-color: #fef2f2;
+				color: #dc2626;
+			} /* Red */
+			.icon-4 {
+				background-color: #fffbeb;
+				color: #d97706;
+			} /* Amber */
+			.icon-5 {
+				background-color: #f3e8ff;
+				color: #7c3aed;
+			} /* Purple */
+			.icon-6 {
+				background-color: #f5f3ff;
+				color: #4f46e5;
+			} /* Indigo */
+
+			.card-title {
+				font-size: 1.25rem;
 				font-weight: 700;
-				color: var(--color-background);
+				color: #111827;
+				line-height: 1.3;
 			}
 
-			.step-text {
-				margin-bottom: 8px;
-				font-size: 1.2rem;
-				font-weight: 600;
-				line-height: 1.4;
-				color: var(--color-text);
+			.card-content {
+				color: #4b5563;
+				font-size: 1rem;
+				line-height: 1.6;
+				flex: 1;
 			}
 
-			.step-subtext {
-				font-size: 0.95rem;
-				color: var(--color-text-tertiary);
-				line-height: 1.4;
+			.card-number {
+				position: absolute;
+				top: 16px;
+				right: 16px;
+				font-size: 2.5rem;
+				font-weight: 900;
+				color: rgba(0, 0, 0, 0.03);
+				line-height: 1;
+				pointer-events: none;
 			}
 
-			@media (min-height: 1080px) {
-				.content {
-					gap: 32px;
-				}
-
-				.tree-image {
-					max-width: 720px;
-				}
-
-				.image-caption {
-					max-width: 720px;
-					margin-top: 20px;
-					font-size: 1.1rem;
-				}
-
-				.flow-steps {
-					gap: 24px;
-				}
-
-				.flow-step {
-					padding: 28px 24px;
-				}
-
-				.step-number {
-					width: 52px;
-					height: 52px;
-					margin-bottom: 18px;
-					font-size: 1.5rem;
-				}
-
-				.step-text {
-					margin-bottom: 10px;
-					font-size: 1.3rem;
-				}
-
-				.step-subtext {
-					font-size: 1rem;
-				}
-			}
-
-			@media (max-height: 1000px) {
-				.content {
-					gap: 24px;
-				}
-
-				.tree-image {
-					max-width: 550px;
-				}
-
-				.image-caption {
-					max-width: 550px;
-					margin-top: 12px;
-					font-size: 0.9rem;
-				}
-
-				.flow-steps {
-					gap: 16px;
-				}
-
-				.flow-step {
-					padding: 20px 16px;
-				}
-
-				.step-number {
-					width: 42px;
-					height: 42px;
-					margin-bottom: 12px;
-					font-size: 1.2rem;
-				}
-
-				.step-text {
-					margin-bottom: 6px;
-					font-size: 1.05rem;
-				}
-
-				.step-subtext {
-					font-size: 0.85rem;
-				}
+			.footer {
+				margin-top: auto;
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 20px 0;
+				border-top: 1px solid #f3f4f6;
+				color: #6b7280;
+				font-size: 0.9rem;
 			}
 		</style>
 	</head>
-
 	<body>
-		<div class="slide-container">
-			<div class="header">
-				<div class="section-nav">
-					<span class="section-item">JSX Transpilation - JSX가 JavaScript로 변환되는 과정</span>
-					<span class="section-item">Virtual DOM - 선언적 UI를 가능하게 하는 핵심 개념</span>
-					<span class="section-item active">Reconciliation - O(n³)에서 O(n)으로 최적화한 비교 알고리즘</span>
-					<span class="section-item">얕은 비교와 불변성 - React가 선택한 트레이드오프</span>
-					<span class="section-item">Fiber Architecture - 더 나은 사용자 경험을 위한 새로운 엔진</span>
-				</div>
-				<h1 class="title">Diffing 알고리즘</h1>
+		<div class="slide">
+			<!-- Header -->
+			<div class="header-section">
+				<h1 class="slide-title">
+					<span class="slide-number">📖</span>
+					정리: 제가 배운 것들
+				</h1>
+				<p class="subtitle">주니어 PM으로서 프로젝트 효율화를 통해 얻은 6가지 핵심 인사이트</p>
 			</div>
-
-			<div class="content">
-				<div class="image-section">
-					<img
-						alt="Diffing 알고리즘 트리 구조"
-						class="tree-image"
-						src="https://page.gensparksite.com/v1/base64_upload/7fcde0d3e7b32d03937c7fcc3d3d0a0b"
-					/>
-					<div class="image-caption">
-						React는 같은 레벨의 노드끼리만 비교합니다.<br /><span style="color: #ff8080">&lt;B&gt;</span> →
-						<span style="color: #61dafb">&lt;C&gt;</span> 타입 변경 시 전체 하위 트리를 새로 생성합니다.
+			<!-- Grid Content -->
+			<div class="grid-container">
+				<!-- Card 1 -->
+				<div class="card">
+					<div class="card-number">01</div>
+					<div class="card-header">
+						<div class="icon-wrapper icon-1">
+							<i class="fas fa-puzzle-piece"></i>
+						</div>
+						<h3 class="card-title">완벽보다 실행하기</h3>
+					</div>
+					<div class="card-content">
+						<p>지금 할 수 있는것 부터 시작하자.</p>
+						<p>실행하면서 다듬어가는 것이 더 빠르다.</p>
 					</div>
 				</div>
-
-				<div class="flow-steps">
-					<div class="flow-step">
-						<div class="step-number">1</div>
-						<p class="step-text">같은 레벨끼리만 비교</p>
-						<p class="step-subtext">O(n) 복잡도 달성</p>
+				<!-- Card 2 -->
+				<div class="card">
+					<div class="card-number">02</div>
+					<div class="card-header">
+						<div class="icon-wrapper icon-2">
+							<i class="fas fa-seedling"></i>
+						</div>
+						<h3 class="card-title">작은 변화의 힘</h3>
 					</div>
-					<div class="flow-step">
-						<div class="step-number">2</div>
-						<p class="step-text">같은 타입이면 props만 업데이트</p>
-						<p class="step-subtext">DOM 노드 재사용</p>
+					<div class="card-content">
+						<p>
+							주간 회의 하나, 문서 양식 하나 같은 <strong>작은 변화</strong>가 팀 전체의 효율성에
+							<strong>큰 차이</strong>를 만들어낸다.
+						</p>
 					</div>
-					<div class="flow-step">
-						<div class="step-number">3</div>
-						<p class="step-text">컴포넌트 타입이 같으면</p>
-						<p class="step-subtext">인스턴스/state 유지</p>
+				</div>
+				<!-- Card 3 -->
+				<div class="card">
+					<div class="card-number">03</div>
+					<div class="card-header">
+						<div class="icon-wrapper icon-3">
+							<i class="fas fa-map-marker-alt"></i>
+						</div>
+						<h3 class="card-title">문서화는 투자다</h3>
+					</div>
+					<div class="card-content">
+						<p>문서화 할 시간이 없어서 X</p>
+						<p>한번 만들면 영원히 팀의 자산이 된다</p>
+					</div>
+				</div>
+				<!-- Card 4 -->
+				<div class="card">
+					<div class="card-number">04</div>
+					<div class="card-header">
+						<div class="icon-wrapper icon-4">
+							<i class="fas fa-traffic-light"></i>
+						</div>
+						<h3 class="card-title">병목을 찾아라</h3>
+					</div>
+					<div class="card-content">
+						<p>반복되는 질문 = 병목 = 문서화/개선 대상이다.</p>
+					</div>
+				</div>
+				<!-- Card 5 -->
+				<div class="card">
+					<div class="card-number">05</div>
+					<div class="card-header">
+						<div class="icon-wrapper icon-5">
+							<i class="fas fa-code-branch"></i>
+						</div>
+						<h3 class="card-title">시각화의 효율</h3>
+					</div>
+					<div class="card-content">
+						<p>측정되는것은 관리된다</p>
+						<p>가시화 되는것은 관리된다</p>
+						<p>보이지 않으면 관리할 수 없다</p>
+					</div>
+				</div>
+				<!-- Card 6 -->
+				<div class="card">
+					<div class="card-number">06</div>
+					<div class="card-header">
+						<div class="icon-wrapper icon-6">
+							<i class="fas fa-sync-alt"></i>
+						</div>
+						<h3 class="card-title">개선은 여정이다</h3>
+					</div>
+					<div class="card-content">
+						<p>프로세스는 한 번 만들고 끝이 아니라 <strong>계속 발전시켜 나가는 과정</strong>이다.</p>
 					</div>
 				</div>
 			</div>
-
-			<div class="page-number">12</div>
+			<!-- Footer -->
+			<div class="footer">
+				<div style="display: flex; align-items: center">
+					<i class="fas fa-chart-line" style="color: #2563eb; margin-right: 0.5rem"></i>
+					<span>PM으로 성장하기: 프로젝트 효율높이기 (실전편)</span>
+				</div>
+				<div>주니어 PM의 실전 경험 공유</div>
+			</div>
 		</div>
-
-		<script>
-			lucide.createIcons();
-		</script>
 	</body>
 </html>

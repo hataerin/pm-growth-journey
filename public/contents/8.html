@@ -181,6 +181,50 @@
         font-size: clamp(1rem, 1.5vw, 1.4rem);
     }
 
+
+    .list-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: clamp(0.5rem, 1vh, 0.75rem);
+        gap: clamp(0.5rem, 1vw, 0.75rem);
+    }
+
+    .list-item p {
+        flex: 1;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .bullet {
+        flex-shrink: 0;
+        margin-top: clamp(0.25rem, 0.5vh, 0.4rem);
+        font-size: clamp(0.8rem, 1.2vw, 1rem);
+    }
+
+    .bullet-before {
+        color: #DC2626;
+    }
+    .bullet-after {
+        color: #2563EB;
+    }
+
+    .tag {
+        display: inline-block;
+        padding: clamp(0.3rem, 0.6vh, 0.5rem) clamp(0.75rem, 1.2vw, 1rem);
+        border-radius: clamp(4px, 0.5vw, 6px);
+        font-size: clamp(0.8rem, 1.2vw, 1rem);
+        font-weight: 600;
+        margin-bottom: clamp(0.75rem, 1.5vh, 1rem);
+    }
+
+    .tag-problem {
+        background-color: rgba(220, 38, 38, 0.1);
+        color: #DC2626;
+    }
+    .tag-solution {
+        background-color: rgba(37, 99, 235, 0.1);
+        color: #2563EB;
+    }
     /* 매우 큰 화면 (1920px 이상) */
     @media (min-width: 1920px) {
         .slide-title {

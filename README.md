@@ -1,6 +1,6 @@
-# React 코어 딥다이브
+# PM으로 성장하기
 
-리액트의 핵심 동작 원리와 Fiber 아키텍처를 깊이 있게 알아보는 세미나 자료입니다.
+프로젝트 효율 높이기 (실전편) - 주니어 PM의 실전 경험 공유 세미나 자료입니다.
 
 ## 시작하기
 
@@ -16,11 +16,14 @@ pnpm dev
 
 ## 주요 내용
 
-- JSX → JavaScript 변환 과정
-- Virtual DOM의 진짜 의미
-- Reconciliation 알고리즘
-- 얕은 비교와 불변성
-- Fiber Architecture
+프로젝트를 효율적으로 관리하기 위한 6가지 핵심 영역과 실전 개선 사례를 다룹니다:
+
+- **커뮤니케이션 체계화** - 요구사항 명확화 및 리뷰 프로세스
+- **이슈 관리 효율화** - 로그 추적 및 이슈 정리 체계
+- **시각화 개선** - 이슈 현황 대시보드 구축
+- **산출물 관리** - 문서 중앙화 및 정보 통합
+- **프로세스 개선** - 운영 지식 문서화
+- **향후 계획** - 통합 대시보드 및 자동화 로드맵
 
 ## 발표 기능
 
@@ -32,14 +35,14 @@ pnpm dev
 ## 프로젝트 구조
 
 ```
-react-core-deepdive/
+pm-growth-journey/
 ├── index.html                   # 메인 프레젠테이션 파일
 ├── src/
 │   ├── presentation.js         # 프레젠테이션 로직
 │   └── reveal-custom.css       # Reveal.js 커스텀 스타일
 ├── public/
 │   ├── contents/
-│   │   └── 1.html ~ 24.html   # 개별 슬라이드
+│   │   └── 1.html ~ 13.html   # 개별 슬라이드
 │   ├── css/
 │   │   └── common-style.css   # 슬라이드 공통 스타일
 │   └── favicon/
@@ -52,8 +55,9 @@ react-core-deepdive/
 
 - [Reveal.js](https://revealjs.com/) - 프레젠테이션 프레임워크
 - [Vite](https://vitejs.dev/) - 빌드 도구
-- [Lucide Icons](https://lucide.dev/) - 아이콘 라이브러리
-- [Pretendard](https://github.com/orioncactus/pretendard) - 한글 폰트
+- [Font Awesome](https://fontawesome.com/) - 아이콘 라이브러리
+- [Tailwind CSS](https://tailwindcss.com/) - CSS 프레임워크
+- [Noto Sans KR](https://fonts.google.com/noto/specimen/Noto+Sans+KR) - 한글 폰트
 
 ## 라이선스
 

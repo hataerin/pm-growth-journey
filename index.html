@@ -3,32 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>React 코어 딥다이브</title>
-		<meta
-			name="description"
-			content="React의 내부 동작 원리를 깊이 있게 분석합니다. JSX, Virtual DOM, Reconciliation, Fiber Architecture까지."
-		/>
-		<link rel="icon" type="image/png" href="/favicon/image.png" />
-
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://chan9yu.github.io/react-core-deepdive/" />
-		<meta property="og:title" content="React 코어 딥다이브" />
-		<meta
-			property="og:description"
-			content="React의 내부 동작 원리를 깊이 있게 분석합니다. JSX, Virtual DOM, Reconciliation, Fiber Architecture까지."
-		/>
-		<meta property="og:image" content="https://chan9yu.github.io/react-core-deepdive/images/thumbnail.png" />
-
-		<!-- Twitter -->
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content="https://chan9yu.github.io/react-core-deepdive/" />
-		<meta property="twitter:title" content="React 코어 딥다이브" />
-		<meta
-			property="twitter:description"
-			content="React의 내부 동작 원리를 깊이 있게 분석합니다. JSX, Virtual DOM, Reconciliation, Fiber Architecture까지."
-		/>
-		<meta property="twitter:image" content="https://chan9yu.github.io/react-core-deepdive/images/thumbnail.png" />
+		<title>PM으로 성장하기</title>
 	</head>
 
 	<body>
@@ -38,34 +13,7 @@
 				<section>
 					<iframe data-src="contents/1.html" data-preload></iframe>
 					<aside class="notes">
-						오늘 세미나에서는 React의 내부 동작 원리를 깊이 있게 분석해 나가는 것으로 준비를 해보았습니다.
-						<br />
-						<br />
-						먼저 듣기전에 알아야하는 점이 있는데요.
-						<br />
-						이 세미나는 React 사용법을 다루지 않습니다.
-						<br />
-						useState를 어떻게 쓰는지, useEffect는 언제 쓰는지 알려드리지 않습니다.
-						<br />
-						오늘 우리가 집중할 것은 React의 코어, 그리고 React의 설계 철학입니다.
-						<br />
-						<br />
-						저는 실무에서 3년 넘게 React를 사용해왔습니다.
-						<br />
-						useState, useEffect 같은 Hook들을 매일 사용하면서도 정작 내부에서 어떻게 동작하는지는 깊게
-						고민해본 적이 없었습니다.
-						<br />
-						key warning이 발생하는 근본 원인, 성능 문제 발생 시 최적화해야 할 지점을 검색으로만
-						해결해왔습니다.
-						<br />
-						근본적인 "왜?"에 대한 답을 찾지 못했던 것인데요.
-						<br />
-						<br />
-						오늘 이 세미나를 통해 여러분은 React의 내부 메커니즘뿐만 아니라, React가 추구미, 철학까지
-						이해하실 수 있을 것입니다.
-						<br />
-						Virtual DOM부터 Fiber Architecture까지, 이 세미나 시간동안 React의 핵심을 체계적으로
-						분석해보겠습니다.
+						안녕하세요. 오늘은 "PM으로 성장하기: 프로젝트 효율높이기 실전편"이라는 제목으로 프로젝트의 실전 관리 경험을 공유하려고 합니다.
 					</aside>
 				</section>
 
@@ -73,19 +21,7 @@
 				<section>
 					<iframe data-src="contents/2.html" data-preload></iframe>
 					<aside class="notes">
-						오늘 다룰 내용은 크게 5가지입니다.
-						<br />
-						JSX가 JavaScript로 변환되는 과정부터 시작하여, Virtual DOM의 본질적인 목적, O(n³) 복잡도를
-						O(n)으로 최적화한 Reconciliation 알고리즘, React가 불변성을 강조하는 이유, 그리고 React 16에서
-						도입된 Fiber Architecture까지 다루겠습니다.
-						<br />
-						<br />
-						각 주제는 퍼즐 조각처럼 서로 긴밀하게 연결되어 있는데요
-						<br />
-						순서대로 따라오시면 마지막에는 React의 전체적인 동작 원리를 이해하실 수 있을 것입니다.
-						<br />
-						이 발표가 끝나면 단순히 React를 사용하는 것이 아니라 React의 내부 원리를 이해하며 사용하게 될
-						거라 생각합니다.
+						개발자로 일하다가 PM으로 직무를 전환한지 1년 반정도 된 주니어인데요 사람과 프로세스를 관리하는 건 전혀 다른일이라 어려운점이 많았음 3가지 제품을 담당하며 어떻게 하면 효율적으로 관리할 수 있을까 고민하면서 여러 시도를 해왔습니다
 					</aside>
 				</section>
 
@@ -93,21 +29,7 @@
 				<section>
 					<iframe data-src="contents/3.html" data-preload></iframe>
 					<aside class="notes">
-						첫 번째 주제는 JSX Transpilation(트랜스펄레이션)입니다.
-						<br />
-						처음 JSX를 접했을 때 JavaScript 안에 HTML 구문을 작성하는 것이 다소 낯설게 느껴졌습니다.
-						<br />
-						<br />
-						여기서 중요한 사실이 있는데요
-						<br />
-						JSX는 JavaScript가 아닙니다. 즉, 브라우저는 JSX를 이해하지 못합니다.
-						<br />
-						그렇다면 어떻게 실행되는 걸까요?
-						<br />
-						<br />
-						Babel 같은 트랜스파일러가 JSX를 순수 JavaScript로 변환해주는 것입니다.
-						<br />
-						이 변환 과정을 자세히 살펴보겠습니다.
+						프로젝트를 효율적으로 관리하기 위해서는 크게 6가지 영역을 챙겨야 한다고 생각합니다. 커뮤니케이션, 이슈와 리스크, 스케줄, 시각화, 프로세스, 그리고 산출물 관리입니다. 오늘은 각 영역에서 제가 실제로 어떤 문제를 마주했고, 어떻게 개선했는지 구체적인 사례를 중심으로 말씀드리겠습니다.
 					</aside>
 				</section>
 
@@ -115,37 +37,7 @@
 				<section>
 					<iframe data-src="contents/4.html" data-preload></iframe>
 					<aside class="notes">
-						화면에서 JSX의 변환 과정을 확인할 수 있습니다.
-						<br />
-						<br />
-						먼저 React 17 이전 방식을 보시면, JSX를 사용하려면 반드시 파일 상단에 React를 import하는 구문을
-						작성해야 했습니다.
-						<br />
-						왼쪽의 JSX 코드가 Babel을 거치면 오른쪽처럼 React.createElement 함수 호출로 변환됩니다.
-						<br />
-						React를 코드에서 직접 사용하지 않는 것처럼 보여도 변환 후에는 React.createElement가 호출되기
-						때문에 import가 필수였던 것입니다.
-						<br />
-						<br />
-						React 17부터는 새로운 JSX Transform이 도입되었습니다.
-						<br />
-						이제 React를 import하지 않아도 됩니다.
-						<br />
-						대신 Babel이 자동으로 react의 jsx-runtime에서 jsx 함수를 import하여 사용합니다.
-						<br />
-						번들 크기도 약간 줄어들고, 개발자 경험도 개선되었습니다.
-						<br />
-						<br />
-						하지만 기본 개념은 동일합니다.
-						<br />
-						JSX는 결국 함수 호출로 변환된다는 점입니다.
-						<br />
-						<br />
-						여기서 중요한 질문이 있습니다.
-						<br />
-						이 createElement jsx 함수는 무엇을 반환할까요?
-						<br />
-						다음 슬라이드에서 확인해보겠습니다.
+						처음에는 요구사항이 텍스트로만 들어오거나 '전에 작업했던 것처럼 만들어주세요' 이렇게 왔어요. 그러면 개발자가 소스를 분석해야 해서 시간이 오래 걸렸고, 기술지원이나 영업이 원하는 것과 개발자가 이해한 게 다른 경우도 많았습니다. 그래서 AS-IS, TO-BE 형태로 화면을 첨부해서 요청하도록 양식을 만들었어요. 업그레이드 건의 경우 요구사항 리뷰 회의를 잡아서 서로 명확하게 합의할 수 있게 했습니다.
 					</aside>
 				</section>
 
@@ -153,23 +45,7 @@
 				<section>
 					<iframe data-src="contents/5.html" data-preload></iframe>
 					<aside class="notes">
-						정답은 JavaScript 객체입니다.
-						<br />
-						화면에 표시된 객체 구조를 보시면 type, props, children 등의 속성으로 구성되어 있습니다.
-						<br />
-						이것이 바로 React Element, 즉 Virtual DOM을 구성하는 기본 단위입니다.
-						<br />
-						<br />
-						JSX로 작성한 코드는 결국 이러한 JavaScript 객체로 변환됩니다.
-						<br />
-						HTML처럼 보이지만 실제로는 모두 JavaScript 객체입니다.
-						<br />
-						<br />
-						이것이 React가 선언적 UI를 구현할 수 있는 핵심 메커니즘입니다.
-						<br />
-						실제 DOM을 생성하기 전에 메모리 상에서 이 가벼운 객체들로 UI 구조를 표현하는 것입니다.
-						<br />
-						이제 Virtual DOM에 대해 본격적으로 살펴보겠습니다.
+						이슈 발생 시 로그 추적이 어려워 디버깅에 과도한 시간이 소요되고 일정 지연 리스크가 있습니다. 이를 해결하기 위해 로그 추적 기능을 26년도 하반기 로드맵에 정식 추가했습니다 기존에는 사후 대응 방식으로 이슈가 터진 후에야 원인을 찾고 해결하는 구조에서 하지만 로그 추적 기능을 통해 사전 예방 체계로 전환할 수 있습니다
 					</aside>
 				</section>
 
@@ -177,25 +53,7 @@
 				<section>
 					<iframe data-src="contents/6.html" data-preload></iframe>
 					<aside class="notes">
-						두 번째 주제는 Virtual DOM입니다.
-						<br />
-						Virtual DOM을 이해하기 위해 먼저 왜 이것이 필요했는지부터 살펴보겠습니다.
-						<br />
-						<br />
-						jQuery 시대의 DOM 직접 조작 방식을 떠올려 볼까요?
-						<br />
-						사용자 정보가 업데이트되면 $("#user-name")으로 요소를 찾아 텍스트를 업데이트하고,
-						$("#user-age")도 마찬가지로 업데이트해야 했습니다.
-						<br />
-						필드가 수십 개라면 그만큼 DOM을 일일이 찾아 업데이트해야 했습니다.
-						<br />
-						<br />
-						코드가 복잡해지고, 업데이트 로직이 코드 전체에 산재되며, 하나라도 누락되면 UI 불일치가
-						발생했습니다.
-						<br />
-						SPA가 등장하면서 이 문제는 더욱 심각해졌는데요,
-						<br />
-						페이지 전체를 JavaScript로 관리하다 보니 DOM 조작이 기하급수적으로 증가하게 되었습니다.
+						일감이 너무 많이 쌓여 있어서 정작 중요한 이슈를 찾기가 어려웠어요. 그래서 한 번 싹 정리해서 실제로 관리되고 있는 일감만 남김 라벨 체계를 정비해서 나중에 쿼리를 만들거나 필터링해서 볼 때 도움이 되도록 바꿨다. 새로운 걸 만드는 게 아니라 불필요한 걸 제거하는 게 더 큰 효율을 가져온다는걸 알게됨
 					</aside>
 				</section>
 
@@ -203,37 +61,7 @@
 				<section>
 					<iframe data-src="contents/7.html" data-preload></iframe>
 					<aside class="notes">
-						이러한 문제를 해결하기 위해 React가 제시한 해법이 바로 Virtual DOM입니다.
-						<br />
-						<br />
-						핵심 아이디어는 생각보다 간단합니다.
-						<br />
-						상태가 변경되면 먼저 메모리에 Virtual DOM 트리를 새로 만듭니다.
-						<br />
-						그다음 이전 Virtual DOM과 비교해서 뭐가 바뀌었는지 찾아냅니다.
-						<br />
-						마지막으로 변경된 부분만 실제 DOM에 반영하는 것입니다.
-						<br />
-						<br />
-						이렇게 하면 개발자는 어떻게 업데이트할지 고민할 필요가 없습니다.
-						<br />
-						그냥 "최종 결과는 이렇게 보여야 해"라고 선언하기만 하면 됩니다.
-						<br />
-						나머지 복잡한 업데이트 로직은 React가 알아서 처리합니다.
-						<br />
-						명령형에서 선언적 프로그래밍으로의 패러다임 전환이라고 할 수 있습니다.
-						<br />
-						<br />
-						그런데 여기서 질문을 하나 드려볼게요.
-						<br />
-						Virtual DOM을 왜 쓸까요?
-						<br />
-						누군가에게 이 질문을 한다면 뭐라고 답변할 거 같으세요?
-						<br />
-						<br />
-						아마도 적지 않은 사람들은 "Virtual DOM을 쓰면 더 빠르다"라고 답변하신 분들이 많을 거 같아요.
-						<br />
-						하지만 과연 정말 그럴까요?
+						기존 : 서버납품 이슈리스트로 새로운 이슈가 생길 때마다 새로운 탭이 > 무거워짐 레드마인에 있는 내용을 다시 입력해야 하는 중복 작업 일정을 한눈에 확인하기가 어려움 변경: 이슈 현황 문서 이슈를 한 행으로 표시 상태값 구분 상태별, 기간별 WBS형태로 볼수있도록
 					</aside>
 				</section>
 
@@ -241,32 +69,7 @@
 				<section>
 					<iframe data-src="contents/8.html" data-preload></iframe>
 					<aside class="notes">
-						화면의 Dan Abramov(=단 아브라모프) 트윗을 가져와봤는데요, 한 번 살펴볼까요?
-						<br />
-						React 코어 팀 멤버가 직접 밝히고 있습니다. "React가 DOM보다 빠르다는 것은 오해"라고 말입니다.
-						<br />
-						<br />
-						실제로 Virtual DOM에는 오버헤드가 존재합니다.
-						<br />
-						Virtual DOM 객체 생성 비용, 비교 비용, 메모리에 두 개의 트리를 유지하는 비용이 있습니다.
-						<br />
-						단순한 DOM 업데이트의 경우 직접 조작이 더 빠를 수 있다고 합니다.
-						<br />
-						<br />
-						그렇다면 왜 사용하는 것일까요?
-						<br />
-						정답은 성능이 아니라 개발 경험, Developer Experience입니다.
-						<br />
-						이것이 React가 추구하는 핵심 철학입니다.
-						<br />
-						<br />
-						약간의 성능을 포기하는 대신, 개발자는 무엇을 렌더링할지만 선언하면 됩니다.
-						<br />
-						업데이트 방법은 React가 처리합니다.
-						<br />
-						유지보수 가능한 코드를 작성할 수 있으며, 대부분의 경우 충분히 빠른 성능을 제공합니다.
-						<br />
-						이것이 Virtual DOM의 본질적 가치입니다.
+						문서가 여기저기 흩어져 있어서 찾기어려윰 폴더구조를 정비해서 문서 중앙화
 					</aside>
 				</section>
 
@@ -274,25 +77,7 @@
 				<section>
 					<iframe data-src="contents/9.html" data-preload></iframe>
 					<aside class="notes">
-						세 번째 주제는 Reconciliation(리컨실리에이션)입니다.
-						<br />
-						이전 Virtual DOM과 새로운 Virtual DOM을 비교하는 이 과정을 Reconciliation이라고 합니다.
-						<br />
-						<br />
-						여기에 큰 문제가 있습니다.
-						<br />
-						두 개의 트리를 비교하는 것은 컴퓨터 과학에서도 매우 어려운 문제인데요,
-						<br />
-						최적의 알고리즘도 O(n³) (오 엔의 삼제곱) 복잡도를 가집니다.
-						<br />
-						노드가 1000개만 있어도 10억 번의 연산이 필요하다는 의미입니다.
-						<br />
-						<br />
-						60fps를 유지하려면 한 프레임당 16ms 안에 모든 작업을 완료해야 하는데, 이는 불가능합니다.
-						<br />
-						React는 어떻게 이 문제를 해결했을까요?
-						<br />
-						발상의 전환이 있었습니다.
+						품 버전별 고객사 정보와 브랜치 정보가 여기저기 흩어져 있어 조회 시간이 과다하게 소요되었고, "어떤 게 최신 정보인가?" 혼란야기 고객사 및 브랜치 관리 문서로 통합한 결과, 정보 접근 속도는 올라가고 버전 혼선은 줄어들었습니다
 					</aside>
 				</section>
 
@@ -300,37 +85,7 @@
 				<section>
 					<iframe data-src="contents/10.html" data-preload></iframe>
 					<aside class="notes">
-						React는 발상을 전환했습니다.
-						<br />
-						완벽한 비교 대신 휴리스틱, 즉 경험적 규칙을 사용하기로 한 것입니다.
-						<br />
-						<br />
-						여기서 휴리스틱이란 단어가 생소하신 분들도 있을탠데,
-						<br />
-						휴리스틱이란 완벽한 답을 찾는 대신 "충분히 좋은 답을 빠르게 찾자"는 접근법입니다.
-						<br />
-						React는 실제 사용 패턴을 분석해서 두 가지 과감한 가정을 했습니다.
-						<br />
-						<br />
-						첫 번째 가정, 타입이 다르면 완전히 다른 트리로 간주합니다.
-						<br />
-						div가 span으로 변경되면 비교하지 않고 기존 트리를 폐기하고 새로 생성합니다.
-						<br />
-						실제로 같은 타입에서 다른 타입으로 변경되는 경우는 거의 없습니다.
-						<br />
-						<br />
-						두 번째 가정, key prop으로 요소를 식별합니다.
-						<br />
-						리스트의 아이템들을 추적할 때 key를 사용하는 것입니다.
-						<br />
-						<br />
-						이 두 가지 휴리스틱만으로 O(n³)를 O(n)으로 최적화했습니다.
-						<br />
-						완벽하지는 않지만 실용적인 해법입니다.
-						<br />
-						99.9%의 경우에 충분히 잘 동작합니다.
-						<br />
-						이것이 우리가 항상 보는 key warning의 이유입니다.
+						서버 이슈 발생 시마다 개발자에게 문의가 필수였고, 담당자가 바쁘면 답변이 지연되어 전체 업무에 병목이 생겼습니다. 운영 지식이 특정 인원에게만 머물러 있었죠. 확인 방법을 문서화한 결과, 개발자 의존도가 감소하여 병목이 해소되었고 팀의 자율성과 책임이 강화되었습니다.
 					</aside>
 				</section>
 
@@ -338,45 +93,7 @@
 				<section>
 					<iframe data-src="contents/11.html" data-preload></iframe>
 					<aside class="notes">
-						이제 실제 예시를 살펴보겠습니다.
-						<br />
-						화면에 잘못된 예시와 올바른 예시를 비교해서 보여드리고 있습니다.
-						<br />
-						<br />
-						많은 분들이 편의상 key를 index로 넣는 경우가 있는데요,
-						<br />
-						왜 이게 문제가 될까요?
-						<br />
-						<br />
-						화면의 예시를 살펴보겠습니다.
-						<br />
-						Apple과 Banana가 있는 리스트에 Orange를 맨 앞에 추가한다고 가정해봅시다.
-						<br />
-						그러면 기존 아이템들의 index가 전부 하나씩 뒤로 밀리게 됩니다.
-						<br />
-						<br />
-						React 입장에서는 어떻게 보일까요?
-						<br />
-						key가 0인 위치에 있던 Apple이 Orange로 바뀐 것처럼 보입니다.
-						<br />
-						key가 1인 위치에 있던 Banana도 Apple로 바뀐 것처럼 보이고, 2번 위치에 Banana가 새로 생긴 것처럼
-						보입니다.
-						<br />
-						결과적으로 React는 전체 리스트를 다시 렌더링하게 됩니다.
-						<br />
-						<br />
-						더 심각한 문제도 있습니다.
-						<br />
-						만약 각 아이템에 입력 필드가 있었다면, 포커스가 손실되고 사용자가 입력하던 값도 사라질 수
-						있습니다.
-						<br />
-						<br />
-						따라서 반드시 item.id처럼 데이터 자체에서 나오는 고유하고 안정적인 값을 key로 사용해야 합니다.
-						<br />
-						리스트가 정렬되거나 필터링되어도 같은 아이템은 항상 동일한 key를 유지해야 React가 정확하게
-						추적할 수 있습니다.
-						<br />
-						이것이 우리가 key warning을 절대 무시해서는 안 되는 이유입니다.
+						물론 아직 해결하지 못한 것들도 많습니다. 통합 대시보드를 만들어서 이슈, 일감, 리소스를 한눈에 보고 싶어요. 로그 추적 기능도 실제로 개발해야 하고요. 데이터 기반으로 의사결정을 더 잘하고 싶고, 반복 작업은 최대한 자동화하고 싶습니다
 					</aside>
 				</section>
 
@@ -384,36 +101,7 @@
 				<section>
 					<iframe data-src="contents/12.html" data-preload></iframe>
 					<aside class="notes">
-						이제 Diffing 알고리즘에 대해 알아보겠습니다.
-						<br />
-						<br />
-						Diffing 알고리즘이란 두 개의 Virtual DOM 트리를 비교해서 실제로 변경된 부분을 찾아내는
-						알고리즘입니다.
-						<br />
-						앞서 말씀드렸듯이 React는 휴리스틱을 사용해서 O(n³)의 복잡도를 O(n)으로 줄였는데요,
-						<br />
-						그 핵심 로직 3가지를 정리해보겠습니다.
-						<br />
-						<br />
-						첫째, 같은 레벨끼리만 비교합니다.
-						<br />
-						부모가 다르면 비교하지 않습니다.
-						<br />
-						트리를 깊이 우선 탐색하지 않고 레벨별로 순회하는 것입니다.
-						<br />
-						<br />
-						둘째, 타입이 같으면 props만 업데이트합니다.
-						<br />
-						div 요소는 유지하고 className이나 children만 변경하는 방식입니다.
-						<br />
-						<br />
-						셋째, 같은 위치의 같은 컴포넌트는 인스턴스를 유지합니다.
-						<br />
-						이것이 매우 중요한데, 이 덕분에 리렌더링이 발생해도 컴포넌트의 state가 보존됩니다.
-						<br />
-						useState로 관리하던 값들이 유지되는 이유가 바로 이것입니다.
-						<br />
-						React가 동일한 컴포넌트로 판단하여 state를 보존하는 것입니다.
+						지금까지 제 경험을 쭉 말씀드렸는데요, 이 과정에서 배운 걸 정리하면 이렇습니다
 					</aside>
 				</section>
 
@@ -421,442 +109,7 @@
 				<section>
 					<iframe data-src="contents/13.html" data-preload></iframe>
 					<aside class="notes">
-						네 번째 주제는 얕은 비교와 불변성입니다.
-						<br />
-						<br />
-						화면을 보시면 두 가지 비교 방식을 보여드리고 있습니다.
-						<br />
-						왼쪽은 React가 실제로 사용하는 얕은 비교이고, 오른쪽은 React가 사용하지 않는 깊은 비교입니다.
-						<br />
-						<br />
-						React는 상태 변화를 감지할 때 얕은 비교만 수행합니다.
-						<br />
-						객체 내부의 모든 속성을 재귀적으로 비교하는 게 아니라, 객체의 참조만 비교하는 것입니다.
-						<br />
-						<br />
-						왜 이런 선택을 했을까요?
-						<br />
-						깊은 비교는 비용이 매우 높습니다.
-						<br />
-						중첩된 객체의 모든 속성을 전부 순회해야 하기 때문인데요,
-						<br />
-						객체가 깊고 복잡할수록 성능에 큰 영향을 줍니다.
-						<br />
-						<br />
-						대신 React는 개발자에게 불변성을 유지하라고 요구합니다.
-						<br />
-						상태를 변경할 때 기존 객체를 수정하는 게 아니라 새로운 객체를 만들어야 하는 것입니다.
-						<br />
-						<br />
-						그런데 여기서 재미있는 디테일 하나가 있는데요.
-						<br />
-						React는 비교할 때 우리가 흔히 사용하는 === 일치연산자가 아니라 Object.is를 사용합니다.
-						<br />
-						<br />
-						===가 완벽하지 않기 때문인데요,
-						<br />
-						화면 하단을 보시면 예시가 나와 있습니다.
-						<br />
-						NaN === NaN은 false를 반환합니다.
-						<br />
-						하지만 Object.is(NaN, NaN)은 true를 반환합니다.
-						<br />
-						이것이 수학적으로 더 정확한 비교입니다.
-						<br />
-						<br />
-						React는 useEffect나 useMemo의 의존성 배열을 비교할 때 바로 이 Object.is를 사용합니다.
-					</aside>
-				</section>
-
-				<!-- Slide 14 -->
-				<section>
-					<iframe data-src="contents/14.html" data-preload></iframe>
-					<aside class="notes">
-						이제 구체적인 코드 예시로 불변성의 중요성을 살펴보겠습니다.
-						<br />
-						<br />
-						화면 왼쪽의 나쁜 예를 먼저 볼껀데요.
-						<br />
-						user 객체의 age를 직접 수정한 다음 setUser로 전달하고 있습니다.
-						<br />
-						문제가 뭘까요?
-						<br />
-						<br />
-						user.age를 수정해도 user 객체의 참조 자체는 그대로입니다.
-						<br />
-						React는 얕은 비교를 하기 때문에 참조가 동일하면 "아, 변화가 없구나"라고 판단을 하게 되는데요.
-						<br />
-						결과적으로 리렌더링이 발생하지 않습니다.
-						<br />
-						<br />
-						오른쪽의 좋은 예를 보시면 어떻게 다른가요?
-						<br />
-						함수형 업데이트 패턴을 사용하고 있습니다.
-						<br />
-						prev라는 이전 상태를 인자로 받아서 새 객체를 만듭니다.
-						<br />
-						<br />
-						왜 이 방식을 사용할까요?
-						<br />
-						외부 변수인 user에 의존하지 않고, 항상 최신 상태를 보장받기 때문입니다.
-						<br />
-						특히 비동기 업데이트나 배치 업데이트 상황에서 안전합니다.
-						<br />
-						<br />
-						이렇게 하면 참조가 바뀌기 때문에 React가 "오, 변화가 있네!"라고 감지하고 리렌더링을
-						트리거합니다.
-						<br />
-						이것이 React 공식 문서에서 권장하는 상태 업데이트 방식입니다.
-						<br />
-						<br />
-						참고로 배열도 마찬가지입니다.
-						<br />
-						push 같은 메서드는 원본 배열을 직접 수정하기 때문에 사용하면 안 되고요,
-						<br />
-						대신 concat이나 스프레드 연산자로 새 배열을 만들어야 합니다.
-						<br />
-						<br />
-						만약 상태 구조가 복잡해서 불변성 유지가 번거롭다면 Immer 같은 라이브러리를 활용하면 편리합니다.
-						<br />
-						겉보기에는 직접 수정하는 것처럼 보이지만 내부에서 자동으로 불변성을 보장해줍니다.
-					</aside>
-				</section>
-
-				<!-- Slide 15 -->
-				<section>
-					<iframe data-src="contents/15.html" data-preload></iframe>
-					<aside class="notes">
-						여기서 다른 프레임워크와 비교해보겠습니다.
-						<br />
-						Vue나 Angular는 어떻게 동작할까요?
-						<br />
-						이 프레임워크들은 자동 변화 감지를 제공합니다.
-						<br />
-						Proxy나 Getter/Setter를 사용하여 객체를 감시합니다.
-						<br />
-						user.name = "새이름" 이라고 직접 수정해도 자동으로 감지합니다. 편리하죠?
-						<br />
-						<br />
-						그렇다면 React는 왜 이 방식을 선택하지 않았을까요?
-						<br />
-						React는 명시성을 선택했기 때문입니다.
-						<br />
-						이것이 바로 React의 핵심 설계 철학입니다.
-						<br />
-						<br />
-						불변성을 유지하는 것이 더 번거롭지만, 코드를 읽었을 때 정확히 무엇이 일어나는지 명확합니다.
-						<br />
-						setState를 호출하면 상태가 변경됩니다.
-						<br />
-						자동 감지 같은 마법이 없습니다.
-						<br />
-						디버깅할 때도 명확하고, 성능 최적화도 예측 가능하게 수행할 수 있습니다.
-						<br />
-						암묵적 마법보다 명시적 동작을 선택한 것이 React의 철학입니다.
-					</aside>
-				</section>
-
-				<!-- Slide 16 -->
-				<section>
-					<iframe data-src="contents/16.html" data-preload></iframe>
-					<aside class="notes">
-						다섯 번째이자 마지막 주제는 Fiber Architecture(=파이버 아키텍처)입니다.
-						<br />
-						React 16 이전 버전을 사용해보신 분들은 다음과 같은 경험이 있으실 것입니다.
-						<br />
-						대규모 리스트를 렌더링할 때 갑자기 입력이 응답하지 않는 현상입니다.
-						<br />
-						클릭도 작동하지 않고, 스크롤도 버벅거립니다.
-						<br />
-						<br />
-						왜 그랬을까요?
-						<br />
-						당시 React는 Stack Reconciler(=스택 리컨실러)를 사용했습니다.
-						<br />
-						재귀 함수로 모든 컴포넌트를 한 번에 처리했습니다.
-						<br />
-						시작하면 완료될 때까지 중단할 수 없었습니다.
-						<br />
-						<br />
-						컴포넌트가 1000개라면 1000개를 전부 처리할 때까지 메인 스레드를 점유합니다.
-						<br />
-						그동안 브라우저는 사용자 입력을 처리할 수 없습니다.
-						<br />
-						60fps를 유지하려면 16ms마다 프레임을 그려야 하는데, 렌더링에 100ms가 소요되면 화면이 멈춘 것처럼
-						보입니다.
-						<br />
-						이것이 Stack Reconciler의 근본적인 한계였습니다.
-					</aside>
-				</section>
-
-				<!-- Slide 17 -->
-				<section>
-					<iframe data-src="contents/17.html" data-preload></iframe>
-					<aside class="notes">
-						React 팀이 2년에 걸쳐 완전히 재작성한 것이 Fiber입니다.
-						<br />
-						화면을 보시면 Stack은 큰 덩어리 하나를 중단 없이 처리하지만, Fiber는 작은 단위로 분할하여
-						처리합니다.
-						<br />
-						<br />
-						핵심은 세 가지입니다.
-						<br />
-						첫째, 인터럽트 가능합니다.
-						<br />
-						렌더링 중간에 중단하고 더 중요한 작업을 먼저 처리할 수 있습니다.
-						<br />
-						사용자가 입력 중이라면 렌더링을 일시 중단하고 입력부터 처리합니다.
-						<br />
-						<br />
-						둘째, 우선순위 스케줄링입니다.
-						<br />
-						모든 작업이 동일한 중요도를 갖지 않습니다.
-						<br />
-						클릭이나 입력은 최우선 순위, 데이터 페칭이나 로깅은 낮은 우선순위로 처리합니다.
-						<br />
-						<br />
-						셋째, 동시성입니다.
-						<br />
-						여러 렌더링 작업을 병렬로 준비할 수 있습니다.
-						<br />
-						이것이 useTransition이나 Suspense 같은 최신 기능들의 기반입니다.
-					</aside>
-				</section>
-
-				<!-- Slide 18 -->
-				<section>
-					<iframe data-src="contents/18.html" data-preload></iframe>
-					<aside class="notes">
-						우선순위 시스템을 더 자세히 살펴보겠습니다.
-						<br />
-						Fiber는 모든 작업에 Lane(=레인)이라는 우선순위를 부여하게 됩니다.
-						<br />
-						화면에 보이는 것처럼 크게 세 단계로 구분됩니다.
-						<br />
-						<br />
-						Immediate(=이미디엇)는 즉시 처리됩니다.
-						<br />
-						클릭, 입력, hover 같은 사용자 인터랙션이 여기에 해당합니다.
-						<br />
-						이는 절대 지연되어서는 안 됩니다.
-						<br />
-						<br />
-						Normal은 일반적인 업데이트입니다.
-						<br />
-						데이터 페칭 결과를 화면에 반영하는 것처럼 중요하지만 약간 지연되어도 괜찮은 작업들입니다.
-						<br />
-						<br />
-						Low는 나중에 처리해도 되는 작업입니다.
-						<br />
-						로깅, 분석 데이터 전송 같은 것들이 여기 포함됩니다.
-						<br />
-						<br />
-						React 18에서 추가된 useTransition은 바로 이 우선순위를 개발자가 직접 제어할 수 있게 해주는
-						API입니다.
-						<br />
-						무거운 렌더링을 Low 우선순위로 처리하여 UI 응답성을 유지할 수 있습니다.
-					</aside>
-				</section>
-
-				<!-- Slide 19 -->
-				<section>
-					<iframe data-src="contents/19.html" data-preload></iframe>
-					<aside class="notes">
-						그렇다면 개발자로서 Fiber 아키텍처를 어떻게 활용할 수 있을까요?
-						<br />
-						화면에 보이는 세 가지 API가 바로 그 답입니다.
-						<br />
-						<br />
-						첫 번째, Suspense입니다.
-						<br />
-						데이터를 불러오는 동안 로딩 UI를 선언적으로 표시할 수 있습니다.
-						<br />
-						Fiber의 인터럽트 기능 덕분에 데이터가 준비될 때까지 렌더링을 일시 중단할 수 있는 것입니다.
-						<br />
-						<br />
-						두 번째, useTransition입니다.
-						<br />
-						무거운 상태 업데이트를 낮은 우선순위로 처리할 수 있게 해줍니다.
-						<br />
-						예를 들어 검색 필터를 적용할 때, 입력은 즉시 반응하고 필터링 결과는 천천히 업데이트되도록 만들
-						수 있습니다.
-						<br />
-						UI 응답성을 유지하면서 복잡한 작업을 처리하는 것입니다.
-						<br />
-						<br />
-						세 번째, useDeferredValue입니다.
-						<br />
-						특정 값의 업데이트를 지연시킬 수 있습니다.
-						<br />
-						useTransition과 비슷하지만, 상태 업데이트 함수를 직접 제어할 수 없을 때 유용합니다.
-						<br />
-						값 자체에 우선순위를 부여하는 방식이라고 생각하시면 됩니다.
-						<br />
-						<br />
-						이 세 가지 API는 모두 Fiber 아키텍처가 있기에 가능한 것입니다.
-						<br />
-						작업을 중단하고 재개할 수 있고, 우선순위를 조정할 수 있기 때문이죠.
-					</aside>
-				</section>
-
-				<!-- Slide 20 -->
-				<section>
-					<iframe data-src="contents/20.html" data-preload></iframe>
-					<aside class="notes">
-						자, 이제 지금까지의 내용을 한번 정리해보겠습니다.
-						<br />
-						화면에 보이는 5가지 핵심 개념들입니다.
-						<br />
-						<br />
-						첫 번째, JSX는 createElement 함수를 거쳐 JavaScript 객체로 변환됩니다.
-						<br />
-						우리가 작성하는 태그 문법은 결국 평범한 객체일 뿐입니다.
-						<br />
-						<br />
-						두 번째, Virtual DOM은 선언적 UI를 가능하게 합니다.
-						<br />
-						"어떻게" 변경할지가 아니라 "무엇을" 보여줄지만 선언하면 되는 것이죠.
-						<br />
-						<br />
-						세 번째, Reconciliation 알고리즘은 O(n³)을 O(n)으로 최적화했습니다.
-						<br />
-						휴리스틱을 통해 실용적인 성능을 달성한 것입니다.
-						<br />
-						<br />
-						네 번째, 얕은 비교는 불변성을 전제로 합니다.
-						<br />
-						깊은 비교 대신 참조만 비교하고, 개발자가 불변성을 지키는 트레이드오프를 선택했습니다.
-						<br />
-						<br />
-						다섯 번째, Fiber 아키텍처는 우선순위와 동시성을 가능하게 했습니다.
-						<br />
-						작업을 중단하고 재개할 수 있어서 더 나은 사용자 경험을 제공합니다.
-						<br />
-						<br />
-						이 다섯 가지가 퍼즐처럼 맞물려서 지금의 React를 만들었습니다.
-						<br />
-						각각의 선택이 React의 설계 철학인 명시성과 개발자 경험을 반영하고 있습니다.
-					</aside>
-				</section>
-
-				<!-- Slide 21 -->
-				<section>
-					<iframe data-src="contents/21.html" data-preload></iframe>
-					<aside class="notes">
-						그렇다면 이런 지식이 실무에서 어떻게 도움이 될까요?
-						<br />
-						화면에 보이는 세 가지 관점에서 이야기해보겠습니다.
-						<br />
-						<br />
-						첫 번째, 기술적 이해입니다.
-						<br />
-						이제는 React의 설계 결정과 트레이드오프를 이해하게 되었습니다.
-						<br />
-						왜 불변성을 요구하는지, 왜 key가 필요한지, 왜 컴포넌트가 순수해야 하는지 알게 된 것입니다.
-						<br />
-						단순히 "그렇게 하라고 하니까"가 아니라 "왜 그런지" 아는 것이죠.
-						<br />
-						<br />
-						두 번째, 개발 관점의 변화입니다.
-						<br />
-						이제 코드를 작성할 때 "어떻게"보다 "왜"를 먼저 생각하게 될 것입니다.
-						<br />
-						React.memo를 쓸 때도 "무조건 빠르게 하려고"가 아니라 "얕은 비교 비용과 리렌더링 비용을 비교해서"
-						판단하게 됩니다.
-						<br />
-						최적화도 맹목적이 아니라 근거 있는 선택이 되는 것입니다.
-						<br />
-						<br />
-						세 번째, 문제 해결 능력입니다.
-						<br />
-						성능 이슈가 발생했을 때 근본 원인을 빠르게 파악할 수 있습니다.
-						<br />
-						"왜 렌더링이 느릴까?" → "Reconciliation 비용인가, 아니면 렌더링 자체가 무거운가?"
-						<br />
-						"왜 상태가 안 바뀔까?" → "불변성을 지키지 않았나?"
-						<br />
-						이렇게 체계적으로 접근할 수 있게 됩니다.
-						<br />
-						<br />
-						내부 원리를 이해한다는 것은 단순히 지식을 쌓는 게 아니라 더 나은 개발자가 되는 것입니다.
-					</aside>
-				</section>
-
-				<!-- Slide 22 -->
-				<section>
-					<iframe data-src="contents/22.html" data-preload></iframe>
-					<aside class="notes">
-						더 깊이 공부하고 싶으신 분들을 위해 자료를 정리해두었습니다.
-						<br />
-						화면의 각 블록마다 클릭 가능한 링크를 넣어두었으니 참고해주세요.
-						<br />
-						<br />
-						첫 번째는 공식 문서입니다.
-						<br />
-						React 공식 문서의 Reconciliation, Render and Commit, 그리고 React 18의 Concurrent Features 관련
-						문서들입니다.
-						<br />
-						특히 새로운 React 문서는 예제와 함께 내부 동작을 매우 명확하게 설명하고 있습니다.
-						<br />
-						<br />
-						두 번째는 영상 자료입니다.
-						<br />
-						Lin Clark(=린 클라아크)의 "A Cartoon Intro to Fiber"는 만화로 Fiber 아키텍처를 설명해서 이해하기
-						쉽습니다.
-						<br />
-						Dan Abramov(=단 아브라모프)의 "Beyond(=비얀드) React 16"도 Fiber의 등장 배경과 필요성을 잘
-						설명하고 있습니다.
-						<br />
-						<br />
-						세 번째는 소스 코드입니다.
-						<br />
-						React 공식 레포지토리와 Andrew Clark(=앤드류 클락)이 작성한 React Fiber Architecture 문서 링크를
-						넣어두었습니다.
-						<br />
-						실제 코드를 읽어보면 구현 디테일까지 이해할 수 있습니다.
-						<br />
-						<br />
-						마지막으로 직접 시도해볼 수 있는 것들입니다.
-						<br />
-						간단한 Virtual DOM을 구현해보거나, Reconciliation 알고리즘을 단계별로 따라가보거나,
-						<br />
-						React DevTools Profiler로 실제 프로젝트를 최적화해보는 것을 권장합니다.
-						<br />
-						직접 해보는 것이 가장 확실한 학습 방법입니다.
-					</aside>
-				</section>
-
-				<!-- Slide 23 -->
-				<section>
-					<iframe data-src="contents/23.html" data-preload></iframe>
-					<aside class="notes">
-						발표는 여기까지입니다.
-						<br />
-						이 시간 동안 JSX부터 Fiber까지 다루었습니다.
-						<br />
-						<br />
-						궁금하신 점이 있으시면 편하게 질문해주세요
-					</aside>
-				</section>
-
-				<!-- Slide 24 -->
-				<section>
-					<iframe data-src="contents/24.html" data-preload></iframe>
-					<aside class="notes">
-						긴 시간 동안 들어주셔서 감사합니다.
-						<br />
-						<br />
-						화면에 보이는 QR 코드를 스캔하시면 제 블로그로 이동하실 수 있습니다.
-						<br />
-						<br />
-						블로그 아티클에는 오늘 다룬 내용이 훨씬 더 상세하게 정리되어 있고요,
-						<br />
-						코드 예시와 다이어그램도 더 많이 포함되어 있습니다.
-						<br />
-						<br />
-						오늘 세미나가 React 이해에 조금이나마 도움이 되었기를 바랍니다.
-						<br />
-						감사합니다.
+						오늘 공유한 것들이 정답은 아니에요. 하지만 비슷한 고민을 하고 계신 분들께 작은 참고가 되었으면 좋겠습니다.
 					</aside>
 				</section>
 			</div>

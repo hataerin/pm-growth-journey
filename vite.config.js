@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-	base: "/react-core-deepdive/"
+	base: "/pm-growth-journey/"
 });

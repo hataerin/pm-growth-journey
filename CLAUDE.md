@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-React 코어 딥다이브 - React 내부 동작 원리와 Fiber 아키텍처를 설명하는 프레젠테이션 프로젝트입니다. Reveal.js 기반으로 24개의 독립적인 HTML 슬라이드를 iframe으로 로드하는 구조입니다.
+PM으로 성장하기 - 프로젝트 효율 높이기 (실전편) 세미나 자료입니다. Reveal.js 기반으로 13개의 독립적인 HTML 슬라이드를 iframe으로 로드하는 구조입니다.
 
 ## Development Commands
 
@@ -32,14 +32,13 @@ pnpm format:check
 이 프로젝트는 **하이브리드 아키텍처**를 사용합니다:
 
 1. **메인 프레젠테이션 (Vite 번들링)**
-    - `index.html`: Reveal.js 컨테이너 + 24개 슬라이드의 `<section>` 태그
+    - `index.html`: Reveal.js 컨테이너 + 13개 슬라이드의 `<section>` 태그
     - `src/presentation.js`: Reveal.js 초기화 및 포커스 관리 로직 (ESM, 번들링됨)
     - `src/reveal-custom.css`: Reveal.js 커스텀 스타일 (번들링됨)
 
 2. **개별 슬라이드 (정적 파일)**
-    - `public/contents/1.html ~ 24.html`: 각 슬라이드의 독립적인 HTML
-    - `public/css/common-style.css`: 슬라이드 공통 스타일 (반응형 포함)
-    - 각 슬라이드는 `../css/common-style.css`를 직접 참조
+    - `public/contents/1.html ~ 13.html`: 각 슬라이드의 독립적인 HTML
+    - 각 슬라이드는 Tailwind CSS와 Font Awesome을 CDN으로 사용
 
 3. **발표자 노트**
     - `index.html`의 각 `<section>` 내부에 `<aside class="notes">` 태그로 포함
@@ -67,22 +66,20 @@ public/css/common-style.css
 dist/css/common-style.css
 ```
 
-빌드된 `dist/index.html`의 모든 절대 경로는 `/react-core-deepdive/` prefix가 자동 추가됨 (`vite.config.js`의 `base` 설정).
+빌드된 `dist/index.html`의 모든 절대 경로는 `/pm-growth-journey/` prefix가 자동 추가됨 (`vite.config.js`의 `base` 설정).
 
 ## 슬라이드 수정 시 주의사항
 
 ### 새 슬라이드 추가
 
 1. `public/contents/XX.html` 생성
-2. `public/css/common-style.css` 스타일 사용
+2. Tailwind CSS와 Font Awesome을 CDN으로 로드
 3. `index.html`에 `<section><iframe src="contents/XX.html"></iframe></section>` 추가
 4. 발표자 노트가 필요하면 `<aside class="notes">` 추가
 
 ### CSS 수정
 
-- **슬라이드 공통 스타일**: `public/css/common-style.css` 수정
-    - 반응형 브레이크포인트: 1024px, 768px, 640px
-    - 애니메이션: fadeInUp, slideInLeft, slideInRight, scaleIn
+- **슬라이드 스타일**: 각 슬라이드 파일 내부에서 Tailwind CSS 유틸리티 클래스 사용
 - **Reveal.js 스타일**: `src/reveal-custom.css` 수정
 
 ### 포커스 관리
@@ -92,14 +89,14 @@ dist/css/common-style.css
 ## GitHub Pages 배포
 
 - **자동 배포**: `main` 브랜치에 push 시 GitHub Actions로 자동 배포
-- **배포 URL**: `https://chan9yu.github.io/react-core-deepdive/`
-- **base path**: `vite.config.js`의 `base: "/react-core-deepdive/"` 설정 필수
+- **배포 URL**: `https://chan9yu.github.io/pm-growth-journey/`
+- **base path**: `vite.config.js`의 `base: "/pm-growth-journey/"` 설정 필수
 
 ### 배포 실패 시 체크리스트
 
 1. `public/` 디렉토리에 모든 정적 파일 존재 확인
 2. `index.html`의 iframe 경로가 상대 경로(`contents/XX.html`)인지 확인
-3. 슬라이드 파일의 CSS 경로가 `../css/common-style.css`인지 확인
+3. 슬라이드 파일에서 CDN 리소스가 정상적으로 로드되는지 확인
 4. GitHub 저장소 Settings → Pages에서 Source가 "GitHub Actions"인지 확인
 
 ## 환경 요구사항

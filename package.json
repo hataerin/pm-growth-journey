@@ -1,12 +1,12 @@
 {
-  "name": "react-core-deepdive",
+  "name": "pm-growth-journey",
   "private": true,
-  "description": "리액트의 핵심 동작 원리와 Fiber 아키텍처를 깊이 있게 알아보는 세미나 자료입니다.",
+  "description": "PM으로 성장하기 - 프로젝트 효율 높이기 (실전편) 세미나 자료입니다.",
   "type": "module",
   "author": "chan9yu <dev.cgyeo@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chan9yu/react-core-deepdive"
+    "url": "https://github.com/chan9yu/pm-growth-journey"
   },
   "packageManager": "pnpm@10.22.0",
   "scripts": {

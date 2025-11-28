@@ -85,16 +85,4 @@ document.addEventListener("click", restoreFocus);
 
 Reveal.on("ready", () => {
 	restoreFocus();
-
-	const SPEAKER_PASSWORD = "react2025";
-
-	Reveal.addKeyBinding({ keyCode: 83, key: "S" }, () => {
-		const password = prompt("발표자 모드 비밀번호를 입력하세요:");
-
-		if (password === SPEAKER_PASSWORD) {
-			Reveal.getPlugin("notes").open();
-		} else if (password !== null) {
-			alert("비밀번호가 틀렸습니다.");
-		}
-	});
 });

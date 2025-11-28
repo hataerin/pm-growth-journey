@@ -1,288 +1,276 @@
-<!doctype html>
+<!DOCTYPE html>
 <html data-theme="light" lang="ko">
-	<head>
-		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-		<title>정리: 제가 배운 것들</title>
-		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-		<link
-			href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
-			rel="stylesheet"
-		/>
-		<style>
-			body {
-				margin: 0;
-				padding: 0;
-				font-family: "Noto Sans KR", sans-serif;
-				background-color: #ffffff;
-			}
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>정리: 제가 배운 것들</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #FFFFFF;
+        }
+        
+        .slide {
+            width: 100dvw;
+            height: 100dvh;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 50px 64px;
+            box-sizing: border-box;
+        }
+        
+        .header-section {
+            margin-bottom: 30px;
+        }
+        
+        .slide-title {
+            font-size: clamp(2.5rem, 4vw, 4.5rem);
+            font-weight: 700;
+            color: #1F2937;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .slide-number {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: 900;
+            font-size: clamp(1.3rem, 2.2vw, 2rem);
+            color: #2563EB;
+            margin-right: 15px;
+            background: rgba(37, 99, 235, 0.1);
+            padding: 5px 15px;
+            border-radius: 50px;
+        }
+        
+        .subtitle {
+            font-size: clamp(1.05rem, 1.7vw, 1.5rem);
+            color: #6B7280;
+            font-weight: 400;
+            margin-left: 4px;
+        }
 
-			.slide {
-				width: 100dvw;
-				height: 100dvh;
-				background-color: #ffffff;
-				position: relative;
-				overflow: hidden;
-				display: flex;
-				flex-direction: column;
-				padding: 50px 64px;
-				box-sizing: border-box;
-			}
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 24px;
+            flex: 1;
+            height: 420px;
+        }
+        
+        .card {
+            background-color: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-color: #93C5FD;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .icon-wrapper {
+            width: clamp(40px, 4.5vw, 64px);
+            height: clamp(40px, 4.5vw, 64px);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.3rem, 2.2vw, 2rem);
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+        
+        /* Icon Colors - Different for each card for visual variety but within brand */
+        .icon-1 { background-color: #EFF6FF; color: #2563EB; } /* Blue */
+        .icon-2 { background-color: #ECFDF5; color: #059669; } /* Green */
+        .icon-3 { background-color: #FEF2F2; color: #DC2626; } /* Red */
+        .icon-4 { background-color: #FFFBEB; color: #D97706; } /* Amber */
+        .icon-5 { background-color: #F3E8FF; color: #7C3AED; } /* Purple */
+        .icon-6 { background-color: #F5F3FF; color: #4F46E5; } /* Indigo */
+        
+        .card-title {
+            font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+            font-weight: 700;
+            color: #111827;
+            line-height: 1.3;
+        }
+        
+        .card-content {
+            color: #4B5563;
+            font-size: clamp(0.95rem, 1.4vw, 1.3rem);
+            line-height: 1.6;
+            flex: 1;
+        }
+        
+        .card-number {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: clamp(2rem, 3.5vw, 4rem);
+            font-weight: 900;
+            color: rgba(0,0,0,0.03);
+            line-height: 1;
+            pointer-events: none;
+        }
 
-			.header-section {
-				margin-bottom: 30px;
-			}
+        .footer {
+            margin-top: auto;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-top: 1px solid #F3F4F6;
+            color: #6B7280;
+            font-size: clamp(0.85rem, 1.3vw, 1.15rem);
+        }
 
-			.slide-title {
-				font-size: 3rem;
-				font-weight: 700;
-				color: #1f2937;
-				line-height: 1.2;
-				letter-spacing: -0.02em;
-				margin-bottom: 10px;
-				display: flex;
-				align-items: center;
-			}
+    /* 매우 큰 화면 (1920px 이상) - 발표용 최적화 */
+    @media (min-width: 1920px) {
+        body { font-size: 110%; }
+    }
 
-			.slide-number {
-				font-family: "Noto Sans KR", sans-serif;
-				font-weight: 900;
-				font-size: 1.5rem;
-				color: #2563eb;
-				margin-right: 15px;
-				background: rgba(37, 99, 235, 0.1);
-				padding: 5px 15px;
-				border-radius: 50px;
-			}
+    /* 큰 화면 (1440px ~ 1919px) */
+    @media (min-width: 1440px) and (max-width: 1919px) {
+        body { font-size: 105%; }
+    }
 
-			.subtitle {
-				font-size: 1.2rem;
-				color: #6b7280;
-				font-weight: 400;
-				margin-left: 4px;
-			}
-
-			.grid-container {
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				grid-template-rows: repeat(2, 1fr);
-				gap: 24px;
-				flex: 1;
-				height: 420px;
-			}
-
-			.card {
-				background-color: #f9fafb;
-				border: 1px solid #e5e7eb;
-				border-radius: 12px;
-				padding: 24px;
-				display: flex;
-				flex-direction: column;
-				position: relative;
-				transition: all 0.2s ease;
-				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-			}
-
-			.card:hover {
-				transform: translateY(-2px);
-				box-shadow:
-					0 10px 15px -3px rgba(0, 0, 0, 0.1),
-					0 4px 6px -2px rgba(0, 0, 0, 0.05);
-				border-color: #93c5fd;
-			}
-
-			.card-header {
-				display: flex;
-				align-items: center;
-				margin-bottom: 16px;
-			}
-
-			.icon-wrapper {
-				width: 48px;
-				height: 48px;
-				border-radius: 12px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-size: 1.5rem;
-				margin-right: 16px;
-				flex-shrink: 0;
-			}
-
-			/* Icon Colors - Different for each card for visual variety but within brand */
-			.icon-1 {
-				background-color: #eff6ff;
-				color: #2563eb;
-			} /* Blue */
-			.icon-2 {
-				background-color: #ecfdf5;
-				color: #059669;
-			} /* Green */
-			.icon-3 {
-				background-color: #fef2f2;
-				color: #dc2626;
-			} /* Red */
-			.icon-4 {
-				background-color: #fffbeb;
-				color: #d97706;
-			} /* Amber */
-			.icon-5 {
-				background-color: #f3e8ff;
-				color: #7c3aed;
-			} /* Purple */
-			.icon-6 {
-				background-color: #f5f3ff;
-				color: #4f46e5;
-			} /* Indigo */
-
-			.card-title {
-				font-size: 1.25rem;
-				font-weight: 700;
-				color: #111827;
-				line-height: 1.3;
-			}
-
-			.card-content {
-				color: #4b5563;
-				font-size: 1rem;
-				line-height: 1.6;
-				flex: 1;
-			}
-
-			.card-number {
-				position: absolute;
-				top: 16px;
-				right: 16px;
-				font-size: 2.5rem;
-				font-weight: 900;
-				color: rgba(0, 0, 0, 0.03);
-				line-height: 1;
-				pointer-events: none;
-			}
-
-			.footer {
-				margin-top: auto;
-				width: 100%;
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				padding: 20px 0;
-				border-top: 1px solid #f3f4f6;
-				color: #6b7280;
-				font-size: 0.9rem;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="slide">
-			<!-- Header -->
-			<div class="header-section">
-				<h1 class="slide-title">
-					<span class="slide-number">📖</span>
-					정리: 제가 배운 것들
-				</h1>
-				<p class="subtitle">주니어 PM으로서 프로젝트 효율화를 통해 얻은 6가지 핵심 인사이트</p>
-			</div>
-			<!-- Grid Content -->
-			<div class="grid-container">
-				<!-- Card 1 -->
-				<div class="card">
-					<div class="card-number">01</div>
-					<div class="card-header">
-						<div class="icon-wrapper icon-1">
-							<i class="fas fa-puzzle-piece"></i>
-						</div>
-						<h3 class="card-title">완벽보다 실행하기</h3>
-					</div>
-					<div class="card-content">
-						<p>지금 할 수 있는것 부터 시작하자.</p>
-						<p>실행하면서 다듬어가는 것이 더 빠르다.</p>
-					</div>
-				</div>
-				<!-- Card 2 -->
-				<div class="card">
-					<div class="card-number">02</div>
-					<div class="card-header">
-						<div class="icon-wrapper icon-2">
-							<i class="fas fa-seedling"></i>
-						</div>
-						<h3 class="card-title">작은 변화의 힘</h3>
-					</div>
-					<div class="card-content">
-						<p>
-							주간 회의 하나, 문서 양식 하나 같은 <strong>작은 변화</strong>가 팀 전체의 효율성에
-							<strong>큰 차이</strong>를 만들어낸다.
-						</p>
-					</div>
-				</div>
-				<!-- Card 3 -->
-				<div class="card">
-					<div class="card-number">03</div>
-					<div class="card-header">
-						<div class="icon-wrapper icon-3">
-							<i class="fas fa-map-marker-alt"></i>
-						</div>
-						<h3 class="card-title">문서화는 투자다</h3>
-					</div>
-					<div class="card-content">
-						<p>문서화 할 시간이 없어서 X</p>
-						<p>한번 만들면 영원히 팀의 자산이 된다</p>
-					</div>
-				</div>
-				<!-- Card 4 -->
-				<div class="card">
-					<div class="card-number">04</div>
-					<div class="card-header">
-						<div class="icon-wrapper icon-4">
-							<i class="fas fa-traffic-light"></i>
-						</div>
-						<h3 class="card-title">병목을 찾아라</h3>
-					</div>
-					<div class="card-content">
-						<p>반복되는 질문 = 병목 = 문서화/개선 대상이다.</p>
-					</div>
-				</div>
-				<!-- Card 5 -->
-				<div class="card">
-					<div class="card-number">05</div>
-					<div class="card-header">
-						<div class="icon-wrapper icon-5">
-							<i class="fas fa-code-branch"></i>
-						</div>
-						<h3 class="card-title">시각화의 효율</h3>
-					</div>
-					<div class="card-content">
-						<p>측정되는것은 관리된다</p>
-						<p>가시화 되는것은 관리된다</p>
-						<p>보이지 않으면 관리할 수 없다</p>
-					</div>
-				</div>
-				<!-- Card 6 -->
-				<div class="card">
-					<div class="card-number">06</div>
-					<div class="card-header">
-						<div class="icon-wrapper icon-6">
-							<i class="fas fa-sync-alt"></i>
-						</div>
-						<h3 class="card-title">개선은 여정이다</h3>
-					</div>
-					<div class="card-content">
-						<p>프로세스는 한 번 만들고 끝이 아니라 <strong>계속 발전시켜 나가는 과정</strong>이다.</p>
-					</div>
-				</div>
-			</div>
-			<!-- Footer -->
-			<div class="footer">
-				<div style="display: flex; align-items: center">
-					<i class="fas fa-chart-line" style="color: #2563eb; margin-right: 0.5rem"></i>
-					<span>PM으로 성장하기: 프로젝트 효율높이기 (실전편)</span>
-				</div>
-				<div>주니어 PM의 실전 경험 공유</div>
-			</div>
-		</div>
-	</body>
+    /* 중간 노트북 (1024px ~ 1439px) */
+    @media (max-width: 1439px) {
+        body { font-size: 100%; }
+    }
+    </style>
+</head>
+<body>
+<div class="slide">
+<!-- Header -->
+<div class="header-section">
+<h1 class="slide-title">
+<span class="slide-number">📖</span>
+                정리: 제가 배운 것들
+            </h1>
+<p class="subtitle">
+                주니어 PM으로서 프로젝트 효율화를 통해 얻은 6가지 핵심 인사이트
+            </p>
+</div>
+<!-- Grid Content -->
+<div class="grid-container">
+<!-- Card 1 -->
+<div class="card">
+<div class="card-number">01</div>
+<div class="card-header">
+<div class="icon-wrapper icon-1">
+<i class="fas fa-puzzle-piece"></i>
+</div>
+<h3 class="card-title">완벽보다 실행하기</h3>
+</div>
+<div class="card-content">
+<p>지금 할 수 있는것 부터 시작하자.</p>
+<p>실행하면서 다듬어가는 것이 더 빠르다.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="card">
+<div class="card-number">02</div>
+<div class="card-header">
+<div class="icon-wrapper icon-2">
+<i class="fas fa-seedling"></i>
+</div>
+<h3 class="card-title">작은 변화의 힘</h3>
+</div>
+<div class="card-content">
+<p>주간 회의 하나, 문서 양식 하나 같은 <strong>작은 변화</strong>가 팀 전체의 효율성에 <strong>큰 차이</strong>를 만들어낸다.</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="card">
+<div class="card-number">03</div>
+<div class="card-header">
+<div class="icon-wrapper icon-3">
+<i class="fas fa-map-marker-alt"></i>
+</div>
+<h3 class="card-title">문서화는 투자다</h3>
+</div>
+<div class="card-content">
+<p>문서화 할 시간이 없어서 X</p>
+<p>한번 만들면 영원히 팀의 자산이 된다</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="card">
+<div class="card-number">04</div>
+<div class="card-header">
+<div class="icon-wrapper icon-4">
+<i class="fas fa-traffic-light"></i>
+</div>
+<h3 class="card-title">병목을 찾아라</h3>
+</div>
+<div class="card-content">
+<p>반복되는 질문 = 병목 = 문서화/개선 대상이다.</p>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="card">
+<div class="card-number">05</div>
+<div class="card-header">
+<div class="icon-wrapper icon-5">
+<i class="fas fa-code-branch"></i>
+</div>
+<h3 class="card-title">시각화의 효율</h3>
+</div>
+<div class="card-content">
+<p>측정되는것은 관리된다</p>
+<p>가시화 되는것은 관리된다</p>
+<p>보이지 않으면 관리할 수 없다</p>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="card">
+<div class="card-number">06</div>
+<div class="card-header">
+<div class="icon-wrapper icon-6">
+<i class="fas fa-sync-alt"></i>
+</div>
+<h3 class="card-title">개선은 여정이다</h3>
+</div>
+<div class="card-content">
+<p>프로세스는 한 번 만들고 끝이 아니라 <strong>계속 발전시켜 나가는 과정</strong>이다.</p>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="footer">
+<div style="display: flex; align-items: center;">
+<i class="fas fa-chart-line" style="color: #2563EB; margin-right: 0.5rem;"></i>
+<span>PM으로 성장하기: 프로젝트 효율높이기 (실전편)</span>
+</div>
+<div>주니어 PM의 실전 경험 공유</div>
+</div>
+</div>
+</body>
 </html>

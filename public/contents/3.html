@@ -40,45 +40,49 @@
 			}
 			.overview-title {
 				font-family: "Noto Sans KR", sans-serif;
-				font-size: 3.5rem;
+				font-size: clamp(2rem, 3.5vw, 3.5rem);
 				font-weight: 900;
 				letter-spacing: -1px;
 				color: #1f2937; /* Dark Gray */
 				text-align: center;
-				margin-bottom: 10px;
-				margin-top: 20px;
+				margin-bottom: clamp(0.5rem, 1vh, 0.75rem);
+				margin-top: clamp(1rem, 2vh, 1.5rem);
 			}
 			.overview-subtitle {
 				font-family: "Noto Sans KR", sans-serif;
-				font-size: clamp(1.3rem, 2.2vw, 2rem);
+				font-size: clamp(1rem, 1.6vw, 1.5rem);
 				font-weight: 400;
 				color: #4b5563;
 				text-align: center;
-				margin-bottom: 50px;
+				margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
 			}
 			.card-grid {
 				display: grid;
 				grid-template-columns: repeat(3, 1fr);
 				grid-template-rows: repeat(2, 1fr);
-				gap: 30px;
-				width: 1080px;
+				gap: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 2.5vw, 2rem);
+				flex: 1;
+				padding: 0 clamp(2rem, 4vw, 4rem);
 				margin: 0 auto;
+				max-width: 100%;
+				align-content: center;
 			}
 			.topic-card {
 				background-color: #ffffff;
 				border: 1px solid #e5e7eb;
-				border-radius: 12px;
-				padding: 30px 20px;
+				border-radius: clamp(8px, 1vw, 12px);
+				padding: clamp(1rem, 2vh, 1.5rem) clamp(0.75rem, 1.5vw, 1.25rem);
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 				justify-content: center;
 				box-shadow:
-					0 4px 6px -1px rgba(0, 0, 0, 0.05),
-					0 2px 4px -1px rgba(0, 0, 0, 0.03);
+					0 2px 4px rgba(0, 0, 0, 0.05),
+					0 1px 2px rgba(0, 0, 0, 0.03);
 				transition: all 0.3s ease;
 				position: relative;
 				overflow: hidden;
+				min-height: 0;
 			}
 			.topic-card:hover {
 				transform: translateY(-5px);
@@ -102,17 +106,18 @@
 				opacity: 1;
 			}
 			.icon-circle {
-				width: 64px;
-				height: 64px;
+				width: clamp(40px, 4vw, 56px);
+				height: clamp(40px, 4vw, 56px);
 				background-color: #eff6ff; /* Light Blue */
 				border-radius: 50%;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				margin-bottom: 20px;
+				margin-bottom: clamp(0.75rem, 1.5vh, 1rem);
 				color: #2563eb;
-				font-size: 1.75rem;
+				font-size: clamp(1.2rem, 1.8vw, 1.5rem);
 				transition: background-color 0.3s ease;
+				flex-shrink: 0;
 			}
 			.topic-card:hover .icon-circle {
 				background-color: #2563eb;
@@ -120,9 +125,9 @@
 			}
 			.card-number {
 				position: absolute;
-				top: 15px;
-				right: 20px;
-				font-size: clamp(1.3rem, 2.2vw, 2rem);
+				top: clamp(0.75rem, 1.2vh, 1rem);
+				right: clamp(0.75rem, 1.5vw, 1.25rem);
+				font-size: clamp(1.1rem, 1.8vw, 1.6rem);
 				font-weight: 900;
 				color: #e5e7eb;
 				font-family: "Noto Sans KR", sans-serif;
@@ -131,11 +136,12 @@
 				color: #dbeafe;
 			}
 			.card-title {
-				font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+				font-size: clamp(0.95rem, 1.5vw, 1.3rem);
 				font-weight: 700;
 				color: #1f2937;
 				text-align: center;
 				margin: 0;
+				line-height: 1.3;
 			}
 			.footer {
 				margin-top: auto;
@@ -143,30 +149,30 @@
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				padding: 20px 40px;
+				padding: clamp(0.75rem, 1.5vh, 1rem) clamp(1.5rem, 2.5vw, 2rem);
 				border-top: 1px solid #f3f4f6;
 				color: #6b7280;
-				font-size: 0.9rem;
+				font-size: clamp(0.8rem, 1.2vw, 1rem);
+				flex-shrink: 0;
 			}
 
 			/* 매우 큰 화면 (1920px 이상) - 발표용 최적화 */
 			@media (min-width: 1920px) {
-				body {
-					font-size: 110%;
+				.overview-title {
+					font-size: clamp(2.5rem, 4vw, 4rem);
+				}
+				.card-title {
+					font-size: clamp(1.1rem, 1.7vw, 1.5rem);
 				}
 			}
 
-			/* 큰 화면 (1440px ~ 1919px) */
-			@media (min-width: 1440px) and (max-width: 1919px) {
-				body {
-					font-size: 105%;
-				}
-			}
-
-			/* 중간 노트북 (1024px ~ 1439px) */
+			/* 작은 노트북 (1024px ~ 1439px) */
 			@media (max-width: 1439px) {
-				body {
-					font-size: 100%;
+				.overview-title {
+					font-size: clamp(1.6rem, 3vw, 2.5rem);
+				}
+				.card-grid {
+					gap: clamp(0.75rem, 1.5vw, 1rem) clamp(1rem, 2vw, 1.5rem);
 				}
 			}
 		</style>
@@ -175,7 +181,7 @@
 		<div class="slide">
 			<div class="accent-shape"></div>
 			<!-- Main Content -->
-			<div class="flex-grow flex flex-col items-center justify-center pt-10">
+			<div class="flex flex-col items-center" style="flex: 1; min-height: 0; padding-top: clamp(1rem, 2vh, 1.5rem)">
 				<h1 class="overview-title">오늘의 이야기</h1>
 				<p class="overview-subtitle">PM이 관리해야 할 6가지 핵심 영역</p>
 				<div class="card-grid">
